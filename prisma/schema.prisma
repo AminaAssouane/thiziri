@@ -1,0 +1,154 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ENUMS
+enum Severity {
+  MILD
+  MODERATE
+  SEVERE
+}
+
+enum Mood {
+  BAD
+  AVERAGE
+  GOOD
+}
+
+enum Status {
+  UPCOMING
+  COMPLETED
+  CANCELLED
+}
+
+// IDENTITY
+model User {
+  id               String           @id @default(cuid())
+  email            String           @unique
+  passwordHash     String?
+  firstName        String
+  lastName         String
+  dateOfBirth      DateTime?
+  createdAt        DateTime         @default(now())
+  healthProfile    HealthProfile?
+  healthStatuses   HealthStatus[]
+  moodEntries      MoodEntry[]
+  medications      Medication[]
+  appointments     Appointment[]
+  documents        Document[]
+  emergencyContacts EmergencyContact[]
+}
+
+model HealthProfile {
+  id               String           @id @default(cuid())
+  userId           String           @unique
+  bloodType        String?
+  allergies        Allergy[]
+  chronicIllnesses ChronicIllness[]
+  user             User             @relation(fields: [userId], references: [id])
+}
+
+model Allergy {
+  id                  String        @id @default(cuid())
+  healthProfileId     String
+  name                String
+  severity            Severity
+  reactionDescription String?
+  healthProfile       HealthProfile @relation(fields: [healthProfileId], references: [id])
+}
+
+model ChronicIllness {
+  id              String        @id @default(cuid())
+  healthProfileId String
+  name            String
+  diagnosisDate   DateTime?
+  notes           String?
+  healthProfile   HealthProfile @relation(fields: [healthProfileId], references: [id])
+}
+
+// DAILY TRACKING
+model HealthStatus {
+  id            String   @id @default(cuid())
+  userId        String
+  weight        Float?
+  bloodPressure String?
+  bloodSugar    Float?
+  temperature   Float?
+  condition     String?
+  createdAt     DateTime @default(now())
+  user          User     @relation(fields: [userId], references: [id])
+}
+
+model MoodEntry {
+  id        String   @id @default(cuid())
+  userId    String
+  mood      Mood
+  note      String?
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+// MEDICAL MANAGEMENT
+model Medication {
+  id        String          @id @default(cuid())
+  userId    String
+  name      String
+  dosage    String
+  frequency String
+  startDate DateTime
+  endDate   DateTime?
+  notes     String?
+  createdAt DateTime        @default(now())
+  logs      MedicationLog[]
+  user      User            @relation(fields: [userId], references: [id])
+}
+
+model MedicationLog {
+  id           String     @id @default(cuid())
+  medicationId String
+  takenAt      DateTime?
+  skipped      Boolean    @default(false)
+  medication   Medication @relation(fields: [medicationId], references: [id])
+}
+
+model Appointment {
+  id         String     @id @default(cuid())
+  userId     String
+  doctorName String
+  specialty  String
+  date       DateTime
+  location   String
+  reason     String
+  notes      String?
+  status     Status
+  createdAt  DateTime   @default(now())
+  documents  Document[]
+  user       User       @relation(fields: [userId], references: [id])
+}
+
+model Document {
+  id            String       @id @default(cuid())
+  userId        String
+  appointmentId String?
+  fileUrl       String
+  category      String
+  notes         String?
+  user          User         @relation(fields: [userId], references: [id])
+  appointment   Appointment? @relation(fields: [appointmentId], references: [id])
+}
+
+// SAFETY
+model EmergencyContact {
+  id           String  @id @default(cuid())
+  userId       String
+  name         String
+  phone        String
+  email        String?
+  relationship String?
+  user         User    @relation(fields: [userId], references: [id])
+}
