@@ -6,7 +6,6 @@ import { redirect } from "next/navigation";
 
 export async function createHealthStatus(formData) {
   const session = await auth();
-  console.log("SESSION:", session);
 
   if (!session?.user?.id) {
     throw new Error("Not authenticated");
