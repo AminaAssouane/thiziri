@@ -35,9 +35,20 @@ export async function createHealthStatus(formData) {
         condition,
       },
     });
-    revalidatePath("/dashboard/health-status");
+    revalidatePath("/dashboard/health-status"); // to refresh the data, as nextjs might just show the cached version with the new entry not added in
   } catch (error) {
     console.error("Failed to add health status", error);
   }
   redirect("/dashboard/health-status");
+}
+
+export async function deleteHealthStatus(id) {
+  const session = await auth();
+  if (!session?.user?.id) {
+    throw new Error("Not authenticated");
+  }
+
+  await prisma.healthStatus.delete({ where: { id, userId: session.user.id } });
+
+  revalidatePath("/dashboard/health-status");
 }

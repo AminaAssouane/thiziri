@@ -1,6 +1,7 @@
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
+import { DeleteButton } from "./DeleteButton";
 
 export default async function HealthStatusPage() {
   const session = await auth();
@@ -27,6 +28,7 @@ export default async function HealthStatusPage() {
               <p>Temperature: {entry.temperature}</p>
               <p>Condition: {entry.condition}</p>
               <p>Date: {entry.createdAt.toLocaleDateString()}</p>
+              <DeleteButton id={entry.id} />
             </li>
           ))}
         </ul>
