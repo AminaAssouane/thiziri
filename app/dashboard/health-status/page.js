@@ -29,6 +29,9 @@ export default async function HealthStatusPage() {
               <p>Condition: {entry.condition}</p>
               <p>Date: {entry.createdAt.toLocaleDateString()}</p>
               <DeleteButton id={entry.id} />
+              <Link href={`/dashboard/health-status/${entry.id}/edit`}>
+                Edit
+              </Link>
             </li>
           ))}
         </ul>
