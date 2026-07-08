@@ -14,7 +14,12 @@ export async function saveHealthProfile(formData) {
 
   const bloodType = formData.get("bloodType");
   const allergies = JSON.parse(formData.get("allergies"));
-  const chronicIllnesses = JSON.parse(formData.get("chronicIllnesses"));
+  const chronicIllnesses = JSON.parse(formData.get("chronicIllnesses")).map(
+    (c) => ({
+      ...c,
+      diagnosisDate: new Date(c.diagnosisDate),
+    }),
+  );
 
   if (existing) {
     await prisma.healthProfile.update({
