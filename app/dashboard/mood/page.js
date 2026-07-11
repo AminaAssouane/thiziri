@@ -1,6 +1,6 @@
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
-import MoodView from "./MoodView";
+import { MoodView } from "./MoodView";
 
 export default async function MoodPage() {
   const session = await auth();
