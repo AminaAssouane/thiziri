@@ -74,3 +74,17 @@ export async function editMedication(formData) {
   revalidatePath("/dashboard/medication");
   redirect("/dashboard/medication");
 }
+
+export async function removeMedication(id) {
+  const session = await auth();
+  if (!session?.user?.id) throw new Error("Not authenticated");
+
+  try {
+    await prisma.medication.delete({ where: { id, userId: session.user.id } });
+  } catch (error) {
+    console.error("Couldn't delete the medication. Error : ", error);
+    return { error: "Could not delete the medication" };
+  }
+
+  revalidatePath("/dashboard/medication");
+}
