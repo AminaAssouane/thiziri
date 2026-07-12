@@ -45,3 +45,32 @@ export async function addMedication(formData) {
   revalidatePath("/dashboard/medication");
   redirect("/dashboard/medication");
 }
+
+export async function editMedication(formData) {
+  const session = await auth();
+  if (!session?.user?.id) throw new Error("Not authenticated");
+
+  const userId = session.user.id;
+  const name = formData.get("name");
+  const dosage = formData.get("dosage");
+  const frequency = formData.get("frequency");
+  const startDate = new Date(formData.get("startDate"));
+
+  const endDateRaw = formData.get("endDate");
+  const endDate = endDateRaw ? new Date(formData.get("endDate")) : null;
+
+  const notes = formData.get("notes") || null;
+
+  try {
+    await prisma.medication.update({
+      where: { id: formData.get("id"), userId },
+      data: { name, dosage, frequency, startDate, endDate, notes },
+    });
+  } catch (error) {
+    console.error("Couldn't edit the medication. Error : ", error);
+    return { error: "Could not edit the medication" };
+  }
+
+  revalidatePath("/dashboard/medication");
+  redirect("/dashboard/medication");
+}
