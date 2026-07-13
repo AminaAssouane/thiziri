@@ -44,3 +44,12 @@ export async function addAppointment(formData) {
   revalidatePath("/dashboard/appointments");
   redirect("/dashboard/appointments");
 }
+
+export async function removeAppointment(id) {
+  const session = await auth();
+  if (!session?.user?.id) throw new Error("Not authenticated");
+
+  await prisma.appointment.delete({ where: { id, userId: session.user.id } });
+
+  revalidatePath("/dashboard/appointments");
+}
