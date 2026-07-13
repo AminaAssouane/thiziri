@@ -136,6 +136,7 @@ model Medication {
 
 model MedicationLog {
   id           String     @id @default(cuid())
+  userId       String
   medicationId String
   takenAt      DateTime?
   skipped      Boolean    @default(false)
