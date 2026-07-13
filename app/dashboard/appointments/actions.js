@@ -53,3 +53,25 @@ export async function removeAppointment(id) {
 
   revalidatePath("/dashboard/appointments");
 }
+
+export async function editAppointment(formData) {
+  const session = await auth();
+  if (!session?.user?.id) throw new Error("Not authenticated");
+
+  const userId = session.user.id;
+  const doctorName = formData.get("doctorName");
+  const specialty = formData.get("specialty");
+  const date = new Date(formData.get("date"));
+  const location = formData.get("location");
+  const reason = formData.get("reason");
+  const notes = formData.get("notes") || null;
+  const status = formData.get("status");
+
+  await prisma.appointment.update({
+    where: { id: formData.get("id"), userId },
+    data: { doctorName, specialty, date, location, reason, notes, status },
+  });
+
+  revalidatePath("/dashboard/appointments");
+  redirect("/dashboard/appointments");
+}
