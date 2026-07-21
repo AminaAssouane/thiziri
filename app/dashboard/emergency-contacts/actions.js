@@ -44,3 +44,23 @@ export async function deleteEmergencyContact(id) {
 
   revalidatePath("/dashboard/emergency-contacts");
 }
+
+export async function editEmergencyContact(formData) {
+  const session = await auth();
+  if (!session?.user?.id) throw new Error("Not authenticated");
+
+  const userId = session.user.id;
+  const name = formData.get("name");
+  const phone = formData.get("phone");
+  const email = formData.get("email") || null;
+  const relationship = formData.get("relationship") || null;
+  const id = formData.get("id");
+
+  await prisma.emergencyContact.update({
+    where: { id, userId },
+    data: { name, phone, email, relationship },
+  });
+
+  revalidatePath("/dashboard/emergency-contacts");
+  redirect("/dashboard/emergency-contacts");
+}
