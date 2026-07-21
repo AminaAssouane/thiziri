@@ -3,6 +3,7 @@
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 export async function getEmergencyContacts() {
   const session = await auth();
@@ -31,4 +32,15 @@ export async function createEmergencyContact(formData) {
 
   revalidatePath("/dashboard/emergency-contacts");
   redirect("/dashboard/emergency-contacts");
+}
+
+export async function deleteEmergencyContact(id) {
+  const session = await auth();
+  if (!session?.user?.id) throw new Error("Not authenticated");
+
+  await prisma.emergencyContact.delete({
+    where: { id, userId: session.user.id },
+  });
+
+  revalidatePath("/dashboard/emergency-contacts");
 }
