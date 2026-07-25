@@ -45,6 +45,7 @@ model User {
   documents        Document[]
   emergencyContacts EmergencyContact[]
   accounts         Account[]
+  medicationLogs   MedicationLog[]
 }
 
 model Account {
@@ -140,6 +141,7 @@ model MedicationLog {
   medicationId String
   takenAt      DateTime?
   skipped      Boolean    @default(false)
+  user         User       @relation(fields: [userId], references: [id])
   medication   Medication @relation(fields: [medicationId], references: [id])
 }
 
