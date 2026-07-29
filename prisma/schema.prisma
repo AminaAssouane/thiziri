@@ -141,6 +141,7 @@ model MedicationLog {
   medicationId String
   takenAt      DateTime?
   skipped      Boolean    @default(false)
+  notes        String?
   user         User       @relation(fields: [userId], references: [id])
   medication   Medication @relation(fields: [medicationId], references: [id])
 }
