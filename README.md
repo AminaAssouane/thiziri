@@ -33,6 +33,17 @@ Thiziri lets you keep track of your health in one place: daily mood and health s
 - [ ] UI/styling pass
 - [ ] Google OAuth
 
+## Data Models
+
+- `User` — auth & account
+- `HealthProfile` — allergies, chronic illnesses
+- `HealthStatus` — daily health snapshot
+- `MoodEntry` — daily mood, GitHub-style contribution graph
+- `Medication` + `MedicationLog` — prescriptions and dosage tracking
+- `Appointment` — upcoming & past medical appointments
+- `EmergencyContact`
+- `Document` _(in progress)_ — uploaded medical files
+
 ## Getting started
 
 ```bash
@@ -44,5 +55,3 @@ npm run dev
 ## Why "Thiziri"?
 
 Keeping a Kabyle name for this project was a deliberate choice — a small way of bringing a piece of my language and culture into my work, rather than picking something generic.
-
----
