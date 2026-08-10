@@ -40,3 +40,28 @@ export async function createMedLog(medicationId, formData) {
   revalidatePath(`/dashboard/medication/${medicationId}/logs`);
   redirect(`/dashboard/medication/${medicationId}/logs`);
 }
+
+export async function editMedicationLog(logId, formData) {
+  const session = await auth();
+  if (!session?.user?.id) throw new Error("Not authenticated");
+
+  const takenAtInitial = formData.get("takenAt");
+  const takenAt = takenAtInitial ? new Date(takenAtInitial) : null;
+
+  const skipped = formData.get("skipped") === "on";
+  const notes = formData.get("notes") || null;
+
+  // Ownership check: does this log belong to this user?
+  const log = await prisma.medicationLog.findFirst({
+    where: { id: logId, userId: session.user.id },
+  });
+  if (!log) throw new Error("Not found");
+
+  await prisma.medicationLog.update({
+    where: { id: logId },
+    data: { takenAt, skipped, notes },
+  });
+
+  revalidatePath(`/dashboard/medication/${log.medicationId}/logs`);
+  redirect(`/dashboard/medication/${log.medicationId}/logs`);
+}
