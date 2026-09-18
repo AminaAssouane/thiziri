@@ -55,7 +55,7 @@ export async function editMedicationLog(logId, formData) {
   const log = await prisma.medicationLog.findFirst({
     where: { id: logId, userId: session.user.id },
   });
-  if (!log) throw new Error("Not found");
+  if (!log) throw new Error("Log not found");
 
   await prisma.medicationLog.update({
     where: { id: logId },
@@ -64,4 +64,19 @@ export async function editMedicationLog(logId, formData) {
 
   revalidatePath(`/dashboard/medication/${log.medicationId}/logs`);
   redirect(`/dashboard/medication/${log.medicationId}/logs`);
+}
+
+export async function deleteMedLog(logId) {
+  const session = await auth();
+  if (!session?.user?.id) throw new Error("Not authenticated");
+
+  const log = await prisma.medicationLog.findFirst({
+    where: { userId: session.user.id, id: logId },
+  });
+
+  if (!log) throw new Error("Log not found");
+
+  await prisma.medicationLog.delete({ where: { id: logId } });
+
+  revalidatePath(`/dashboard/medication/${log.medicationId}/logs`);
 }
