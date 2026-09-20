@@ -16,6 +16,17 @@ export async function getMedLogs(medicationId) {
   return logs;
 }
 
+export async function getMedLog(logId) {
+  const session = await auth();
+  if (!session?.user?.id) throw new Error("Not authenticated");
+
+  const log = await prisma.medicationLog.findFirst({
+    where: { id: logId, userId: session.user.id },
+  });
+
+  return log;
+}
+
 export async function createMedLog(medicationId, formData) {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Not authenticated");
