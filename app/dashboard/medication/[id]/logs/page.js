@@ -1,5 +1,6 @@
 import { getMedLogs } from "./actions";
 import DeleteButton from "./DeleteButton";
+import Link from "next/link";
 
 export default async function MedLogsPage({ params }) {
   const { id } = await params;
@@ -7,7 +8,7 @@ export default async function MedLogsPage({ params }) {
   return (
     <div>
       <h1>Medication logs : </h1>
-      {/* New log link */}
+      <Link href={`/dashboard/medication/${id}/logs/new`}>+ New Log</Link>
       {medLogs.length === 0 ? (
         <div> No medication logs yet.</div>
       ) : (
@@ -23,7 +24,9 @@ export default async function MedLogsPage({ params }) {
               <p>Skipped : {medLog.skipped ? "Yes" : "No"}</p>
               <p>Notes : {medLog.notes ?? "No notes"}</p>
               <DeleteButton id={medLog.id} />
-              {/* Link to edit button */}
+              <Link href={`/dashboard/medication/${id}/logs/${medLog.id}/edit`}>
+                Edit log
+              </Link>
             </li>
           ))}
         </ul>
