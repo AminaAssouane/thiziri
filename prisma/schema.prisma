@@ -168,6 +168,7 @@ model Document {
   fileUrl       String
   category      String
   notes         String?
+  createdAt     DateTime     @default(now())
   user          User         @relation(fields: [userId], references: [id])
   appointment   Appointment? @relation(fields: [appointmentId], references: [id])
 }
