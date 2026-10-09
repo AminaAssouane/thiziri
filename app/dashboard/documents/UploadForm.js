@@ -12,8 +12,7 @@ export default function UploadForm() {
         <UploadButton
           endpoint="documentUploader"
           onClientUploadComplete={(res) => {
-            // res is an array of uploaded files (even if maxFileCount is 1)
-            setUploadedUrl(res[0].url);
+            setUploadedUrl(res[0].ufsUrl);
           }}
           onUploadError={(error) => {
             console.error("Upload error:", error);
