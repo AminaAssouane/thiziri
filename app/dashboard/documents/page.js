@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import UploadForm from "./UploadForm";
 import { auth } from "@/auth";
+import DeleteButton from "./DeleteButton";
 
 export default async function Documents() {
   const session = await auth();
@@ -33,6 +34,7 @@ export default async function Documents() {
               <p>Category : {doc.category}</p>
               <p>Notes : {doc.notes || "No notes"}</p>
               <p>Upload date : {doc.createdAt.toLocaleDateString()}</p>
+              <DeleteButton id={doc.id} />
             </li>
           ))}
         </ul>
