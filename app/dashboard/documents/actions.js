@@ -19,3 +19,12 @@ export async function createDocument(formData) {
 
   revalidatePath("/dashboard/documents");
 }
+
+export async function deleteDocument(id) {
+  const session = await auth();
+  if (!session?.user?.id) throw new Error("Not authenticated");
+
+  const userId = session.user.id;
+  await prisma.document.delete({ where: { userId, id } });
+  revalidatePath("/dashboard/documents");
+}
