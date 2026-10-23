@@ -1,4 +1,5 @@
 export const authConfig = {
+  trustHost: true,
   providers: [],
   session: { strategy: "jwt" },
   callbacks: {
