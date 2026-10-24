@@ -8,15 +8,17 @@ export default function ProfileView({ profile }) {
     profile?.allergies?.map((a) => ({
       name: a.name,
       severity: a.severity,
-      reactionDescription: a.reactionDescription,
+      reactionDescription: a.reactionDescription ?? "",
     })) ?? [],
   );
 
   const [chronicIllnesses, setChronicIllnesses] = useState(
     profile?.chronicIllnesses?.map((c) => ({
       name: c.name,
-      diagnosisDate: c.diagnosisDate,
-      notes: c.notes,
+      diagnosisDate: c.diagnosisDate
+        ? new Date(c.diagnosisDate).toISOString().slice(0, 10)
+        : "",
+      notes: c.notes ?? "",
     })) ?? [],
   );
 
@@ -24,7 +26,7 @@ export default function ProfileView({ profile }) {
   function addAllergy() {
     setAllergies([
       ...allergies,
-      { name: "", severity: "", reactionDescription: "" },
+      { name: "", severity: "MILD", reactionDescription: "" },
     ]);
   }
 
@@ -89,17 +91,21 @@ export default function ProfileView({ profile }) {
                 value={a.name}
                 placeholder="Name"
                 onChange={(e) => updateAllergy(i, "name", e.target.value)}
+                required
               />
             </label>
 
             <label>
               Severity :{" "}
-              <input
-                type="text"
-                placeholder="Severity"
+              <select
                 value={a.severity}
                 onChange={(e) => updateAllergy(i, "severity", e.target.value)}
-              />
+                required
+              >
+                <option value="MILD">Mild</option>
+                <option value="MODERATE">Moderate</option>
+                <option value="SEVERE">Severe</option>
+              </select>
             </label>
 
             <label>
@@ -149,7 +155,7 @@ export default function ProfileView({ profile }) {
               Date of diagnosis :{" "}
               <input
                 type="date"
-                placeholder="Date of diagnos"
+                placeholder="Date of diagnosis"
                 value={c.diagnosisDate}
                 onChange={(e) =>
                   updateChronicIllnesses(i, "diagnosisDate", e.target.value)
