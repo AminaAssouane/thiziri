@@ -64,7 +64,45 @@ export default function ProfileView({ profile }) {
     return (
       <div>
         <h1>Health Profile</h1>
-        <p>Blood type : {profile.bloodType}</p>
+        <p>Blood type : {profile.bloodType ?? "Not set"}</p>
+
+        <h2>Allergies : </h2>
+        {profile.allergies.length === 0 ? (
+          <p>No allergies recorded.</p>
+        ) : (
+          <ul>
+            {profile.allergies.map((a) => (
+              <li key={a.id}>
+                <p>Name : {a.name}</p>
+                <p>Severity : {a.severity}</p>
+                <p>
+                  Reaction description :{" "}
+                  {a.reactionDescription ?? "No reaction description."}
+                </p>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        <h2>Chronic illnesses : </h2>
+        {profile.chronicIllnesses.length === 0 ? (
+          <p>No chronic illnesses recorded.</p>
+        ) : (
+          <ul>
+            {profile.chronicIllnesses.map((c) => (
+              <li key={c.id}>
+                <p>Name : {c.name}</p>
+                <p>
+                  Diagnosis date :{" "}
+                  {c.diagnosisDate
+                    ? c.diagnosisDate.toISOString().slice(0, 10)
+                    : "No date recorded"}
+                </p>
+                <p>Notes : {c.notes ?? "No notes recorded."} </p>
+              </li>
+            ))}
+          </ul>
+        )}
         <button onClick={() => setIsEditing(true)}>Edit</button>
       </div>
     );
