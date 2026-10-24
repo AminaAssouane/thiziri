@@ -148,6 +148,7 @@ export default function ProfileView({ profile }) {
                 onChange={(e) =>
                   updateChronicIllnesses(i, "name", e.target.value)
                 }
+                required
               />
             </label>
 

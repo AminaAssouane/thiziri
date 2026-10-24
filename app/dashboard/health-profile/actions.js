@@ -13,7 +13,12 @@ export async function saveHealthProfile(formData) {
   const existing = await prisma.healthProfile.findUnique({ where: { userId } });
 
   const bloodType = formData.get("bloodType") || null;
-  const chronicIllnesses = JSON.parse(formData.get("chronicIllnesses"));
+  let rawChronicIllnesses;
+  try {
+    rawChronicIllnesses = JSON.parse(formData.get("chronicIllnesses"));
+  } catch {
+    throw new Error("Invalid form data");
+  }
   let rawAllergies;
   try {
     rawAllergies = JSON.parse(formData.get("allergies"));
@@ -30,6 +35,12 @@ export async function saveHealthProfile(formData) {
     name: a.name.trim(),
     severity: a.severity,
     reactionDescription: a.reactionDescription?.trim() || null,
+  }));
+
+  const chronicIllnesses = rawChronicIllnesses.map((c) => ({
+    name: c.name.trim(),
+    diagnosisDate: c.diagnosisDate ? new Date(c.diagnosisDate) : null,
+    notes: c.notes?.trim() || null,
   }));
 
   if (existing) {
