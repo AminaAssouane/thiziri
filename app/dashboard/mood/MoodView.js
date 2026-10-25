@@ -30,8 +30,9 @@ export function MoodView({ mood }) {
   else
     return (
       <div>
-        Mood : {mood.mood}
-        Note : {mood.note}
+        <p>Mood : {mood.mood}</p>
+        <p>Note : {mood.note}</p>
+        <p>Date : {mood.date.toISOString().slice(0, 10)}</p>
         <button onClick={() => setIsEditing(true)}>Edit</button>
       </div>
     );
