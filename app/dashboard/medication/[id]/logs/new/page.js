@@ -6,7 +6,7 @@ export default async function NewMedLog({ params }) {
   return (
     <div>
       <h1>New medication log : </h1>
-      <form action={(formData) => createMedLog(id, formData)}>
+      <form action={createMedLog.bind(null, id)}>
         <label>
           Medication taken at : <input type="datetime-local" name="takenAt" />
         </label>
