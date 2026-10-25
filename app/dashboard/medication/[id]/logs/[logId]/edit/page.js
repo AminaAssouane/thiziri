@@ -9,7 +9,7 @@ export default async function EditMedLogPage({ params }) {
 
   return (
     <div>
-      <form action={(formData) => editMedicationLog(logId, formData)}>
+      <form action={editMedicationLog.bind(null, logId)}>
         <label>
           Taken at :{" "}
           <input
