@@ -31,6 +31,9 @@ export default async function MedicationPage() {
               <Link href={`/dashboard/medication/${medication.id}/edit`}>
                 Edit
               </Link>
+              <Link href={`/dashboard/medication/${medication.id}/logs`}>
+                View logs
+              </Link>
             </li>
           ))}
         </ul>
