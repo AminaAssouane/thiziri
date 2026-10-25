@@ -79,6 +79,15 @@ export default async function EditMedication({ params }) {
         <textarea name="notes" defaultValue={medication.notes ?? ""}></textarea>
       </label>
 
+      <label>
+        Is it active :{" "}
+        <input
+          name="isActive"
+          type="checkbox"
+          defaultChecked={medication.isActive}
+        />
+      </label>
+
       <button type="submit">Save</button>
     </form>
   );

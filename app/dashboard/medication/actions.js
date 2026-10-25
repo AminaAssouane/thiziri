@@ -27,6 +27,7 @@ export async function addMedication(formData) {
   const dosage = formData.get("dosage");
   const frequency = formData.get("frequency");
   const startDate = new Date(formData.get("startDate"));
+  const isActive = formData.get("isActive") === "on";
 
   const endDateRaw = formData.get("endDate");
   const endDate = endDateRaw ? new Date(formData.get("endDate")) : null;
@@ -35,7 +36,16 @@ export async function addMedication(formData) {
 
   try {
     const medication = await prisma.medication.create({
-      data: { userId, name, dosage, frequency, startDate, endDate, notes },
+      data: {
+        userId,
+        name,
+        dosage,
+        frequency,
+        startDate,
+        endDate,
+        notes,
+        isActive,
+      },
     });
   } catch (error) {
     console.error("Could not add medication. Error : ", error);
@@ -55,6 +65,7 @@ export async function editMedication(formData) {
   const dosage = formData.get("dosage");
   const frequency = formData.get("frequency");
   const startDate = new Date(formData.get("startDate"));
+  const isActive = formData.get("isActive") === "on";
 
   const endDateRaw = formData.get("endDate");
   const endDate = endDateRaw ? new Date(formData.get("endDate")) : null;
@@ -64,7 +75,7 @@ export async function editMedication(formData) {
   try {
     await prisma.medication.update({
       where: { id: formData.get("id"), userId },
-      data: { name, dosage, frequency, startDate, endDate, notes },
+      data: { name, dosage, frequency, startDate, endDate, notes, isActive },
     });
   } catch (error) {
     console.error("Couldn't edit the medication. Error : ", error);

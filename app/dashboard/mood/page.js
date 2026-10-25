@@ -16,7 +16,7 @@ export default async function MoodPage() {
 
   return (
     <div>
-      <h1>Mood</h1>
+      <h1>Moods : </h1>
       <MoodView mood={mood} />
     </div>
   );

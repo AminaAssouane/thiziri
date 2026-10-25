@@ -26,6 +26,7 @@ export default async function MedicationPage() {
                   : "No end date"}
               </p>
               <p>Notes : {medication.notes ?? "No notes"}</p>
+              <p>Active : {medication.isActive ? "Active" : "Not active"}</p>
               <DeleteButton id={medication.id} />
               <Link href={`/dashboard/medication/${medication.id}/edit`}>
                 Edit

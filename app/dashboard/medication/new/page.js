@@ -28,6 +28,10 @@ export default function NewMedicationPage() {
         Notes: <textarea name="notes"></textarea>
       </label>
 
+      <label>
+        Is it active : <input type="checkbox" name="isActive" defaultChecked />
+      </label>
+
       <button type="submit">Submit</button>
     </form>
   );
