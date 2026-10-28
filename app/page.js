@@ -53,7 +53,7 @@ export default function Landing() {
 
         <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] md:aspect-auto md:h-[36rem]">
           <Image
-            src="/hero.png"
+            src="/hero6.png"
             alt=""
             fill
             priority
