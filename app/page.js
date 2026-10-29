@@ -19,9 +19,10 @@ export default function Landing() {
     <main>
       <section className="mx-auto grid min-h-screen max-w-6xl items-center gap-10 px-6 py-12 md:grid-cols-2">
         <div className="text-center md:text-left">
-          <h1 className="font-display text-6xl text-forest md:text-7xl">
+          <h1 className="moon-title font-display text-6xl md:text-7xl">
             Thiziri
           </h1>
+
           <p className="mt-2 text-sm uppercase tracking-widest text-lagoon">
             moonlight · ⵜⵉⵣⵉⵔⵉ
           </p>
