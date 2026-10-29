@@ -51,7 +51,7 @@ export default function Landing() {
           </div>
         </div>
 
-        <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] md:aspect-auto md:h-[36rem]">
+        <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] md:aspect-auto md:h-[36rem] hidden md:block">
           <Image
             src="/hero6.png"
             alt=""
@@ -62,7 +62,7 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="bg-forest px-6 py-16 text-cream">
+      <section className="bg-forest px-6 py-16 text-cream hidden md:block">
         <div className="mx-auto grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {features.map((f) => (
             <div
