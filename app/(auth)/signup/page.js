@@ -46,13 +46,35 @@ export default function SignUpPage() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input name="firstName" placeholder="First name" required />
-      <input name="lastName" placeholder="Last name" required />
-      <input name="email" type="email" placeholder="Email" required />
-      <input name="password" type="password" placeholder="Password" required />
+    <form onSubmit={handleSubmit} className="flex flex-col">
+      <input
+        name="firstName"
+        placeholder="First name"
+        className="input"
+        required
+      />
+      <input
+        name="lastName"
+        placeholder="Last name"
+        className="input"
+        required
+      />
+      <input
+        name="email"
+        type="email"
+        placeholder="Email"
+        className="input"
+        required
+      />
+      <input
+        name="password"
+        type="password"
+        placeholder="Password"
+        className="input"
+        required
+      />
       {error && <p style={{ color: "red" }}>{error}</p>}
-      <button type="submit" disabled={loading}>
+      <button type="submit" disabled={loading} className="button">
         {loading ? "Creating account..." : "Sign up"}
       </button>
     </form>
