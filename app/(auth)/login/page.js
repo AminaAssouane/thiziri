@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
+import Link from "next/link";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -34,13 +35,31 @@ export default function LoginPage() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input name="email" type="email" placeholder="Email" required />
-      <input name="password" type="password" placeholder="Password" required />
+    <form onSubmit={handleSubmit} className="flex flex-col">
+      <input
+        name="email"
+        type="email"
+        placeholder="Email"
+        className="input"
+        required
+      />
+      <input
+        name="password"
+        type="password"
+        placeholder="Password"
+        className="input"
+        required
+      />
       {error && <p style={{ color: "red" }}>{error}</p>}
-      <button type="submit" disabled={loading}>
+      <button type="submit" disabled={loading} className="button">
         {loading ? "Logging in..." : "Log in"}
       </button>
+      <div className="mt-2 text-center">
+        Don't have an account?{" "}
+        <Link href="/signup" className="font-bold">
+          Sign up!
+        </Link>
+      </div>
     </form>
   );
 }

@@ -39,36 +39,59 @@ body {
   @apply bg-cream text-forest;
 }
 
-.moon-title {
-  background: linear-gradient(
-    110deg,
-    var(--color-forest) 0%,
-    var(--color-forest) 35%,
-    var(--color-lagoon) 40%,
-    var(--color-moss) 50%,
-    var(--color-lagoon) 60%,
-    var(--color-forest) 65%,
-    var(--color-forest) 100%
-  );
-  background-size: 250% 100%;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 12px rgb(131 153 88 / 0.35));
-  animation: moonlight 7s ease-in-out infinite alternate;
-}
-
-@keyframes moonlight {
-  0% {
-    background-position: 100% 50%;
+@layer components {
+  .input {
+    border-radius: 9999px;
+    border: 1px solid var(--color-forest);
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
   }
-  100% {
-    background-position: 0% 50%;
-  }
-}
 
-@media (prefers-reduced-motion: reduce) {
+  .button {
+    border-radius: 9999px;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--color-forest);
+    color: var(--color-cream);
+  }
+
+  .button:hover {
+    cursor: pointer;
+    background-color: var(--color-lagoon);
+  }
+
+  /* Shining title */
   .moon-title {
-    animation: none;
+    background: linear-gradient(
+      110deg,
+      var(--color-forest) 0%,
+      var(--color-forest) 35%,
+      var(--color-lagoon) 40%,
+      var(--color-moss) 50%,
+      var(--color-lagoon) 60%,
+      var(--color-forest) 65%,
+      var(--color-forest) 100%
+    );
+    background-size: 250% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 12px rgb(131 153 88 / 0.35));
+    animation: moonlight 7s ease-in-out infinite alternate;
+  }
+
+  @keyframes moonlight {
+    0% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .moon-title {
+      animation: none;
+    }
   }
 }
