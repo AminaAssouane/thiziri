@@ -44,7 +44,7 @@ export default function Landing() {
             </Link>
             <Link
               href="/guest"
-              className="rounded-full px-8 py-3 text-center border-none bg-linear-to-r from-forest via-moss to-lagoon text-cream hover:bg-none hover:bg-forest"
+              className="rounded-full px-8 py-3 text-center border-none bg-linear-to-r from-[#c87035] via-[#d21fbe] to-[#1356ea] text-cream hover:bg-none hover:bg-forest"
             >
               Try as guest
             </Link>
