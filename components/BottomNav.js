@@ -6,7 +6,7 @@ import { links, isActive } from "./NavLinks";
 export default function BottomNav() {
   const pathname = usePathname();
   return (
-    <nav className="fixed inset-x-0 bottom-0 border-t border-stone-200 bg-forest">
+    <nav className="fixed inset-x-0 bottom-0 border-t border-stone-200 bg-forest md:hidden">
       <ul className="mx-auto flex max-w-md justify-around py-3">
         {links.map(({ href, label }) => {
           const active = pathname === href;

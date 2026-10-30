@@ -18,35 +18,44 @@ export default async function DashboardPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold text-stone-800 mb-6">
-        Hello, {user.firstName}
+      <h1 className="text-3xl font-semibold text-stone-800 md:text-5xl">
+        Welcome, {user.firstName}
       </h1>
 
-      <section className="rounded-2xl bg-white p-4 shadow-sm mb-6">
-        <h2 className="mb-2 font-medium">Today's medications</h2>
-        {medications.length === 0 ? (
-          <p className="text-sm text-stone-500">No active medications.</p>
-        ) : (
-          <ul className="space-y-1">
-            {medications.map((m) => (
-              <li key={m.id}>
-                <Link href={`/dashboard/medications/${m.id}/logs`}>
-                  {m.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        )}
-      </section>
+      <div className="mt-8 md:mt-14 md:grid md:grid-cols-3 md:gap-16">
+        <section className="md:col-span-2">
+          <h2 className="mb-4 text-sm font-medium uppercase tracking-wide text-stone-500">
+            Today's medications
+          </h2>
+          {medications.length === 0 ? (
+            <p className="text-stone-500">No active medications.</p>
+          ) : (
+            <ul className="divide-y divide-stone-200">
+              {medications.map((m) => (
+                <li key={m.id}>
+                  <Link
+                    href={`/dashboard/medications/${m.id}/logs`}
+                    className="block py-4 text-lg"
+                  >
+                    {m.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
 
-      <section className="rounded-2xl bg-white p-4 shadow-sm mb-6">
-        <h2 className="mb-2 font-medium">Next appointment</h2>
-        {nextAppointment ? (
-          <p>{nextAppointment.specialty}</p> // adjust to your fields
-        ) : (
-          <p className="text-sm text-stone-500">Nothing scheduled.</p>
-        )}
-      </section>
+        <section className="mt-10 border-t border-stone-200 pt-8 md:mt-0 md:border-l md:border-t-0 md:pl-10 md:pt-0">
+          <h2 className="mb-4 text-sm font-medium uppercase tracking-wide text-stone-500">
+            Next appointment
+          </h2>
+          {nextAppointment ? (
+            <p className="text-lg">{nextAppointment.specialty}</p>
+          ) : (
+            <p className="text-stone-500">Nothing scheduled.</p>
+          )}
+        </section>
+      </div>
     </div>
   );
 }
