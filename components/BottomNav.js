@@ -1,13 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-const links = [
-  { href: "/dashboard", label: "Home" },
-  { href: "/dashboard/medications", label: "Meds" },
-  { href: "/dashboard/appointments", label: "Visits" },
-  { href: "/dashboard/documents", label: "Docs" },
-];
+import { links, isActive } from "./NavLinks";
 
 export default function BottomNav() {
   const pathname = usePathname();
@@ -20,7 +14,11 @@ export default function BottomNav() {
             <li key={href}>
               <Link
                 href={href}
-                className={active ? "font-semibold text-rose" : "text-cream"}
+                className={
+                  isActive(pathname, href)
+                    ? "font-semibold text-rose"
+                    : "text-cream"
+                }
               >
                 {label}
               </Link>
