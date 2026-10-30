@@ -7,7 +7,7 @@ export default async function MedicationPage() {
   return (
     <div>
       <h1>Medications : </h1>
-      <Link href="/dashboard/medication/new">+ New medication</Link>
+      <Link href="/dashboard/medications/new">+ New medication</Link>
 
       {medications.length === 0 ? (
         <div>No medications added yet.</div>
@@ -28,10 +28,10 @@ export default async function MedicationPage() {
               <p>Notes : {medication.notes ?? "No notes"}</p>
               <p>Active : {medication.isActive ? "Active" : "Not active"}</p>
               <DeleteButton id={medication.id} />
-              <Link href={`/dashboard/medication/${medication.id}/edit`}>
+              <Link href={`/dashboard/medications/${medication.id}/edit`}>
                 Edit
               </Link>
-              <Link href={`/dashboard/medication/${medication.id}/logs`}>
+              <Link href={`/dashboard/medications/${medication.id}/logs`}>
                 View logs
               </Link>
             </li>

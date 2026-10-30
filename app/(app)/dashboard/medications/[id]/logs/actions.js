@@ -48,8 +48,8 @@ export async function createMedLog(medicationId, formData) {
     data: { userId: session.user.id, medicationId, takenAt, skipped, notes },
   });
 
-  revalidatePath(`/dashboard/medication/${medicationId}/logs`);
-  redirect(`/dashboard/medication/${medicationId}/logs`);
+  revalidatePath(`/dashboard/medications/${medicationId}/logs`);
+  redirect(`/dashboard/medications/${medicationId}/logs`);
 }
 
 export async function editMedicationLog(logId, formData) {
@@ -73,8 +73,8 @@ export async function editMedicationLog(logId, formData) {
     data: { takenAt, skipped, notes },
   });
 
-  revalidatePath(`/dashboard/medication/${log.medicationId}/logs`);
-  redirect(`/dashboard/medication/${log.medicationId}/logs`);
+  revalidatePath(`/dashboard/medications/${log.medicationId}/logs`);
+  redirect(`/dashboard/medications/${log.medicationId}/logs`);
 }
 
 export async function deleteMedLog(logId) {
@@ -89,5 +89,5 @@ export async function deleteMedLog(logId) {
 
   await prisma.medicationLog.delete({ where: { id: logId } });
 
-  revalidatePath(`/dashboard/medication/${log.medicationId}/logs`);
+  revalidatePath(`/dashboard/medications/${log.medicationId}/logs`);
 }

@@ -8,7 +8,7 @@ export default async function MedLogsPage({ params }) {
   return (
     <div>
       <h1>Medication logs : </h1>
-      <Link href={`/dashboard/medication/${id}/logs/new`}>+ New Log</Link>
+      <Link href={`/dashboard/medications/${id}/logs/new`}>+ New Log</Link>
       {medLogs.length === 0 ? (
         <div> No medication logs yet.</div>
       ) : (
@@ -24,7 +24,9 @@ export default async function MedLogsPage({ params }) {
               <p>Skipped : {medLog.skipped ? "Yes" : "No"}</p>
               <p>Notes : {medLog.notes ?? "No notes"}</p>
               <DeleteButton id={medLog.id} />
-              <Link href={`/dashboard/medication/${id}/logs/${medLog.id}/edit`}>
+              <Link
+                href={`/dashboard/medications/${id}/logs/${medLog.id}/edit`}
+              >
                 Edit log
               </Link>
             </li>

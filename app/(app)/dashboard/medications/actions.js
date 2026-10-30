@@ -52,8 +52,8 @@ export async function addMedication(formData) {
     return { error: "Could not add medication." };
   }
 
-  revalidatePath("/dashboard/medication");
-  redirect("/dashboard/medication");
+  revalidatePath("/dashboard/medications");
+  redirect("/dashboard/medications");
 }
 
 export async function editMedication(formData) {
@@ -82,8 +82,8 @@ export async function editMedication(formData) {
     return { error: "Could not edit the medication" };
   }
 
-  revalidatePath("/dashboard/medication");
-  redirect("/dashboard/medication");
+  revalidatePath("/dashboard/medications");
+  redirect("/dashboard/medications");
 }
 
 export async function removeMedication(id) {
@@ -96,5 +96,5 @@ export async function removeMedication(id) {
     console.error("Couldn't delete the medication. Error : ", error);
   }
 
-  revalidatePath("/dashboard/medication");
+  revalidatePath("/dashboard/medications");
 }
