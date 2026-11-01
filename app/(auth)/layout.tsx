@@ -1,6 +1,11 @@
 import Image from "next/image";
+import type { ReactNode } from "react";
 
-export default function AuthLayout({ children }) {
+type AuthLayoutProps = {
+  children: ReactNode;
+};
+
+export default function AuthLayout({ children }: AuthLayoutProps) {
   return (
     <main className="grid min-h-screen md:grid-cols-2">
       <div className="flex flex-col items-center justify-center px-6 py-12">
