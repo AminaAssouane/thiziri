@@ -1,10 +1,15 @@
-import { auth, signOut } from "@/auth";
+import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 
 export default async function DashboardPage() {
   const session = await auth();
+
+  if (!session?.user?.id) {
+    redirect("/login");
+  }
+
   const userId = session.user.id;
 
   const [user, medications, nextAppointment] = await Promise.all([
@@ -15,6 +20,8 @@ export default async function DashboardPage() {
       orderBy: { date: "asc" },
     }),
   ]);
+
+  if (!user) redirect("/login");
 
   return (
     <div>
