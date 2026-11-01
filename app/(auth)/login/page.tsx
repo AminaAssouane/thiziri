@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type SubmitEvent } from "react";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
@@ -10,12 +10,12 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
     setError("");
     setLoading(true);
 
-    const formData = new FormData(e.target);
+    const formData = new FormData(e.currentTarget);
     const email = formData.get("email");
     const password = formData.get("password");
 
