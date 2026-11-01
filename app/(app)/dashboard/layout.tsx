@@ -1,7 +1,10 @@
 import BottomNav from "@/components/BottomNav";
 import TopBar from "@/components/TopBar";
+import type { ReactNode } from "react";
 
-export default function DashboardLayout({ children }) {
+type DashboardLayoutProps = { children: ReactNode };
+
+export default function DashboardLayout({ children }: DashboardLayoutProps) {
   return (
     <div className="min-h-screen bg-cream">
       <TopBar />
