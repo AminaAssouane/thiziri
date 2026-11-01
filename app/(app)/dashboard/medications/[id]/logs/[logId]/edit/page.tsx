@@ -1,7 +1,9 @@
 import { getMedLog, editMedicationLog } from "../../actions";
 import { notFound } from "next/navigation";
 
-export default async function EditMedLogPage({ params }) {
+type EditMedicationLogPageProps = { params: Promise<{ id: string; logId: string }> };
+
+export default async function EditMedLogPage({ params }: EditMedicationLogPageProps) {
   const { logId } = await params;
   const log = await getMedLog(logId);
 
