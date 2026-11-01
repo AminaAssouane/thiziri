@@ -2,7 +2,9 @@ import { getMedLogs } from "./actions";
 import DeleteButton from "./DeleteButton";
 import Link from "next/link";
 
-export default async function MedLogsPage({ params }) {
+type MedLogsPageProps = { params: Promise<{ id: string }> };
+
+export default async function MedLogsPage({ params }: MedLogsPageProps) {
   const { id } = await params;
   const medLogs = await getMedLogs(id);
   return (
