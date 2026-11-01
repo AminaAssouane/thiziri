@@ -1,3 +1,5 @@
+import type { NextAuthConfig } from "next-auth";
+
 export const authConfig = {
   trustHost: true,
   providers: [],
@@ -16,4 +18,4 @@ export const authConfig = {
       return session;
     },
   },
-};
+} satisfies NextAuthConfig;
