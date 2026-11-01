@@ -1,12 +1,18 @@
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { updateHealthStatus } from "../../actions";
 
-export default async function EditHealthStatusPage({ params }) {
+type EditHealthStatusPageProps = { params: Promise<{ id: string }> };
+
+export default async function EditHealthStatusPage({
+  params,
+}: EditHealthStatusPageProps) {
   const { id } = await params;
 
   const session = await auth();
+
+  if (!session?.user?.id) redirect("/login");
 
   const currentStatus = await prisma.healthStatus.findUnique({
     where: { id, userId: session.user.id },
@@ -26,7 +32,7 @@ export default async function EditHealthStatusPage({ params }) {
           type="number"
           step="0.1"
           name="weight"
-          defaultValue={currentStatus.weight}
+          defaultValue={currentStatus.weight ?? ""}
         />
       </label>
 
@@ -35,7 +41,7 @@ export default async function EditHealthStatusPage({ params }) {
         <input
           type="text"
           name="bloodPressure"
-          defaultValue={currentStatus.bloodPressure}
+          defaultValue={currentStatus.bloodPressure ?? ""}
         />
       </label>
 
@@ -45,7 +51,7 @@ export default async function EditHealthStatusPage({ params }) {
           type="number"
           step="0.1"
           name="bloodSugar"
-          defaultValue={currentStatus.bloodSugar}
+          defaultValue={currentStatus.bloodSugar ?? ""}
         />
       </label>
 
@@ -55,7 +61,7 @@ export default async function EditHealthStatusPage({ params }) {
           type="number"
           step="0.1"
           name="temperature"
-          defaultValue={currentStatus.temperature}
+          defaultValue={currentStatus.temperature ?? ""}
         />
       </label>
 
@@ -63,7 +69,7 @@ export default async function EditHealthStatusPage({ params }) {
         Condition / Notes
         <textarea
           name="condition"
-          defaultValue={currentStatus.condition}
+          defaultValue={currentStatus.condition ?? ""}
         ></textarea>
       </label>
 
