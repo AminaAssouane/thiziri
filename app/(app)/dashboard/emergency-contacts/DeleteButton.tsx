@@ -2,6 +2,8 @@
 
 import { deleteEmergencyContact } from "./actions";
 
-export default function DeleteButton({ id }) {
+type DeleteButtonProps = { id: string };
+
+export default function DeleteButton({ id }: DeleteButtonProps) {
   return <button onClick={() => deleteEmergencyContact(id)}>Delete</button>;
 }
