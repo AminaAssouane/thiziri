@@ -1,11 +1,16 @@
 "use client";
 import { useState } from "react";
+import type { MoodEntry } from "@/generated/prisma/client";
 import { saveMood } from "./actions.js";
 
-export function MoodView({ mood }) {
+type MoodViewProps = {
+  mood: MoodEntry | null;
+};
+
+export function MoodView({ mood }: MoodViewProps) {
   const [isEditing, setIsEditing] = useState(!mood);
 
-  if (isEditing)
+  if (isEditing || !mood)
     return (
       <form action={saveMood}>
         <label>
@@ -20,8 +25,8 @@ export function MoodView({ mood }) {
         <label>Notes : </label>
         <textarea
           name="note"
-          rows="4"
-          cols="50"
+          rows={4}
+          cols={50}
           defaultValue={mood?.note ?? ""}
         ></textarea>
         <button type="submit">Save</button>
