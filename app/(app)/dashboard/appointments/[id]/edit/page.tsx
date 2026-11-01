@@ -3,7 +3,13 @@ import { editAppointment } from "../../actions";
 import { auth } from "@/auth";
 import { notFound } from "next/navigation";
 
-export default async function EditAppointmentPage({ params }) {
+type EditAppointmentPageProps = {
+  params: Promise<{ id: string }>;
+};
+
+export default async function EditAppointmentPage({
+  params,
+}: EditAppointmentPageProps) {
   const { id } = await params;
 
   const session = await auth();
@@ -70,7 +76,10 @@ export default async function EditAppointmentPage({ params }) {
       </label>
       <label>
         Notes :{" "}
-        <textarea name="notes" defaultValue={appointment.notes}></textarea>
+        <textarea
+          name="notes"
+          defaultValue={appointment.notes ?? ""}
+        ></textarea>
       </label>
       <label>
         Status :{" "}
