@@ -1,13 +1,17 @@
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { editMedication } from "../../actions";
 
-export default async function EditMedication({ params }) {
+type EditMedicationPageProps = { params: Promise<{ id: string }> };
+
+export default async function EditMedication({
+  params,
+}: EditMedicationPageProps) {
   const { id } = await params;
 
   const session = await auth();
-  if (!session?.user?.id) throw new Error("Not authenticated");
+  if (!session?.user?.id) redirect("/login");
 
   const medication = await prisma.medication.findUnique({
     where: { id, userId: session.user.id },

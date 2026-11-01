@@ -79,7 +79,7 @@ export async function editMedication(formData) {
     });
   } catch (error) {
     console.error("Couldn't edit the medication. Error : ", error);
-    return { error: "Could not edit the medication" };
+    throw new Error();
   }
 
   revalidatePath("/dashboard/medications");
