@@ -2,9 +2,12 @@ import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import { DeleteButton } from "./DeleteButton";
+import { redirect } from "next/navigation";
 
 export default async function HealthStatusPage() {
   const session = await auth();
+
+  if (!session?.user?.id) redirect("/login");
 
   const entries = await prisma.healthStatus.findMany({
     where: { userId: session.user.id },
