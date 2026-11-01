@@ -9,7 +9,6 @@ export default function BottomNav() {
     <nav className="fixed inset-x-0 bottom-0 border-t border-stone-200 bg-forest md:hidden">
       <ul className="mx-auto flex max-w-md justify-around py-3">
         {links.map(({ href, label }) => {
-          const active = pathname === href;
           return (
             <li key={href}>
               <Link
