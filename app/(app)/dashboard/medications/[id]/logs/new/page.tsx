@@ -1,6 +1,8 @@
 import { createMedLog } from "../actions";
 
-export default async function NewMedLog({ params }) {
+type NewMedLogProps = { params: Promise<{ id: string }> };
+
+export default async function NewMedLog({ params }: NewMedLogProps) {
   const { id } = await params;
 
   return (
