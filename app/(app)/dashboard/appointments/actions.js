@@ -47,6 +47,7 @@ export async function addAppointment(formData) {
   redirect("/dashboard/appointments");
 }
 
+/** @param {string} id */
 export async function removeAppointment(id) {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Not authenticated");
