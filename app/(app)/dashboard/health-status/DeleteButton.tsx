@@ -1,6 +1,8 @@
 "use client";
 import { deleteHealthStatus } from "./actions";
 
-export function DeleteButton({ id }) {
+type DeleteButtonProps = { id: string };
+
+export function DeleteButton({ id }: DeleteButtonProps) {
   return <button onClick={() => deleteHealthStatus(id)}>Delete</button>;
 }
