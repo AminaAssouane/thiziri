@@ -3,7 +3,11 @@ import { editEmergencyContact } from "../../actions";
 import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
 
-export default async function EditEmergencyContact({ params }) {
+type EditEmergencyContactProps = { params: Promise<{ id: string }> };
+
+export default async function EditEmergencyContact({
+  params,
+}: EditEmergencyContactProps) {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Not authenticated");
 
