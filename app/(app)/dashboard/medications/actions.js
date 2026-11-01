@@ -49,7 +49,7 @@ export async function addMedication(formData) {
     });
   } catch (error) {
     console.error("Could not add medication. Error : ", error);
-    return { error: "Could not add medication." };
+    throw error;
   }
 
   revalidatePath("/dashboard/medications");
