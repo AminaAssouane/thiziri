@@ -2,10 +2,11 @@
 
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
+import type { Mood } from "@/generated/prisma/client";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-export async function saveMood(formData) {
+export async function saveMood(formData: FormData) {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Not authenticated");
 
@@ -13,8 +14,8 @@ export async function saveMood(formData) {
 
   const todayDate = new Date();
   todayDate.setHours(0, 0, 0, 0);
-  const mood = formData.get("mood");
-  const note = formData.get("note");
+  const mood = formData.get("mood") as Mood;
+  const note = formData.get("note") as string | null;
 
   await prisma.moodEntry.upsert({
     where: { userId_date: { userId, date: todayDate } },
