@@ -16,15 +16,15 @@ export async function getEmergencyContacts() {
   return contacts;
 }
 
-export async function createEmergencyContact(formData) {
+export async function createEmergencyContact(formData: FormData) {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Not authenticated");
 
   const userId = session.user.id;
-  const name = formData.get("name");
-  const phone = formData.get("phone");
-  const email = formData.get("email") || null;
-  const relationship = formData.get("relationship") || null;
+  const name = formData.get("name") as string;
+  const phone = formData.get("phone") as string;
+  const email = (formData.get("email") || null) as string | null;
+  const relationship = (formData.get("relationship") || null) as string | null;
 
   await prisma.emergencyContact.create({
     data: { userId, name, phone, email, relationship },
@@ -34,7 +34,7 @@ export async function createEmergencyContact(formData) {
   redirect("/dashboard/emergency-contacts");
 }
 
-export async function deleteEmergencyContact(id) {
+export async function deleteEmergencyContact(id: string) {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Not authenticated");
 
@@ -45,16 +45,16 @@ export async function deleteEmergencyContact(id) {
   revalidatePath("/dashboard/emergency-contacts");
 }
 
-export async function editEmergencyContact(formData) {
+export async function editEmergencyContact(formData: FormData) {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Not authenticated");
 
   const userId = session.user.id;
-  const name = formData.get("name");
-  const phone = formData.get("phone");
-  const email = formData.get("email") || null;
-  const relationship = formData.get("relationship") || null;
-  const id = formData.get("id");
+  const name = formData.get("name") as string;
+  const phone = formData.get("phone") as string;
+  const email = (formData.get("email") || null) as string | null;
+  const relationship = (formData.get("relationship") || null) as string | null;
+  const id = formData.get("id") as string;
 
   await prisma.emergencyContact.update({
     where: { id, userId },
