@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import type { MoodEntry } from "@/generated/prisma/client";
-import { saveMood } from "./actions.js";
+import { saveMood } from "./actions";
 
 type MoodViewProps = {
   mood: MoodEntry | null;
