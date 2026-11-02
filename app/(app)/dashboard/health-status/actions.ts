@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-export async function createHealthStatus(formData) {
+export async function createHealthStatus(formData: FormData) {
   const session = await auth();
 
   if (!session?.user?.id) {
@@ -12,17 +12,28 @@ export async function createHealthStatus(formData) {
   }
 
   const weightRaw = formData.get("weight");
-  const weight = weightRaw ? Number(weightRaw) : null;
+  const weight =
+    typeof weightRaw === "string" && weightRaw ? Number(weightRaw) : null;
 
-  const bloodPressure = formData.get("bloodPressure") || null;
+  const bloodPressureRaw = formData.get("bloodPressure");
+  const bloodPressure =
+    typeof bloodPressureRaw === "string" ? bloodPressureRaw || null : null;
 
   const bloodSugarRaw = formData.get("bloodSugar");
-  const bloodSugar = bloodSugarRaw ? Number(bloodSugarRaw) : null;
+  const bloodSugar =
+    typeof bloodSugarRaw === "string" && bloodSugarRaw
+      ? Number(bloodSugarRaw)
+      : null;
 
   const temperatureRaw = formData.get("temperature");
-  const temperature = temperatureRaw ? Number(temperatureRaw) : null;
+  const temperature =
+    typeof temperatureRaw === "string" && temperatureRaw
+      ? Number(temperatureRaw)
+      : null;
 
-  const condition = formData.get("condition") || null;
+  const conditionRaw = formData.get("condition");
+  const condition =
+    typeof conditionRaw === "string" ? conditionRaw || null : null;
 
   try {
     await prisma.healthStatus.create({
@@ -42,7 +53,7 @@ export async function createHealthStatus(formData) {
   redirect("/dashboard/health-status");
 }
 
-export async function deleteHealthStatus(id) {
+export async function deleteHealthStatus(id: string) {
   const session = await auth();
   if (!session?.user?.id) {
     throw new Error("Not authenticated");
@@ -53,7 +64,7 @@ export async function deleteHealthStatus(id) {
   revalidatePath("/dashboard/health-status");
 }
 
-export async function updateHealthStatus(formData) {
+export async function updateHealthStatus(formData: FormData) {
   const session = await auth();
 
   if (!session?.user?.id) {
@@ -61,17 +72,30 @@ export async function updateHealthStatus(formData) {
   }
 
   const weightRaw = formData.get("weight");
-  const weight = weightRaw ? Number(weightRaw) : null;
+  const weight =
+    typeof weightRaw === "string" && weightRaw ? Number(weightRaw) : null;
 
-  const bloodPressure = formData.get("bloodPressure") || null;
+  const bloodPressureRaw = formData.get("bloodPressure");
+  const bloodPressure =
+    typeof bloodPressureRaw === "string" ? bloodPressureRaw || null : null;
 
   const bloodSugarRaw = formData.get("bloodSugar");
-  const bloodSugar = bloodSugarRaw ? Number(bloodSugarRaw) : null;
+  const bloodSugar =
+    typeof bloodSugarRaw === "string" && bloodSugarRaw
+      ? Number(bloodSugarRaw)
+      : null;
 
   const temperatureRaw = formData.get("temperature");
-  const temperature = temperatureRaw ? Number(temperatureRaw) : null;
+  const temperature =
+    typeof temperatureRaw === "string" && temperatureRaw
+      ? Number(temperatureRaw)
+      : null;
 
-  const condition = formData.get("condition") || null;
+  const conditionRaw = formData.get("condition");
+  const condition =
+    typeof conditionRaw === "string" ? conditionRaw || null : null;
+
+  const id = formData.get("id") as string;
 
   try {
     await prisma.healthStatus.update({
@@ -82,7 +106,7 @@ export async function updateHealthStatus(formData) {
         temperature,
         condition,
       },
-      where: { id: formData.get("id"), userId: session.user.id },
+      where: { id, userId: session.user.id },
     });
     revalidatePath("/dashboard/health-status"); // to refresh the data, as nextjs might just show the cached version with the new entry not added in
   } catch (error) {
