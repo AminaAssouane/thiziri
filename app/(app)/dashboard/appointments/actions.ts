@@ -2,6 +2,7 @@
 
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
+import type { Status } from "@/generated/prisma/client";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -17,18 +18,18 @@ export async function getAppointments() {
   return appointments;
 }
 
-export async function addAppointment(formData) {
+export async function addAppointment(formData: FormData) {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Not authenticated");
 
   const userId = session.user.id;
-  const doctorName = formData.get("doctorName");
-  const specialty = formData.get("specialty");
-  const date = new Date(formData.get("date"));
-  const location = formData.get("location");
-  const reason = formData.get("reason");
-  const notes = formData.get("notes") || null;
-  const status = formData.get("status");
+  const doctorName = formData.get("doctorName") as string;
+  const specialty = formData.get("specialty") as string;
+  const date = new Date(formData.get("date") as string);
+  const location = formData.get("location") as string;
+  const reason = formData.get("reason") as string;
+  const notes = (formData.get("notes") || null) as string | null;
+  const status = formData.get("status") as Status;
 
   await prisma.appointment.create({
     data: {
@@ -47,8 +48,7 @@ export async function addAppointment(formData) {
   redirect("/dashboard/appointments");
 }
 
-/** @param {string} id */
-export async function removeAppointment(id) {
+export async function removeAppointment(id: string) {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Not authenticated");
 
@@ -57,21 +57,22 @@ export async function removeAppointment(id) {
   revalidatePath("/dashboard/appointments");
 }
 
-export async function editAppointment(formData) {
+export async function editAppointment(formData: FormData) {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Not authenticated");
 
   const userId = session.user.id;
-  const doctorName = formData.get("doctorName");
-  const specialty = formData.get("specialty");
-  const date = new Date(formData.get("date"));
-  const location = formData.get("location");
-  const reason = formData.get("reason");
-  const notes = formData.get("notes") || null;
-  const status = formData.get("status");
+  const doctorName = formData.get("doctorName") as string;
+  const specialty = formData.get("specialty") as string;
+  const date = new Date(formData.get("date") as string);
+  const location = formData.get("location") as string;
+  const reason = formData.get("reason") as string;
+  const notes = (formData.get("notes") || null) as string | null;
+  const status = formData.get("status") as Status;
+  const id = formData.get("id") as string;
 
   await prisma.appointment.update({
-    where: { id: formData.get("id"), userId },
+    where: { id, userId },
     data: { doctorName, specialty, date, location, reason, notes, status },
   });
 
