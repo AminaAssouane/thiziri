@@ -5,7 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-export async function getMedLogs(medicationId) {
+export async function getMedLogs(medicationId: string) {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Not authenticated");
 
@@ -16,7 +16,7 @@ export async function getMedLogs(medicationId) {
   return logs;
 }
 
-export async function getMedLog(logId) {
+export async function getMedLog(logId: string) {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Not authenticated");
 
@@ -27,15 +27,19 @@ export async function getMedLog(logId) {
   return log;
 }
 
-export async function createMedLog(medicationId, formData) {
+export async function createMedLog(medicationId: string, formData: FormData) {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Not authenticated");
 
   const takenAtInitial = formData.get("takenAt");
-  const takenAt = takenAtInitial ? new Date(takenAtInitial) : null;
+  const takenAt =
+    typeof takenAtInitial === "string" && takenAtInitial
+      ? new Date(takenAtInitial)
+      : null;
 
   const skipped = formData.get("skipped") === "on";
-  const notes = formData.get("notes") || null;
+  const notesValue = formData.get("notes");
+  const notes = typeof notesValue === "string" ? notesValue || null : null;
 
   // Checking if the user has the medication we want to add a log to
   const medication = await prisma.medication.findFirst({
@@ -52,15 +56,19 @@ export async function createMedLog(medicationId, formData) {
   redirect(`/dashboard/medications/${medicationId}/logs`);
 }
 
-export async function editMedicationLog(logId, formData) {
+export async function editMedicationLog(logId: string, formData: FormData) {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Not authenticated");
 
   const takenAtInitial = formData.get("takenAt");
-  const takenAt = takenAtInitial ? new Date(takenAtInitial) : null;
+  const takenAt =
+    typeof takenAtInitial === "string" && takenAtInitial
+      ? new Date(takenAtInitial)
+      : null;
 
   const skipped = formData.get("skipped") === "on";
-  const notes = formData.get("notes") || null;
+  const notesValue = formData.get("notes");
+  const notes = typeof notesValue === "string" ? notesValue || null : null;
 
   // Ownership check: does this log belong to this user?
   const log = await prisma.medicationLog.findFirst({
@@ -77,7 +85,7 @@ export async function editMedicationLog(logId, formData) {
   redirect(`/dashboard/medications/${log.medicationId}/logs`);
 }
 
-export async function deleteMedLog(logId) {
+export async function deleteMedLog(logId: string) {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Not authenticated");
 
