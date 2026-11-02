@@ -34,7 +34,7 @@ export default function SignUpPage() {
 
     const result = await registerUser({ email, password, firstName, lastName });
 
-    if (result.error) {
+    if ("error" in result) {
       setError(result.error);
       setLoading(false);
       return;
