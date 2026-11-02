@@ -5,6 +5,23 @@ import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
+function getRequiredString(formData: FormData, name: string): string {
+  const value = formData.get(name);
+  if (typeof value !== "string") {
+    throw new Error(`Missing or invalid form field: ${name}`);
+  }
+  return value;
+}
+
+function getOptionalString(formData: FormData, name: string): string | null {
+  const value = formData.get(name);
+  if (value === null) return null;
+  if (typeof value !== "string") {
+    throw new Error(`Invalid form field: ${name}`);
+  }
+  return value || null;
+}
+
 export async function getMedications() {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Not authenticated");
@@ -18,21 +35,21 @@ export async function getMedications() {
   return medications;
 }
 
-export async function addMedication(formData) {
+export async function addMedication(formData: FormData) {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Not authenticated");
 
   const userId = session.user.id;
-  const name = formData.get("name");
-  const dosage = formData.get("dosage");
-  const frequency = formData.get("frequency");
-  const startDate = new Date(formData.get("startDate"));
+  const name = getRequiredString(formData, "name");
+  const dosage = getRequiredString(formData, "dosage");
+  const frequency = getRequiredString(formData, "frequency");
+  const startDate = new Date(getRequiredString(formData, "startDate"));
   const isActive = formData.get("isActive") === "on";
 
-  const endDateRaw = formData.get("endDate");
-  const endDate = endDateRaw ? new Date(formData.get("endDate")) : null;
+  const endDateRaw = getOptionalString(formData, "endDate");
+  const endDate = endDateRaw ? new Date(endDateRaw) : null;
 
-  const notes = formData.get("notes") || null;
+  const notes = getOptionalString(formData, "notes");
 
   try {
     const medication = await prisma.medication.create({
@@ -56,25 +73,26 @@ export async function addMedication(formData) {
   redirect("/dashboard/medications");
 }
 
-export async function editMedication(formData) {
+export async function editMedication(formData: FormData) {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Not authenticated");
 
   const userId = session.user.id;
-  const name = formData.get("name");
-  const dosage = formData.get("dosage");
-  const frequency = formData.get("frequency");
-  const startDate = new Date(formData.get("startDate"));
+  const name = getRequiredString(formData, "name");
+  const dosage = getRequiredString(formData, "dosage");
+  const frequency = getRequiredString(formData, "frequency");
+  const startDate = new Date(getRequiredString(formData, "startDate"));
   const isActive = formData.get("isActive") === "on";
 
-  const endDateRaw = formData.get("endDate");
-  const endDate = endDateRaw ? new Date(formData.get("endDate")) : null;
+  const endDateRaw = getOptionalString(formData, "endDate");
+  const endDate = endDateRaw ? new Date(endDateRaw) : null;
 
-  const notes = formData.get("notes") || null;
+  const notes = getOptionalString(formData, "notes");
+  const id = getRequiredString(formData, "id");
 
   try {
     await prisma.medication.update({
-      where: { id: formData.get("id"), userId },
+      where: { id, userId },
       data: { name, dosage, frequency, startDate, endDate, notes, isActive },
     });
   } catch (error) {
@@ -86,7 +104,7 @@ export async function editMedication(formData) {
   redirect("/dashboard/medications");
 }
 
-export async function removeMedication(id) {
+export async function removeMedication(id: string) {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Not authenticated");
 
