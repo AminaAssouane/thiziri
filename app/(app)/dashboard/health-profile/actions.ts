@@ -1,10 +1,23 @@
 "use server";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
+import type { Severity } from "@/generated/prisma/client";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-export async function saveHealthProfile(formData) {
+type AllergyFormEntry = {
+  name: string;
+  severity: Severity;
+  reactionDescription?: string | null;
+};
+
+type ChronicIllnessFormEntry = {
+  name: string;
+  diagnosisDate?: string | null;
+  notes?: string | null;
+};
+
+export async function saveHealthProfile(formData: FormData) {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Unauthorized");
 
@@ -12,21 +25,23 @@ export async function saveHealthProfile(formData) {
 
   const existing = await prisma.healthProfile.findUnique({ where: { userId } });
 
-  const bloodType = formData.get("bloodType") || null;
-  let rawChronicIllnesses;
+  const bloodType = (formData.get("bloodType") || null) as string | null;
+  let rawChronicIllnesses: ChronicIllnessFormEntry[];
   try {
-    rawChronicIllnesses = JSON.parse(formData.get("chronicIllnesses"));
+    rawChronicIllnesses = JSON.parse(
+      formData.get("chronicIllnesses") as string,
+    ) as ChronicIllnessFormEntry[];
   } catch {
     throw new Error("Invalid form data");
   }
-  let rawAllergies;
+  let rawAllergies: AllergyFormEntry[];
   try {
-    rawAllergies = JSON.parse(formData.get("allergies"));
+    rawAllergies = JSON.parse(formData.get("allergies") as string) as AllergyFormEntry[];
   } catch {
     throw new Error("Invalid form data");
   }
 
-  const VALID = ["MILD", "MODERATE", "SEVERE"];
+  const VALID: Severity[] = ["MILD", "MODERATE", "SEVERE"];
   if (rawAllergies.some((a) => !VALID.includes(a.severity))) {
     throw new Error("Invalid severity");
   }
