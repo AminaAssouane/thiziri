@@ -1,10 +1,34 @@
 "use client";
 import { useState } from "react";
+import type { Prisma, Severity } from "@/generated/prisma/client";
 import { saveHealthProfile } from "./actions";
 
-export default function ProfileView({ profile }) {
+type Profile = Prisma.HealthProfileGetPayload<{
+  include: { allergies: true; chronicIllnesses: true };
+}>;
+
+type ProfileViewProps = { profile: Profile | null };
+
+type EditableAllergy = {
+  name: string;
+  severity: Severity;
+  reactionDescription: string;
+};
+
+type EditableChronicIllness = {
+  name: string;
+  diagnosisDate: string;
+  notes: string;
+};
+
+function isSeverity(value: string): value is Severity {
+  return value === "MILD" || value === "MODERATE" || value === "SEVERE";
+}
+
+export default function ProfileView({ profile }: ProfileViewProps) {
   const [isEditing, setIsEditing] = useState(!profile);
-  const [allergies, setAllergies] = useState(
+
+  const [allergies, setAllergies] = useState<EditableAllergy[]>(
     profile?.allergies?.map((a) => ({
       name: a.name,
       severity: a.severity,
@@ -12,7 +36,9 @@ export default function ProfileView({ profile }) {
     })) ?? [],
   );
 
-  const [chronicIllnesses, setChronicIllnesses] = useState(
+  const [chronicIllnesses, setChronicIllnesses] = useState<
+    EditableChronicIllness[]
+  >(
     profile?.chronicIllnesses?.map((c) => ({
       name: c.name,
       diagnosisDate: c.diagnosisDate
@@ -30,11 +56,15 @@ export default function ProfileView({ profile }) {
     ]);
   }
 
-  function removeAllergy(index) {
+  function removeAllergy(index: number) {
     setAllergies(allergies.filter((_, i) => i !== index));
   }
 
-  function updateAllergy(index, field, value) {
+  function updateAllergy<K extends keyof EditableAllergy>(
+    index: number,
+    field: K,
+    value: EditableAllergy[K],
+  ) {
     setAllergies(
       allergies.map((a, i) => (i === index ? { ...a, [field]: value } : a)),
     );
@@ -48,11 +78,15 @@ export default function ProfileView({ profile }) {
     ]);
   }
 
-  function removeChronicIllness(index) {
+  function removeChronicIllness(index: number) {
     setChronicIllnesses(chronicIllnesses.filter((_, i) => i !== index));
   }
 
-  function updateChronicIllnesses(index, field, value) {
+  function updateChronicIllnesses<K extends keyof EditableChronicIllness>(
+    index: number,
+    field: K,
+    value: EditableChronicIllness[K],
+  ) {
     setChronicIllnesses(
       chronicIllnesses.map((c, i) =>
         i === index ? { ...c, [field]: value } : c,
@@ -60,7 +94,7 @@ export default function ProfileView({ profile }) {
     );
   }
 
-  if (!isEditing)
+  if (!isEditing && profile)
     return (
       <div>
         <h1>Health Profile</h1>
@@ -137,7 +171,11 @@ export default function ProfileView({ profile }) {
               Severity :{" "}
               <select
                 value={a.severity}
-                onChange={(e) => updateAllergy(i, "severity", e.target.value)}
+                onChange={(e) => {
+                  if (isSeverity(e.target.value)) {
+                    updateAllergy(i, "severity", e.target.value);
+                  }
+                }}
                 required
               >
                 <option value="MILD">Mild</option>
