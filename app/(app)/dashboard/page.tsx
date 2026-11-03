@@ -1,6 +1,7 @@
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
+import LogoutButton from "@/components/LogoutButton";
 import Link from "next/link";
 
 export default async function DashboardPage() {
@@ -32,7 +33,7 @@ export default async function DashboardPage() {
       <div className="mt-8 md:mt-14 md:grid md:grid-cols-3 md:gap-16">
         <section className="md:col-span-2">
           <h2 className="mb-4 text-sm font-medium uppercase tracking-wide text-stone-500">
-            Today's medications
+            Today medications
           </h2>
           {medications.length === 0 ? (
             <p className="text-stone-500">No active medications.</p>
@@ -63,6 +64,7 @@ export default async function DashboardPage() {
           )}
         </section>
       </div>
+      <LogoutButton />
     </div>
   );
 }
