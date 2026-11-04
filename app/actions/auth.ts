@@ -2,6 +2,11 @@
 
 import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
+import { signOut } from "@/auth";
+
+export async function logoutUser() {
+  await signOut({ redirectTo: "/login" });
+}
 
 export async function registerUser({
   email,
