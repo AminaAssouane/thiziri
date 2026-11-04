@@ -29,20 +29,36 @@ body {
 @theme {
   --color-forest: #0a3323;
   --color-moss: #839958;
-  --color-cream: #e2efe1;
-  --color-rose: #cee0e7; /*#d3968c;*/
+  --color-lightgreen: #e2efe1;
+  --color-lightblue: #cee0e7; /*#d3968c;*/
   --color-lagoon: #105666;
+  --color-cream: #f3eae0;
   --font-display: var(--font-fraunces), serif;
 }
 
+:root {
+  --background: var(--color-lightgreen);
+  --foreground: var(--color-forest);
+}
+
+.dark {
+  --background: var(--color-forest);
+  --foreground: var(--color-lightgreen);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
 body {
-  @apply bg-cream text-forest;
+  @apply bg-background text-foreground;
 }
 
 @layer components {
   .input {
     border-radius: 9999px;
-    border: 1px solid var(--color-forest);
+    border: 1px solid var(--foreground);
     padding: 0.5rem 1rem;
     margin-top: 1rem;
   }
@@ -51,8 +67,8 @@ body {
     border-radius: 9999px;
     margin-top: 1rem;
     padding: 0.5rem 1rem;
-    background-color: var(--color-forest);
-    color: var(--color-cream);
+    background-color: var(--foreground);
+    color: var(--background);
   }
 
   .button:hover {
@@ -64,13 +80,13 @@ body {
   .moon-title {
     background: linear-gradient(
       110deg,
-      var(--color-forest) 0%,
-      var(--color-forest) 35%,
+      var(--foreground) 0%,
+      var(--foreground) 35%,
       var(--color-lagoon) 40%,
       var(--color-moss) 50%,
       var(--color-lagoon) 60%,
-      var(--color-forest) 65%,
-      var(--color-forest) 100%
+      var(--foreground) 65%,
+      var(--foreground) 100%
     );
     background-size: 250% 100%;
     background-clip: text;

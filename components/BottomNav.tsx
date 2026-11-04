@@ -6,7 +6,7 @@ import { links, isActive } from "./NavLinks";
 export default function BottomNav() {
   const pathname = usePathname();
   return (
-    <nav className="fixed inset-x-0 bottom-0 border-t border-stone-200 bg-forest md:hidden">
+    <nav className="fixed inset-x-0 bottom-0 border-t border-stone-200 bg-foreground md:hidden">
       <ul className="mx-auto flex max-w-md justify-around py-3">
         {links.map(({ href, label }) => {
           return (
@@ -15,8 +15,8 @@ export default function BottomNav() {
                 href={href}
                 className={
                   isActive(pathname, href)
-                    ? "font-semibold text-rose"
-                    : "text-cream"
+                    ? "font-semibold text-lightblue"
+                    : "text-background"
                 }
               >
                 {label}
