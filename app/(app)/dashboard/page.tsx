@@ -23,47 +23,27 @@ export default async function DashboardPage() {
   ]);
 
   if (!user) redirect("/login");
-
   return (
-    <div>
-      <h1 className="text-3xl font-semibold text-stone-800 md:text-5xl">
-        Welcome, {user.firstName}
-      </h1>
+    <div className="space-y-4">
+      <section className="rounded-3xl bg-forest p-5 text-lightgreen">
+        <p className="mb-2 text-xs font-medium uppercase tracking-wider text-lightgreen/70">
+          A small moment for you
+        </p>
+        <h1 className="font-display text-3xl">
+          A little care, {user.firstName}
+        </h1>
+        <p className="mt-2 text-sm text-lightgreen/80">
+          For the days that feel darker, let this be a small light.
+        </p>
+      </section>
 
-      <div className="mt-8 md:mt-14 md:grid md:grid-cols-3 md:gap-16">
-        <section className="md:col-span-2">
-          <h2 className="mb-4 text-sm font-medium uppercase tracking-wide text-stone-500">
-            Today medications
-          </h2>
-          {medications.length === 0 ? (
-            <p className="text-stone-500">No active medications.</p>
-          ) : (
-            <ul className="divide-y divide-stone-200">
-              {medications.map((m) => (
-                <li key={m.id}>
-                  <Link
-                    href={`/dashboard/medications/${m.id}/logs`}
-                    className="block py-4 text-lg"
-                  >
-                    {m.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          )}
-        </section>
+      <section className="rounded-3xl bg-surface p-5 text-foreground">
+        <p className="mb-2 text-xs font-medium uppercase tracking-wider text-foreground/60">
+          Your recent readings
+        </p>
+        <h2 className="font-display text-2xl">Latest health status</h2>
+      </section>
 
-        <section className="mt-10 border-t border-stone-200 pt-8 md:mt-0 md:border-l md:border-t-0 md:pl-10 md:pt-0">
-          <h2 className="mb-4 text-sm font-medium uppercase tracking-wide text-stone-500">
-            Next appointment
-          </h2>
-          {nextAppointment ? (
-            <p className="text-lg">{nextAppointment.specialty}</p>
-          ) : (
-            <p className="text-stone-500">Nothing scheduled.</p>
-          )}
-        </section>
-      </div>
       <LogoutButton />
     </div>
   );
