@@ -13,14 +13,7 @@ export default async function DashboardPage() {
 
   const userId = session.user.id;
 
-  const [user, medications, nextAppointment] = await Promise.all([
-    prisma.user.findUnique({ where: { id: userId } }),
-    prisma.medication.findMany({ where: { userId, isActive: true } }),
-    prisma.appointment.findFirst({
-      where: { userId, status: "UPCOMING" },
-      orderBy: { date: "asc" },
-    }),
-  ]);
+  const user = await prisma.user.findUnique({ where: { id: userId } });
 
   if (!user) redirect("/login");
   return (
@@ -35,6 +28,12 @@ export default async function DashboardPage() {
         <p className="mt-2 text-sm text-lightgreen/80">
           For the days that feel darker, let this be a small light.
         </p>
+        <Link
+          href="/dashboard/health-status"
+          className="inline-block bg-background text-forest rounded-full px-5 py-3 mt-5 font-bold cursor-pointer"
+        >
+          Log today's check-in →
+        </Link>
       </section>
 
       <section className="rounded-3xl bg-surface p-5 text-foreground">
@@ -48,7 +47,7 @@ export default async function DashboardPage() {
         <p className="uppercase text-xs mb-2 font-medium tracking-wider text-foreground/60">
           Small moments add up
         </p>
-        <h2 className="font-display text-2xl">Mood garden</h2>
+        <h2 className="font-display text-2xl">Mood Garden</h2>
       </section>
 
       <section className="bg-surface rounded-3xl p-5 text-foreground">
