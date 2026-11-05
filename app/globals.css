@@ -7,7 +7,7 @@
   --color-lightgreen: #e2efe1;
   --color-lightblue: #cee0e7;
   --color-lagoon: #105666;
-  --color-cream: #f3eae0;
+  --color-cream: #f5e1c9; /*#f3eae0;*/
 
   /* Couleurs de l’interface */
   --color-background: var(--background);
@@ -25,7 +25,7 @@
   --background: #e8efe3;
   --foreground: #0a3323;
   --surface: #ffffff;
-  --surface-muted: #f3eae0;
+  --surface-muted: #f5e1c9;
   --border: rgb(10 51 35 / 12%);
   --accent: #105666;
 }
