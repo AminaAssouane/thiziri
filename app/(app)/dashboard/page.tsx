@@ -14,6 +14,10 @@ export default async function DashboardPage() {
   const userId = session.user.id;
 
   const user = await prisma.user.findUnique({ where: { id: userId } });
+  const lastHealthStatus = await prisma.healthStatus.findFirst({
+    where: { userId },
+    orderBy: { createdAt: "desc" },
+  });
 
   if (!user) redirect("/login");
   return (
@@ -29,7 +33,7 @@ export default async function DashboardPage() {
           For the days that feel darker, let this be a small light.
         </p>
         <Link
-          href="/dashboard/health-status"
+          href="/dashboard/health-status/new"
           className="inline-block bg-background text-forest rounded-full px-5 py-3 mt-5 font-bold cursor-pointer"
         >
           Log today's check-in →
@@ -37,10 +41,63 @@ export default async function DashboardPage() {
       </section>
 
       <section className="rounded-3xl bg-surface p-5 text-foreground">
-        <p className="mb-2 text-xs font-medium uppercase tracking-wider text-foreground/60">
+        <p className="font-medium mb-2 text-xs uppercase tracking-wider text-foreground/60">
           Your recent readings
         </p>
-        <h2 className="font-display text-2xl">Latest health status</h2>
+        <div className="flex justify-between items-center">
+          <h2 className="font-display text-2xl">Latest health status</h2>{" "}
+          <Link
+            href="/dashboard/health-status"
+            className="text-xs font-bold text-foreground/70"
+          >
+            History →
+          </Link>{" "}
+        </div>
+        <p className="text-xs pt-1 pb-3 text-foreground/60">
+          Last updated{" "}
+          {lastHealthStatus
+            ? new Intl.DateTimeFormat("en-US", {
+                weekday: "long",
+                month: "long",
+                day: "numeric",
+                year: "numeric",
+              }).format(lastHealthStatus.createdAt)
+            : ": never"}
+        </p>
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+          <div className="bg-background rounded-3xl p-4">
+            <p className="text-xs text-foreground/60">Weight</p>
+            <p className="font-bold">
+              {lastHealthStatus?.weight != null
+                ? lastHealthStatus.weight + " kg"
+                : "No log yet."}
+            </p>
+          </div>
+          <div className="bg-background rounded-3xl p-4">
+            <p className="text-xs text-foreground/60">Temperature</p>
+            <p className="font-bold">
+              {lastHealthStatus?.temperature != null
+                ? lastHealthStatus.temperature + "°C"
+                : "No log yet."}
+            </p>
+          </div>
+          <div className="bg-background rounded-3xl p-4">
+            <p className="text-xs text-foreground/60">Blood Pressure</p>
+            <p className="font-bold">
+              {lastHealthStatus?.bloodPressure != null
+                ? lastHealthStatus.bloodPressure
+                : "No log yet."}
+            </p>
+          </div>
+          <div className="bg-background rounded-3xl p-4">
+            <p className="text-xs text-foreground/60">Blood Sugar</p>
+            <p className="font-bold">
+              {lastHealthStatus?.bloodSugar != null
+                ? lastHealthStatus?.bloodSugar
+                : "No log yet."}
+            </p>
+          </div>
+        </div>
       </section>
 
       <section className="rounded-3xl bg-surface-muted p-5 text-foreground">
