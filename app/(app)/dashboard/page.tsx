@@ -18,6 +18,9 @@ export default async function DashboardPage() {
     where: { userId },
     orderBy: { createdAt: "desc" },
   });
+  const activeMeds = await prisma.medication.findMany({
+    where: { userId, isActive: true },
+  });
 
   if (!user) redirect("/login");
   return (
@@ -111,7 +114,31 @@ export default async function DashboardPage() {
         <p className="text-xs mb-2 tracking-wider uppercase text-foreground/60 font-medium">
           One step at a time
         </p>
-        <h2 className="font-display text-2xl">Medication</h2>
+        <div className="flex justify-between items-center py-2">
+          <h2 className="font-display text-2xl">Medication</h2>
+          <Link
+            href="/dashboard/medications"
+            className="text-xs font-bold text-accent/70"
+          >
+            All meds →
+          </Link>
+        </div>
+        <ul>
+          {activeMeds.length === 0 ? (
+            <li className="border-t border-border py-2 text-sm text-foreground/60">
+              No active medications.
+            </li>
+          ) : (
+            activeMeds.map((m) => (
+              <li key={m.id} className="border-t border-border py-2">
+                <p className="font-bold text-sm pb-1">{m.name}</p>
+                <p className="text-xs text-foreground/60">
+                  {m.dosage} · {m.frequency}
+                </p>
+              </li>
+            ))
+          )}
+        </ul>
       </section>
 
       <section className="bg-accent rounded-3xl p-5 text-background">
