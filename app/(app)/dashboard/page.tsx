@@ -183,7 +183,17 @@ export default async function DashboardPage() {
             </Link>
           </div>
         ) : (
-          <p className="text-sm text-background/60">No upcoming appointment.</p>
+          <div className="flex">
+            <p className="text-sm text-background/60">
+              No upcoming appointment.
+            </p>
+            <Link
+              href="/dashboard/appointments"
+              className="text-background text-xs font-bold ml-auto"
+            >
+              All appointments →
+            </Link>
+          </div>
         )}
       </section>
 
