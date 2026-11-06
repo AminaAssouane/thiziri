@@ -1,6 +1,7 @@
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
+import { Heart } from "lucide-react";
 import LogoutButton from "@/components/LogoutButton";
 import Link from "next/link";
 
@@ -203,19 +204,10 @@ export default async function DashboardPage() {
 
       <section className="flex items-center gap-4 rounded-3xl bg-surface text-foreground p-5">
         <div className="grid place-items-center h-12 w-12 font-extrabold text-red-600 bg-red-200 rounded-full">
-          <svg
-            aria-hidden="true"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="h-5 w-5"
-          >
-            <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z" />
-          </svg>
+          {" "}
+          <Heart className=" fill-red-600" />
         </div>
+
         <div>
           <p className="uppercase text-xs text-foreground/60 tracking-wider font-medium mb-2">
             When you need a hand
