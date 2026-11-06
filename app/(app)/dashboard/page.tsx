@@ -25,6 +25,10 @@ export default async function DashboardPage() {
     where: { userId, status: "UPCOMING", date: { gte: new Date() } },
     orderBy: { date: "asc" },
   });
+  const firstEmergencyContact = await prisma.emergencyContact.findFirst({
+    where: { userId },
+    orderBy: { name: "asc" },
+  });
 
   if (!user) redirect("/login");
   return (
@@ -197,11 +201,32 @@ export default async function DashboardPage() {
         )}
       </section>
 
-      <section className="rounded-3xl bg-surface text-foreground p-5">
-        <p className="uppercase text-xs text-foreground/60 tracking-wider font-medium mb-2">
-          When you need a hand
-        </p>
-        <h2 className="font-display text-2xl">Emergency contacts</h2>
+      <section className="flex items-center gap-4 rounded-3xl bg-surface text-foreground p-5">
+        <div className="grid place-items-center h-12 w-12 font-extrabold text-red-600 bg-red-200 rounded-full">
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="h-5 w-5"
+          >
+            <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z" />
+          </svg>
+        </div>
+        <div>
+          <p className="uppercase text-xs text-foreground/60 tracking-wider font-medium mb-2">
+            When you need a hand
+          </p>
+
+          <h2 className="font-display text-2xl">Emergency contacts</h2>
+          <p className="text-sm text-foreground/60">
+            {firstEmergencyContact?.name ??
+              "No main emergency contact recorded."}
+          </p>
+        </div>
       </section>
 
       <LogoutButton />
