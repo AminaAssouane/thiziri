@@ -21,6 +21,10 @@ export default async function DashboardPage() {
   const activeMeds = await prisma.medication.findMany({
     where: { userId, isActive: true },
   });
+  const nextAppointment = await prisma.appointment.findFirst({
+    where: { userId, status: "UPCOMING", date: { gte: new Date() } },
+    orderBy: { date: "asc" },
+  });
 
   if (!user) redirect("/login");
   return (
@@ -146,6 +150,41 @@ export default async function DashboardPage() {
           Keep in your orbit
         </p>
         <h2 className="font-display text-2xl">Next appointment</h2>
+        {nextAppointment ? (
+          <div className="flex gap-4 items-center">
+            <div className="bg-background text-foreground rounded-2xl p-4 mt-2 text-center font-bold">
+              <p className="text-xs">
+                {nextAppointment.date
+                  .toLocaleDateString("en-US", {
+                    month: "short",
+                  })
+                  .toUpperCase()}
+              </p>
+              <p>{nextAppointment.date.getDate()}</p>
+            </div>
+
+            <div className="flex flex-col">
+              <p className="font-bold">{nextAppointment.specialty}</p>
+              <p className="text-background/70 text-xs mt-1">
+                {nextAppointment.date.toLocaleTimeString("en-US", {
+                  hour: "numeric",
+                  minute: "2-digit",
+                  hour12: true,
+                })}{" "}
+                · {nextAppointment.doctorName}
+              </p>
+            </div>
+
+            <Link
+              href="/dashboard/appointments"
+              className="text-background text-xs font-bold ml-auto"
+            >
+              All appointments →
+            </Link>
+          </div>
+        ) : (
+          <p>No upcoming appointment.</p>
+        )}
       </section>
 
       <section className="rounded-3xl bg-surface text-foreground p-5">
