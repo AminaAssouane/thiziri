@@ -25,7 +25,11 @@ export async function addAppointment(formData: FormData) {
   const userId = session.user.id;
   const doctorName = formData.get("doctorName") as string;
   const specialty = formData.get("specialty") as string;
-  const date = new Date(formData.get("date") as string);
+
+  const date = formData.get("date") as string;
+  const time = formData.get("time") as string;
+  const appointmentDate = new Date(`${date}T${time}`);
+
   const location = formData.get("location") as string;
   const reason = formData.get("reason") as string;
   const notes = (formData.get("notes") || null) as string | null;
@@ -36,7 +40,7 @@ export async function addAppointment(formData: FormData) {
       userId,
       doctorName,
       specialty,
-      date,
+      date: appointmentDate,
       location,
       reason,
       notes,
@@ -64,7 +68,11 @@ export async function editAppointment(formData: FormData) {
   const userId = session.user.id;
   const doctorName = formData.get("doctorName") as string;
   const specialty = formData.get("specialty") as string;
-  const date = new Date(formData.get("date") as string);
+
+  const date = formData.get("date") as string;
+  const time = formData.get("time") as string;
+  const appointmentDate = new Date(`${date}T${time}`);
+
   const location = formData.get("location") as string;
   const reason = formData.get("reason") as string;
   const notes = (formData.get("notes") || null) as string | null;
@@ -73,7 +81,15 @@ export async function editAppointment(formData: FormData) {
 
   await prisma.appointment.update({
     where: { id, userId },
-    data: { doctorName, specialty, date, location, reason, notes, status },
+    data: {
+      doctorName,
+      specialty,
+      date: appointmentDate,
+      location,
+      reason,
+      notes,
+      status,
+    },
   });
 
   revalidatePath("/dashboard/appointments");

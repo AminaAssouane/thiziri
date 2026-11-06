@@ -14,6 +14,9 @@ export default async function NewAppointmentPage() {
         Date : <input type="date" name="date" required />
       </label>
       <label>
+        Time : <input type="time" name="time" required />
+      </label>
+      <label>
         Location : <input type="text" name="location" required />
       </label>
       <label>

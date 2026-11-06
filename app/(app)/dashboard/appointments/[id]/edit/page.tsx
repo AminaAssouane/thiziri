@@ -52,7 +52,16 @@ export default async function EditAppointmentPage({
         <input
           type="date"
           name="date"
-          defaultValue={appointment.date.toISOString().split("T")[0]}
+          defaultValue={appointment.date.toISOString().slice(0, 10)}
+          required
+        />
+      </label>
+      <label>
+        Time :{" "}
+        <input
+          type="time"
+          name="time"
+          defaultValue={appointment.date.toISOString().slice(11, 16)}
           required
         />
       </label>
