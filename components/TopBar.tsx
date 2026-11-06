@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { links, isActive } from "./NavLinks";
+import ThemeSwitcher from "./ThemeSwitcher";
 
 export default function TopBar() {
   const pathname = usePathname();
@@ -28,6 +29,9 @@ export default function TopBar() {
               </Link>
             </li>
           ))}
+          <li key="theme">
+            <ThemeSwitcher />
+          </li>
         </ul>
       </nav>
     </header>
