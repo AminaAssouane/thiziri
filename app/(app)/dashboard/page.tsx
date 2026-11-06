@@ -183,7 +183,7 @@ export default async function DashboardPage() {
             </Link>
           </div>
         ) : (
-          <p>No upcoming appointment.</p>
+          <p className="text-sm text-background/60">No upcoming appointment.</p>
         )}
       </section>
 
