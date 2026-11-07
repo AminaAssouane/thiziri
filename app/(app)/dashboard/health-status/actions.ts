@@ -31,9 +31,8 @@ export async function createHealthStatus(formData: FormData) {
       ? Number(temperatureRaw)
       : null;
 
-  const conditionRaw = formData.get("condition");
-  const condition =
-    typeof conditionRaw === "string" ? conditionRaw || null : null;
+  const notesRaw = formData.get("notes");
+  const notes = typeof notesRaw === "string" ? notesRaw || null : null;
 
   try {
     await prisma.healthStatus.create({
@@ -43,7 +42,7 @@ export async function createHealthStatus(formData: FormData) {
         bloodPressure,
         bloodSugar,
         temperature,
-        condition,
+        notes,
       },
     });
     revalidatePath("/dashboard/health-status"); // to refresh the data, as nextjs might just show the cached version with the new entry not added in
@@ -91,9 +90,8 @@ export async function updateHealthStatus(formData: FormData) {
       ? Number(temperatureRaw)
       : null;
 
-  const conditionRaw = formData.get("condition");
-  const condition =
-    typeof conditionRaw === "string" ? conditionRaw || null : null;
+  const notesRaw = formData.get("notes");
+  const notes = typeof notesRaw === "string" ? notesRaw || null : null;
 
   const id = formData.get("id") as string;
 
@@ -104,7 +102,7 @@ export async function updateHealthStatus(formData: FormData) {
         bloodPressure,
         bloodSugar,
         temperature,
-        condition,
+        notes,
       },
       where: { id, userId: session.user.id },
     });
