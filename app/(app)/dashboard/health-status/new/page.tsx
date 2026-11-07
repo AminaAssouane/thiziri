@@ -20,7 +20,7 @@ export default function NewHealthStatusPage() {
             <Plus />
           </div>
           <div>
-            <h2 className=" font-bold text-[1.2rem] mb-1">Today's health</h2>
+            <h2 className="font-bold text-[1.2rem] mb-1">Today's health</h2>
             <p className="text-xs text-foreground/60">{todayDate}</p>
           </div>
         </div>

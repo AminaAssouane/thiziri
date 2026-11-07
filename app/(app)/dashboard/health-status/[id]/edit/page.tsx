@@ -20,60 +20,103 @@ export default async function EditHealthStatusPage({
 
   if (!currentStatus) notFound();
 
+  const date = new Intl.DateTimeFormat("en-US", {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+
   return (
-    <form action={updateHealthStatus}>
-      <h1>Update Health Status</h1>
+    <div>
+      <p className="text-xs font-bold uppercase tracking-widest text-foreground/70 text-center">
+        Your personal record
+      </p>
+      <h1 className="text-foreground text-4xl font-display font-bold  text-center">
+        Edit check-in
+      </h1>
+      <p className="text-xs mb-3 text-foreground/70 text-center">
+        {date.format(currentStatus.createdAt)}
+      </p>
+      <section className="bg-card-bg text-foreground rounded-3xl p-5">
+        <h2 className="font-bold text-[1.2rem] mb-1 pb-3 border-b border-border">
+          Your health check-in
+        </h2>
 
-      <input type="hidden" name="id" value={currentStatus.id} />
+        <form action={updateHealthStatus} className="flex flex-col mt-3">
+          <input type="hidden" name="id" value={currentStatus.id} />
 
-      <label>
-        Weight (kg)
-        <input
-          type="number"
-          step="0.1"
-          name="weight"
-          defaultValue={currentStatus.weight ?? ""}
-        />
-      </label>
+          <label htmlFor="weight" className="font-bold text-sm my-2">
+            Weight (kg){" "}
+          </label>
+          <input
+            type="number"
+            step="0.1"
+            id="weight"
+            name="weight"
+            defaultValue={currentStatus.weight ?? ""}
+            className="bg-surface border-border border rounded-2xl p-3 mb-4 text-sm"
+            placeholder="e.g. 68.5 kg"
+          />
 
-      <label>
-        Blood Pressure
-        <input
-          type="text"
-          name="bloodPressure"
-          defaultValue={currentStatus.bloodPressure ?? ""}
-        />
-      </label>
+          <label htmlFor="bloodP" className="font-bold text-sm my-2">
+            Blood Pressure{" "}
+          </label>
+          <input
+            type="text"
+            id="bloodP"
+            name="bloodPressure"
+            defaultValue={currentStatus.bloodPressure ?? ""}
+            placeholder="e.g. 120/80"
+            className="bg-surface border-border border rounded-2xl p-3 mb-4 text-sm"
+          />
 
-      <label>
-        Blood Sugar
-        <input
-          type="number"
-          step="0.1"
-          name="bloodSugar"
-          defaultValue={currentStatus.bloodSugar ?? ""}
-        />
-      </label>
+          <label htmlFor="bloodS" className="font-bold text-sm my-2">
+            Blood Sugar
+          </label>
+          <input
+            type="number"
+            id="bloodS"
+            step="0.1"
+            name="bloodSugar"
+            defaultValue={currentStatus.bloodSugar ?? ""}
+            placeholder="Add today's reading"
+            className="bg-surface border-border border rounded-2xl p-3 mb-4 text-sm"
+          />
 
-      <label>
-        Temperature (°C)
-        <input
-          type="number"
-          step="0.1"
-          name="temperature"
-          defaultValue={currentStatus.temperature ?? ""}
-        />
-      </label>
+          <label htmlFor="temp" className="font-bold text-sm my-2">
+            Temperature (°C){" "}
+          </label>
+          <input
+            type="number"
+            id="temp"
+            step="0.1"
+            name="temperature"
+            defaultValue={currentStatus.temperature ?? ""}
+            placeholder="e.g. 36.8 °C"
+            className="bg-surface border-border border rounded-2xl p-3 mb-4 text-sm"
+          />
 
-      <label>
-        Notes
-        <textarea
-          name="notes"
-          defaultValue={currentStatus.notes ?? ""}
-        ></textarea>
-      </label>
+          <label htmlFor="notes" className="font-bold text-sm my-2">
+            Notes{" "}
+            <span className="text-foreground/60 font-medium">(optional)</span>
+          </label>
+          <textarea
+            id="notes"
+            name="notes"
+            placeholder="Anything to remember about today?"
+            defaultValue={currentStatus.notes ?? ""}
+            className="bg-surface border-border border rounded-2xl p-3 mb-4 text-sm"
+          ></textarea>
 
-      <button type="submit">Edit Entry</button>
-    </form>
+          <button
+            type="submit"
+            className="bg-foreground text-background rounded-2xl font-bold p-4 hover:cursor-pointer"
+          >
+            Save the changes →
+          </button>
+        </form>
+      </section>
+    </div>
   );
 }
