@@ -20,79 +20,117 @@ export default async function EditMedication({
   if (!medication) notFound();
 
   return (
-    <form action={editMedication}>
-      <h1>Edit medication : </h1>
+    <>
+      <h1 className="text-4xl font-bold font-display text-center">
+        Edit medication
+      </h1>
+      <p className="text-center text-sm text-foreground/70">
+        Update medication details
+      </p>
 
-      <input type="hidden" name="id" value={medication.id} />
+      <form
+        action={editMedication}
+        className="flex flex-col mt-5 bg-card-bg text-foreground rounded-3xl p-5"
+      >
+        <input type="hidden" name="id" value={medication.id} />
 
-      <label>
-        Name :{" "}
+        <label htmlFor="name" className="font-bold text-sm my-2">
+          Name{" "}
+        </label>
         <input
+          type="text"
+          id="name"
           name="name"
-          type="text"
+          required
           defaultValue={medication.name}
-          required
+          placeholder="e.g. Doliprane"
+          className="bg-surface border border-border text-sm rounded-2xl mb-4 p-3"
         />
-      </label>
 
-      <label>
-        Dosage :{" "}
+        <label htmlFor="dosage" className="font-bold text-sm my-2">
+          Dosage{" "}
+        </label>
         <input
+          type="text"
+          id="dosage"
           name="dosage"
-          type="text"
+          required
           defaultValue={medication.dosage}
-          required
+          placeholder="e.g. 10 mg"
+          className="bg-surface border border-border text-sm rounded-2xl mb-4 p-3"
         />
-      </label>
 
-      <label>
-        Frequency :{" "}
+        <label htmlFor="frequency" className="font-bold text-sm my-2">
+          Frequency
+        </label>
         <input
-          name="frequency"
           type="text"
+          id="frequency"
+          name="frequency"
+          required
           defaultValue={medication.frequency}
-          required
+          placeholder="e.g. Once daily"
+          className="bg-surface border border-border text-sm rounded-2xl mb-4 p-3"
         />
-      </label>
 
-      <label>
-        Start date :{" "}
+        <label htmlFor="startDate" className="font-bold text-sm my-2">
+          Start date
+        </label>
         <input
+          type="date"
+          id="startDate"
           name="startDate"
-          type="date"
-          defaultValue={medication.startDate.toISOString().split("T")[0]}
           required
+          defaultValue={medication.startDate.toISOString().split("T")[0]}
+          className="bg-surface border border-border text-sm rounded-2xl mb-4 p-3"
         />
-      </label>
 
-      <label>
-        End date :{" "}
+        <label htmlFor="endDate" className="font-bold text-sm my-2">
+          End date
+        </label>
         <input
-          name="endDate"
           type="date"
+          id="endDate"
+          name="endDate"
           defaultValue={
             medication.endDate
               ? medication.endDate.toISOString().split("T")[0]
               : ""
           }
+          className="bg-surface border border-border text-sm rounded-2xl mb-4 p-3"
         />
-      </label>
 
-      <label>
-        Notes :{" "}
-        <textarea name="notes" defaultValue={medication.notes ?? ""}></textarea>
-      </label>
+        <label htmlFor="notes" className="font-bold text-sm my-2">
+          Notes{" "}
+        </label>
+        <textarea
+          id="notes"
+          name="notes"
+          placeholder="Instructions or reminders"
+          defaultValue={medication.notes ?? ""}
+          className="bg-surface border border-border text-sm rounded-2xl mb-4 p-3"
+        ></textarea>
 
-      <label>
-        Is it active :{" "}
-        <input
-          name="isActive"
-          type="checkbox"
-          defaultChecked={medication.isActive}
-        />
-      </label>
+        <div className="flex gap-4 items-center">
+          <input
+            type="checkbox"
+            id="isActive"
+            name="isActive"
+            defaultChecked={medication.isActive}
+            className="h-5 w-5 accent-foreground"
+          />
+          <label htmlFor="isActive" className="font-bold text-sm my-2">
+            Medication is active
+          </label>
+        </div>
 
-      <button type="submit">Save</button>
-    </form>
+        <button
+          type="submit"
+          className="bg-foreground text-background rounded-2xl font-bold p-4 mt-2 cursor-pointer"
+        >
+          Update medication →
+        </button>
+      </form>
+    </>
   );
 }

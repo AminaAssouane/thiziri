@@ -95,7 +95,7 @@ export default function NewMedicationPage() {
 
         <button
           type="submit"
-          className="bg-foreground text-background rounded-2xl font-bold p-4 mt-2"
+          className="bg-foreground text-background rounded-2xl font-bold p-4 mt-2 cursor-pointer"
         >
           Save medication →
         </button>
