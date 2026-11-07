@@ -29,7 +29,7 @@ export default async function HealthStatusPage() {
               <p>Blood Pressure: {entry.bloodPressure}</p>
               <p>Blood Sugar: {entry.bloodSugar}</p>
               <p>Temperature: {entry.temperature}</p>
-              <p>Condition: {entry.condition}</p>
+              <p>Notes: {entry.notes ?? "No notes"}</p>
               <p>Date: {entry.createdAt.toLocaleDateString()}</p>
               <DeleteButton id={entry.id} />
               <Link href={`/dashboard/health-status/${entry.id}/edit`}>

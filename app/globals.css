@@ -16,6 +16,7 @@
   --color-surface-muted: var(--surface-muted);
   --color-border: var(--border);
   --color-accent: var(--accent);
+  --color-card-bg: var(--card-bg);
 
   --font-display: serif;
 }
@@ -28,6 +29,7 @@
   --surface-muted: #f5e1c9;
   --border: rgb(10 51 35 / 12%);
   --accent: #105666;
+  --card-bg: #fbf9ee;
 }
 
 .dark {
@@ -38,6 +40,7 @@
   --surface-muted: #292920;
   --border: rgb(255 255 255 / 14%);
   --accent: #8ec6bd;
+  --card-bg: #213932;
 }
 
 body {

@@ -66,10 +66,10 @@ export default async function EditHealthStatusPage({
       </label>
 
       <label>
-        Condition / Notes
+        Notes
         <textarea
-          name="condition"
-          defaultValue={currentStatus.condition ?? ""}
+          name="notes"
+          defaultValue={currentStatus.notes ?? ""}
         ></textarea>
       </label>
 
