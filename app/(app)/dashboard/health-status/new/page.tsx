@@ -1,4 +1,5 @@
 import { createHealthStatus } from "../actions";
+import { Plus } from "lucide-react";
 
 const todayDate = new Intl.DateTimeFormat("en-US", {
   weekday: "long",
@@ -10,14 +11,21 @@ const todayDate = new Intl.DateTimeFormat("en-US", {
 export default function NewHealthStatusPage() {
   return (
     <div>
-      <h1 className="text-foreground text-4xl font-display font-bold mb-3">
+      <h1 className="text-foreground text-4xl font-display font-bold mb-3 text-center">
         A little check-in
       </h1>
       <section className="bg-card-bg text-foreground rounded-3xl p-5">
-        <h2 className=" font-bold text-[1.2rem] mb-1">Today's health</h2>
-        <p className="text-xs text-foreground/60">{todayDate}</p>
+        <div className="flex items-center gap-4 border-b border-border pb-5">
+          <div className="text-3xl text-foreground bg-background rounded-full w-10 h-10 flex items-center justify-center">
+            <Plus />
+          </div>
+          <div>
+            <h2 className=" font-bold text-[1.2rem] mb-1">Today's health</h2>
+            <p className="text-xs text-foreground/60">{todayDate}</p>
+          </div>
+        </div>
 
-        <form action={createHealthStatus} className="flex flex-col">
+        <form action={createHealthStatus} className="flex flex-col mt-5">
           <label htmlFor="weight" className="font-bold text-sm my-2">
             Weight (kg){" "}
           </label>
