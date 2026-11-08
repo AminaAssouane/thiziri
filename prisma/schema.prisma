@@ -182,7 +182,7 @@ model EmergencyContact {
   name         String
   phone        String
   email        String?
-  relationship String?
+  relationship String
   user         User    @relation(fields: [userId], references: [id])
   mainFor      User?    @relation("MainContact")
 }
