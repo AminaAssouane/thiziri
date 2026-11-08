@@ -38,7 +38,7 @@ export default async function EmergencyContactsPage() {
             <form action={addMainContact.bind(null, contact.id)}>
               <button
                 type="submit"
-                className="cursor-pointer text-accent font-bold text-sm"
+                className="cursor-pointer text-accent font-bold text-sm mt-2 bg-background py-2 px-4 rounded-full"
               >
                 Make main contact
               </button>
@@ -75,7 +75,7 @@ export default async function EmergencyContactsPage() {
             <div className="bg-surface rounded-3xl p-5 border border-border shadow-sm">
               <div className="flex gap-3 items-center">
                 <div className="grid place-items-center h-12 w-12 font-extrabold text-red-600 bg-red-200 rounded-full">
-                  <Heart className="fill-red-600" />
+                  <Heart className="fill-red-600 h-5" />
                 </div>
                 <div className="uppercase font-bold tracking-widest text-xs text-foreground/70">
                   Main emergency contact

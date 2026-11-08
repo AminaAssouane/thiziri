@@ -208,7 +208,7 @@ export default async function DashboardPage() {
       <section className="flex items-center gap-4 rounded-3xl bg-surface text-foreground p-5">
         <div className="grid place-items-center h-12 w-12 font-extrabold text-red-600 bg-red-200 rounded-full">
           {" "}
-          <Heart className=" fill-red-600" />
+          <Heart className=" fill-red-600 h-5" />
         </div>
 
         <div>
