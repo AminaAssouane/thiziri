@@ -21,7 +21,7 @@ export default async function NewAppointmentPage() {
           </p>
         </div>
       </div>
-      <div className="font-bold text-2xl my-3">Visit details</div>
+      <div className="font-bold text-2xl my-3 font-display">Visit details</div>
       <label htmlFor="doctorName" className="font-bold text-sm">
         Doctor name{" "}
       </label>
@@ -73,15 +73,16 @@ export default async function NewAppointmentPage() {
         className="bg-surface border border-border p-4 w-full rounded-2xl mt-2 mb-4"
       />
       <label htmlFor="reason" className="font-bold text-sm">
-        Reason :{" "}
-        <input
-          type="text"
-          id="reason"
-          name="reason"
-          required
-          className="bg-surface border border-border p-4 w-full rounded-2xl mt-2 mb-4"
-        />
+        Reason{" "}
       </label>
+      <input
+        type="text"
+        id="reason"
+        name="reason"
+        required
+        className="bg-surface border border-border p-4 w-full rounded-2xl mt-2 mb-4"
+      />
+
       <label htmlFor="notes" className="font-bold text-sm">
         Notes
       </label>
