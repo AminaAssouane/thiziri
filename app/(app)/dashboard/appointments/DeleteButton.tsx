@@ -6,5 +6,12 @@ type DeleteButtonProps = {
 };
 
 export function DeleteButton({ id }: DeleteButtonProps) {
-  return <button onClick={() => removeAppointment(id)}>Delete</button>;
+  return (
+    <button
+      onClick={() => removeAppointment(id)}
+      className="cursor-pointer text-red-900"
+    >
+      Delete
+    </button>
+  );
 }

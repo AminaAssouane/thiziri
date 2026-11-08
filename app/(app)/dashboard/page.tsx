@@ -170,13 +170,16 @@ export default async function DashboardPage() {
 
             <div className="flex flex-col">
               <p className="font-bold">{nextAppointment.specialty}</p>
-              <p className="text-background/70 text-xs mt-1">
+              <p className="text-background/90 text-xs mt-1">
                 {nextAppointment.date.toLocaleTimeString("en-US", {
                   hour: "numeric",
                   minute: "2-digit",
                   hour12: true,
                 })}{" "}
                 · {nextAppointment.doctorName}
+              </p>
+              <p className="text-xs mt-1 text-background/70">
+                {nextAppointment.location}
               </p>
             </div>
 
