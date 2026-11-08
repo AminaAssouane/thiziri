@@ -37,6 +37,8 @@ model User {
   lastName         String
   dateOfBirth      DateTime?
   createdAt        DateTime         @default(now())
+  mainContactId    String?          @unique          
+  mainContact      EmergencyContact? @relation("MainContact", fields: [mainContactId], references: [id])
   healthProfile    HealthProfile?
   healthStatuses   HealthStatus[]
   moodEntries      MoodEntry[]
@@ -182,4 +184,5 @@ model EmergencyContact {
   email        String?
   relationship String?
   user         User    @relation(fields: [userId], references: [id])
+  mainFor      User?    @relation("MainContact")
 }
