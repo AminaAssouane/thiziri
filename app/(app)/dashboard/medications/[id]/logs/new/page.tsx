@@ -10,7 +10,8 @@ export default async function NewMedLog({ params }: NewMedLogProps) {
       <h1>New medication log : </h1>
       <form action={createMedLog.bind(null, id)}>
         <label>
-          Medication taken at : <input type="datetime-local" name="takenAt" />
+          Medication taken at :{" "}
+          <input type="datetime-local" name="takenAt" required />
         </label>
         <label>
           Did you skip it ? : <input type="checkbox" name="skipped" />

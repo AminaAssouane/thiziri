@@ -1,9 +1,13 @@
 import { getMedLog, editMedicationLog } from "../../actions";
 import { notFound } from "next/navigation";
 
-type EditMedicationLogPageProps = { params: Promise<{ id: string; logId: string }> };
+type EditMedicationLogPageProps = {
+  params: Promise<{ id: string; logId: string }>;
+};
 
-export default async function EditMedLogPage({ params }: EditMedicationLogPageProps) {
+export default async function EditMedLogPage({
+  params,
+}: EditMedicationLogPageProps) {
   const { logId } = await params;
   const log = await getMedLog(logId);
 
@@ -20,6 +24,7 @@ export default async function EditMedLogPage({ params }: EditMedicationLogPagePr
             }
             name="takenAt"
             type="datetime-local"
+            required
           />
         </label>
 
