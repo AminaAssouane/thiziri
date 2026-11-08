@@ -37,7 +37,12 @@ export async function createMedLog(medicationId: string, formData: FormData) {
       ? new Date(takenAtInitial)
       : null;
 
-  const skipped = formData.get("skipped") === "on";
+  const status = formData.get("status");
+  if (status !== "taken" && status !== "skipped") {
+    throw new Error("Choose Taken or Skipped");
+  }
+
+  const skipped = status === "skipped";
   const notesValue = formData.get("notes");
   const notes = typeof notesValue === "string" ? notesValue || null : null;
 
