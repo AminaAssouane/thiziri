@@ -5,17 +5,6 @@ import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-export async function getMedName(medicationId: string) {
-  const session = await auth();
-  if (!session?.user?.id) throw new Error("Not authenticated");
-
-  const medication = await prisma.medication.findUnique({
-    where: { userId: session.user.id, id: medicationId },
-    select: { name: true },
-  });
-  return medication?.name ?? null;
-}
-
 export async function getMedLogs(medicationId: string) {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Not authenticated");

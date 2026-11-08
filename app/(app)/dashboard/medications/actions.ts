@@ -22,6 +22,17 @@ function getOptionalString(formData: FormData, name: string): string | null {
   return value || null;
 }
 
+export async function getMedication(id: string) {
+  const session = await auth();
+  if (!session?.user?.id) throw new Error("Not authenticated");
+
+  const medication = prisma.medication.findUnique({
+    where: { id, userId: session.user.id },
+  });
+
+  return medication;
+}
+
 export async function getMedications() {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Not authenticated");
