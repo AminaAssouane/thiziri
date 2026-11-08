@@ -40,6 +40,9 @@ export async function addMainContact(mainContactId: string) {
     where: { id: session.user.id },
     data: { mainContactId },
   });
+
+  revalidatePath("/dashboard/emergency-contacts");
+  revalidatePath("/dashboard");
 }
 
 export async function getEmergencyContacts() {
