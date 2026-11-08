@@ -5,5 +5,9 @@ import { deleteMedLog } from "./actions";
 type DeleteButtonProps = { id: string };
 
 export default function DeleteButton({ id }: DeleteButtonProps) {
-  return <button onClick={() => deleteMedLog(id)}>Delete</button>;
+  return (
+    <button onClick={() => deleteMedLog(id)} className="cursor-pointer">
+      Delete
+    </button>
+  );
 }
