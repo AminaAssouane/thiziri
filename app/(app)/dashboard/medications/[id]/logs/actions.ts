@@ -5,6 +5,31 @@ import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
+function getRequiredDateTime(formData: FormData) {
+  const value = formData.get("takenAt");
+
+  if (typeof value !== "string" || !value) {
+    throw new Error("Date and time are required");
+  }
+
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    throw new Error("Enter a valid date and time");
+  }
+
+  return date;
+}
+
+function getSkippedStatus(formData: FormData) {
+  const status = formData.get("status");
+
+  if (status !== "taken" && status !== "skipped") {
+    throw new Error("Choose Taken or Skipped");
+  }
+
+  return status === "skipped";
+}
+
 export async function getMedLogs(medicationId: string) {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Not authenticated");
@@ -31,18 +56,10 @@ export async function createMedLog(medicationId: string, formData: FormData) {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Not authenticated");
 
-  const takenAtInitial = formData.get("takenAt");
-  const takenAt =
-    typeof takenAtInitial === "string" && takenAtInitial
-      ? new Date(takenAtInitial)
-      : null;
+  const takenAt = getRequiredDateTime(formData);
 
-  const status = formData.get("status");
-  if (status !== "taken" && status !== "skipped") {
-    throw new Error("Choose Taken or Skipped");
-  }
+  const skipped = getSkippedStatus(formData);
 
-  const skipped = status === "skipped";
   const notesValue = formData.get("notes");
   const notes = typeof notesValue === "string" ? notesValue || null : null;
 
@@ -65,13 +82,10 @@ export async function editMedicationLog(logId: string, formData: FormData) {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Not authenticated");
 
-  const takenAtInitial = formData.get("takenAt");
-  const takenAt =
-    typeof takenAtInitial === "string" && takenAtInitial
-      ? new Date(takenAtInitial)
-      : null;
+  const takenAt = getRequiredDateTime(formData);
 
-  const skipped = formData.get("skipped") === "on";
+  const skipped = getSkippedStatus(formData);
+
   const notesValue = formData.get("notes");
   const notes = typeof notesValue === "string" ? notesValue || null : null;
 
