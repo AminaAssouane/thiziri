@@ -5,6 +5,26 @@ import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
+export async function getMainContact() {
+  const session = await auth();
+  if (!session?.user?.id) throw new Error("Not authenticated");
+
+  const user = await prisma.user.findUnique({
+    where: { id: session.user.id },
+    select: { mainContactId: true },
+  });
+
+  const mainContactId = user?.mainContactId;
+
+  if (!mainContactId) return null;
+
+  const mainContact = await prisma.emergencyContact.findUnique({
+    where: { id: mainContactId },
+  });
+
+  return mainContact;
+}
+
 export async function getEmergencyContacts() {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Not authenticated");
