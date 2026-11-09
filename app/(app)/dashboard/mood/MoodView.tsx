@@ -5,6 +5,8 @@ import { saveMood } from "./actions";
 
 type MoodViewProps = {
   mood: MoodEntry | null;
+  moods: MoodEntry[];
+  selectedDate: Date;
 };
 
 export function MoodView({ mood }: MoodViewProps) {
