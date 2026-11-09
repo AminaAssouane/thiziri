@@ -132,6 +132,11 @@ export function MoodView({ mood, moods, selectedDate }: MoodViewProps) {
       <>
         {weekStrip}
         <form action={saveMood}>
+          <input
+            type="hidden"
+            name="date"
+            value={formatDateParam(selectedDate)}
+          />
           <label>
             Mood :
             <select name="mood" required defaultValue={mood?.mood ?? ""}>

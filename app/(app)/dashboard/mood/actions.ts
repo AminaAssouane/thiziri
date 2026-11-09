@@ -12,17 +12,34 @@ export async function saveMood(formData: FormData) {
 
   const userId = session.user.id;
 
-  const todayDate = new Date();
-  todayDate.setHours(0, 0, 0, 0);
+  const dateValue = formData.get("date");
+
+  if (typeof dateValue !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(dateValue)) {
+    throw new Error("Invalid mood date");
+  }
+
+  const [year, month, day] = dateValue.split("-").map(Number);
+  const moodDate = new Date(year, month - 1, day);
+
+  if (
+    moodDate.getFullYear() !== year ||
+    moodDate.getMonth() !== month - 1 ||
+    moodDate.getDate() !== day
+  ) {
+    throw new Error("Invalid mood date");
+  }
+
+  moodDate.setHours(0, 0, 0, 0);
+
   const mood = formData.get("mood") as Mood;
   const note = formData.get("note") as string | null;
 
   await prisma.moodEntry.upsert({
-    where: { userId_date: { userId, date: todayDate } },
+    where: { userId_date: { userId, date: moodDate } },
     update: { mood, note },
-    create: { userId, mood, date: todayDate, note },
+    create: { userId, mood, date: moodDate, note },
   });
 
   revalidatePath("/dashboard/mood");
-  redirect("/dashboard/mood");
+  redirect(`/dashboard/mood?date=${dateValue}`);
 }
