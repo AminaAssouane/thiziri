@@ -52,18 +52,18 @@ export default async function DashboardPage() {
         </Link>
       </section>
 
-      <section className="rounded-3xl bg-surface p-5 text-foreground">
+      <Link
+        href="/dashboard/health-status"
+        className="block rounded-3xl bg-surface p-5 text-foreground hover:shadow-md"
+      >
         <p className="font-medium mb-2 text-xs uppercase tracking-wider text-foreground/60">
           Your recent readings
         </p>
         <div className="flex justify-between items-center">
           <h2 className="font-display text-2xl">Latest health status</h2>{" "}
-          <Link
-            href="/dashboard/health-status"
-            className="text-xs font-bold text-foreground/70"
-          >
+          <span className="text-xs font-bold text-foreground/70">
             History →
-          </Link>{" "}
+          </span>{" "}
         </div>
         <p className="text-xs pt-1 pb-3 text-foreground/60">
           Last updated{" "}
@@ -110,27 +110,38 @@ export default async function DashboardPage() {
             </p>
           </div>
         </div>
-      </section>
+      </Link>
 
-      <section className="rounded-3xl bg-surface-muted p-5 text-foreground">
-        <p className="uppercase text-xs mb-2 font-medium tracking-wider text-foreground/60">
-          Small moments add up
+      <Link
+        href="/dashboard/mood"
+        className="group block rounded-3xl bg-surface-muted p-5 text-foreground transition hover:shadow-md"
+      >
+        <div className="flex items-center justify-between">
+          <p className="uppercase text-xs mb-2 font-medium tracking-wider text-foreground/60">
+            Small moments add up
+          </p>
+          <p className="text-moss text-xl">✿</p>
+        </div>
+        <div className="flex items-center justify-between gap-3">
+          <h2 className="font-display text-2xl">Mood Garden</h2>
+          <span className="text-sm font-semibold text-accent">Open mood →</span>
+        </div>
+        <p className="text-xs text-foreground/70 mt-2">
+          Every feeling belongs here. Small check-ins help you notice what
+          supports you over time.
         </p>
-        <h2 className="font-display text-2xl">Mood Garden</h2>
-      </section>
+      </Link>
 
-      <section className="bg-surface rounded-3xl p-5 text-foreground">
+      <Link
+        href="/dashboard/medications"
+        className="block bg-surface rounded-3xl p-5 text-foreground hover:shadow-md"
+      >
         <p className="text-xs mb-2 tracking-wider uppercase text-foreground/60 font-medium">
           One step at a time
         </p>
         <div className="flex justify-between items-center py-2">
           <h2 className="font-display text-2xl">Medication</h2>
-          <Link
-            href="/dashboard/medications"
-            className="text-xs font-bold text-accent/70"
-          >
-            All meds →
-          </Link>
+          <span className="text-xs font-bold text-accent/70">All meds →</span>
         </div>
         <ul>
           {activeMeds.length === 0 ? (
@@ -148,9 +159,12 @@ export default async function DashboardPage() {
             ))
           )}
         </ul>
-      </section>
+      </Link>
 
-      <section className="bg-accent rounded-3xl p-5 text-background">
+      <Link
+        href="/dashboard/appointments"
+        className="block bg-accent rounded-3xl p-5 text-background hover:shadow-md"
+      >
         <p className="uppercase text-xs tracking-wider font-medium mb-2 text-background/60">
           Keep in your orbit
         </p>
@@ -183,36 +197,33 @@ export default async function DashboardPage() {
               </p>
             </div>
 
-            <Link
-              href="/dashboard/appointments"
-              className="text-background text-xs font-bold ml-auto"
-            >
+            <span className="text-background text-xs font-bold ml-auto">
               All appointments →
-            </Link>
+            </span>
           </div>
         ) : (
           <div className="flex">
             <p className="text-sm text-background/60">
               No upcoming appointment.
             </p>
-            <Link
-              href="/dashboard/appointments"
-              className="text-background text-xs font-bold ml-auto"
-            >
+            <span className="text-background text-xs font-bold ml-auto">
               All appointments →
-            </Link>
+            </span>
           </div>
         )}
-      </section>
+      </Link>
 
-      <section className="flex items-center gap-4 rounded-3xl bg-surface text-foreground p-5">
+      <Link
+        href="/dashboard/emergency-contacts"
+        className="flex items-center gap-4 rounded-3xl bg-surface text-foreground p-5 hover:shadow-md"
+      >
         <div className="grid place-items-center h-12 w-12 font-extrabold text-red-600 bg-red-200 rounded-full">
           {" "}
           <Heart className=" fill-red-600 h-5" />
         </div>
 
         <div>
-          <p className="uppercase text-xs text-foreground/60 tracking-wider font-medium mb-2">
+          <p className="uppercase text-xs text-foreground/60 tracking-wider font-medium mb-1">
             When you need a hand
           </p>
 
@@ -222,7 +233,11 @@ export default async function DashboardPage() {
               "No main emergency contact recorded."}
           </p>
         </div>
-      </section>
+
+        <span className="text-xs font-bold text-accent ml-auto">
+          All contacts →
+        </span>
+      </Link>
 
       <LogoutButton />
     </div>
