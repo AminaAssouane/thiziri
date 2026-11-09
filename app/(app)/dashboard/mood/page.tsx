@@ -68,10 +68,5 @@ export default async function MoodPage({ searchParams }: MoodPageProps) {
         entry.date.getDate() === selectedDate.getDate(),
     ) ?? null;
 
-  return (
-    <div>
-      <h1>Moods:</h1>
-      <MoodView mood={mood} moods={moods} selectedDate={selectedDate} />
-    </div>
-  );
+  return <MoodView mood={mood} moods={moods} selectedDate={selectedDate} />;
 }
