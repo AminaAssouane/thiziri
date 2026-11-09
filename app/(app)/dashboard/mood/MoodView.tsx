@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 import type { MoodEntry } from "@/generated/prisma/client";
 import { saveMood } from "./actions";
 import { useRouter } from "next/navigation";
@@ -27,8 +26,6 @@ function formatDateParam(date: Date) {
 }
 
 export function MoodView({ mood, moods, selectedDate }: MoodViewProps) {
-  const [isEditing, setIsEditing] = useState(!mood);
-
   const router = useRouter();
 
   function goToDate(date: Date) {
@@ -61,12 +58,12 @@ export function MoodView({ mood, moods, selectedDate }: MoodViewProps) {
           <button
             type="button"
             onClick={() => moveWeek(-1)}
-            className="cursor-pointer"
+            className="cursor-pointer text-3xl font-bold"
           >
             ‹
           </button>
 
-          <p>
+          <p className="text-xl font-bold">
             {monday.toLocaleDateString("en-US", {
               month: "long",
               year: "numeric",
@@ -76,7 +73,7 @@ export function MoodView({ mood, moods, selectedDate }: MoodViewProps) {
           <button
             type="button"
             onClick={() => moveWeek(1)}
-            className="cursor-pointer"
+            className="cursor-pointer text-3xl font-bold"
           >
             ›
           </button>
@@ -96,29 +93,27 @@ export function MoodView({ mood, moods, selectedDate }: MoodViewProps) {
                   ? "bg-yellow-500"
                   : moodForDay?.mood === "GOOD"
                     ? "bg-green-700"
-                    : "";
+                    : null;
 
             return (
               <button
                 key={date.toISOString()}
-                className={`cursor-pointer rounded-2xl border border-border p-2 text-center ${
+                className={`cursor-pointer rounded-2xl p-2 text-center ${
                   isSelected
-                    ? "bg-accent text-background"
-                    : "bg-surface text-foreground"
+                    ? "bg-background/20 text-background border border-background"
+                    : "bg-transparent text-background"
                 }`}
                 onClick={() => goToDate(date)}
               >
-                <p className="text-xs">
+                <p className="text-xs mb-1">
                   {date.toLocaleDateString("en", { weekday: "short" })}
                 </p>
 
-                <p className="font-semibold">{date.getDate()}</p>
-
-                {moodForDay && (
-                  <span
-                    className={`mx-auto mt-1 block h-2.5 w-2.5 rounded-full ${moodColor}`}
-                  />
-                )}
+                <p
+                  className={`flex items-center justify-center font-semibold rounded-full h-10 w-10 ${moodColor ?? "bg-transparent"}`}
+                >
+                  {date.getDate()}
+                </p>
               </button>
             );
           })}
@@ -127,46 +122,83 @@ export function MoodView({ mood, moods, selectedDate }: MoodViewProps) {
     </section>
   );
 
-  if (isEditing || !mood)
-    return (
-      <>
-        {weekStrip}
-        <form action={saveMood}>
-          <input
-            type="hidden"
-            name="date"
-            value={formatDateParam(selectedDate)}
-          />
-          <label>
-            Mood :
-            <select name="mood" required defaultValue={mood?.mood ?? ""}>
-              <option value="">Select...</option>
-              <option value="BAD">Bad</option>
-              <option value="AVERAGE">Average</option>
-              <option value="GOOD">Good</option>
-            </select>
+  return (
+    <div className="-mx-5">
+      {weekStrip}
+      <div className="font-bold text-3xl mt-8 mb-4">
+        {selectedDate.toLocaleDateString("en-US", {
+          weekday: "long",
+          month: "long",
+          day: "numeric",
+          year: "numeric",
+        })}
+      </div>
+      <form
+        key={formatDateParam(selectedDate)}
+        action={saveMood}
+        className="flex flex-col bg-card-bg rounded-3xl p-5"
+      >
+        <p className="text-2xl font-bold mt-3">How are you feeling?</p>
+        <p className="text-foreground/60 text-sm">Choose a mood for this day</p>
+        <input
+          type="hidden"
+          name="date"
+          value={formatDateParam(selectedDate)}
+        />
+
+        <fieldset className="flex gap-4 mt-5 w-full">
+          <label className="text-xl flex flex-col gap-2 justify-center items-center flex-1 p-5 rounded-2xl border border-border cursor-pointer has-[:checked]:border-red-800 has-[:checked]:text-red-800 has-[:checked]:border-2 has-[:checked]:font-bold">
+            <input
+              type="radio"
+              name="mood"
+              value="BAD"
+              className="size-5 accent-red-600"
+              required
+              defaultChecked={mood?.mood === "BAD"}
+            />
+            <p>Bad</p>
           </label>
-          <label>Notes : </label>
-          <textarea
-            name="note"
-            rows={4}
-            cols={50}
-            defaultValue={mood?.note ?? ""}
-          ></textarea>
-          <button type="submit">Save</button>
-        </form>
-      </>
-    );
-  else
-    return (
-      <>
-        {weekStrip}
-        <div>
-          <p>Mood : {mood.mood}</p>
-          <p>Note : {mood.note}</p>
-          <p>Date : {mood.date.toISOString().slice(0, 10)}</p>
-          <button onClick={() => setIsEditing(true)}>Edit</button>
-        </div>
-      </>
-    );
+
+          <label className="text-xl flex flex-col gap-2 justify-center items-center flex-1 p-5 rounded-2xl border border-border cursor-pointer has-[:checked]:border-[#D5AD26] has-[:checked]:text-[#D5AD26] has-[:checked]:border-2 has-[:checked]:font-bold">
+            <input
+              type="radio"
+              name="mood"
+              value="AVERAGE"
+              className="size-5 accent-[#D5AD26]"
+              required
+              defaultChecked={mood?.mood === "AVERAGE"}
+            />
+            Average
+          </label>
+
+          <label className="text-xl flex flex-col gap-2 justify-center items-center flex-1 p-5 rounded-2xl border border-border cursor-pointer has-[:checked]:border-green-700 has-[:checked]:text-green-700 has-[:checked]:border-2 has-[:checked]:font-bold">
+            <input
+              type="radio"
+              name="mood"
+              value="GOOD"
+              className="size-5 accent-green-700"
+              required
+              defaultChecked={mood?.mood === "GOOD"}
+            />
+            Good
+          </label>
+        </fieldset>
+
+        <label className="font-bold mt-8">Note (optional)</label>
+        <textarea
+          name="note"
+          rows={4}
+          cols={50}
+          defaultValue={mood?.note ?? ""}
+          className="bg-surface rounded-3xl p-4 mt-2 border border-border"
+        ></textarea>
+        <button
+          type="submit"
+          className="bg-foreground text-background rounded-full font-bold p-4 w-full mt-4 cursor-pointer"
+        >
+          Save mood
+        </button>
+      </form>
+    </div>
+  );
 }
