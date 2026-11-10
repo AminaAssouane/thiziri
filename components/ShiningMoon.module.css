@@ -1,0 +1,71 @@
+.moon {
+  position: relative;
+  isolation: isolate;
+  flex: 0 0 auto;
+  overflow: visible;
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse at 31% 28%, #fffdf1 0 2%, transparent 3%),
+    radial-gradient(ellipse at 60% 63%, #aaa895 0 5%, transparent 6%),
+    radial-gradient(ellipse at 70% 31%, #b9b7aa 0 8%, transparent 9%),
+    radial-gradient(ellipse at 38% 70%, #c7c4b5 0 11%, transparent 12%),
+    radial-gradient(ellipse at 48% 45%, #d7d4c7 0 18%, transparent 19%),
+    radial-gradient(
+      circle at 36% 32%,
+      #f9f5dc 0,
+      #d6d2c1 54%,
+      #898b82 78%,
+      #333f3b 100%
+    );
+  animation: moonrise 3.2s ease-in-out infinite alternate;
+}
+
+.moon::after {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at 74% 45%,
+    #121f1b 0,
+    rgb(23 41 35 / 85%) 40%,
+    transparent 73%
+  );
+  content: "";
+  animation: moonface 3.2s ease-in-out infinite alternate;
+}
+
+@keyframes moonrise {
+  from {
+    filter: brightness(0.74);
+    box-shadow:
+      0 0 0 1px rgb(245 241 218 / 23%),
+      0 0 8px 3px rgb(241 232 189 / 15%),
+      0 0 22px 8px rgb(228 214 155 / 11%);
+  }
+
+  to {
+    filter: brightness(1.16);
+    box-shadow:
+      0 0 0 1px #fffbe6,
+      0 0 30px 12px rgb(241 232 189 / 52%),
+      0 0 100px 34px rgb(228 214 155 / 50%);
+  }
+}
+
+@keyframes moonface {
+  from {
+    opacity: 0.78;
+  }
+
+  to {
+    opacity: 0.18;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .moon,
+  .moon::after {
+    animation: none;
+  }
+}

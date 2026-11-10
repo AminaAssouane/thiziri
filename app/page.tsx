@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
 import FireflyBackground from "@/components/FireflyBackground";
+import ShiningMoon from "@/components/ShiningMoon";
 
 const features = [
   { title: "Daily mood", text: "One gentle check-in a day, seen at a glance." },
@@ -52,6 +52,10 @@ export default function Landing() {
               Try as guest
             </Link>
           </div>
+        </div>
+
+        <div className="ml-auto">
+          <ShiningMoon size={350} label="Full moon" />
         </div>
       </section>
 
