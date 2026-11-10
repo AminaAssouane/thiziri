@@ -1,4 +1,4 @@
-import { createUploadthing } from "uploadthing/next";
+import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { auth } from "@/auth";
 
 const f = createUploadthing();
@@ -15,14 +15,14 @@ export const ourFileRouter = {
         throw new Error("Unauthorized");
       }
 
-      // whatever is returned here is available in onUploadComplete
       return { userId: session.user.id };
     })
     .onUploadComplete(async ({ metadata, file }) => {
-      console.log("Upload complete for userId:", metadata.userId);
-      console.log("File url:", file.url);
-
-      // return value is sent to the client's onClientUploadComplete
-      return { uploadedBy: metadata.userId, url: file.url };
+      return {
+        uploadedBy: metadata.userId,
+        url: file.ufsUrl,
+      };
     }),
-};
+} satisfies FileRouter;
+
+export type OurFileRouter = typeof ourFileRouter;

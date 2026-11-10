@@ -15,10 +15,14 @@ export default async function Documents() {
 
   return (
     <div>
-      <h1>Documents</h1>
-      <h2>Upload new document : </h2>
+      <h1 className="text-4xl font-display">Documents</h1>
+      <p className="text-xs text-foreground/70 mb-5">
+        Keep your important health records close at hand.
+      </p>
+
       <UploadForm />
-      <h2>All documents : </h2>
+
+      <h2 className="text-xl font-display mt-5">Your documents </h2>
       {documents.length === 0 ? (
         <div>No documents yet.</div>
       ) : (
