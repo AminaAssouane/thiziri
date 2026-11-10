@@ -13,7 +13,7 @@ export default function TopBar() {
         className="mx-auto flex max-w-5xl items-center justify-between px-10 py-4"
       >
         <p className="text-xl font-display  text-lightblue">Thiziri</p>
-        <ul className="flex gap-8">
+        <ul className="flex gap-8 items-center">
           {links.map(({ href, label }) => (
             <li key={href}>
               <Link
