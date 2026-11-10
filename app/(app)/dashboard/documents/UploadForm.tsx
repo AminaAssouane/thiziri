@@ -35,7 +35,7 @@ export default function UploadForm() {
           }}
           onClientUploadComplete={(files) => {
             setUploadError(null);
-            setUploadedUrl(files[0].ufsUrl);
+            setUploadedUrl(files[0].url);
           }}
           onUploadError={(error) => {
             setUploadError(error.message);
