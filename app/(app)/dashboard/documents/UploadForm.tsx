@@ -20,8 +20,8 @@ export default function UploadForm() {
           <span aria-hidden="true">↑</span>
         </div>
 
-        <h2 className="font-serif text-xl text-forest">Add a document</h2>
-        <p className="mt-1 text-sm text-forest/70">
+        <h2 className="font-serif text-xl text-foreground">Add a document</h2>
+        <p className="mt-1 text-sm text-foreground/70">
           Choose a prescription, test result, or visit summary.
         </p>
 

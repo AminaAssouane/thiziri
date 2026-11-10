@@ -30,7 +30,7 @@ export default function ThemeSwitcher() {
   }
 
   return (
-    <div className="flex items-center gap-[2px] rounded-full border border-surface text-surface">
+    <div className="flex items-center gap-[2px] rounded-full border border-surface text-white">
       <button
         type="button"
         onClick={() => handleSwitch("light")}

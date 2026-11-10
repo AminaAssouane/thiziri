@@ -9,6 +9,7 @@
   --color-lagoon: #105666;
   --color-cream: #f5e1c9; /*#f3eae0;*/
   --color-dark-lagoon: #003036;
+  --color-darkest-lagoon: #00181c;
 
   /* Couleurs de l’interface */
   --color-background: var(--background);
@@ -41,11 +42,11 @@
   color-scheme: dark;
   --background: #013748;
   --foreground: #dce9df;
-  --surface: #1b2922;
+  --surface: #00181c;
   --surface-muted: #292920;
   --border: rgb(255 255 255 / 14%);
   --accent: #8ec6bd;
-  --card-bg: #213932;
+  --card-bg: #00181c;
 }
 
 body {

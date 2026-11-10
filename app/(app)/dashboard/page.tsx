@@ -46,11 +46,11 @@ export default async function DashboardPage() {
   if (!user) redirect("/login");
   return (
     <div className="space-y-4">
-      <section className="rounded-3xl bg-forest p-5 text-background">
+      <section className="rounded-3xl bg-forest p-5">
         <p className="mb-2 text-xs font-medium uppercase tracking-wider text-lightgreen/70">
           A small moment for you
         </p>
-        <h1 className="font-display text-3xl">
+        <h1 className="font-display text-3xl text-white">
           A little care, {user.firstName}
         </h1>
         <p className="mt-2 text-sm text-lightgreen/80">
@@ -58,7 +58,7 @@ export default async function DashboardPage() {
         </p>
         <Link
           href="/dashboard/health-status/new"
-          className="inline-block bg-background text-forest rounded-full px-5 py-3 mt-5 font-bold cursor-pointer"
+          className="inline-block bg-background text-foreground rounded-full px-5 py-3 mt-5 font-bold cursor-pointer"
         >
           Log today's check-in →
         </Link>

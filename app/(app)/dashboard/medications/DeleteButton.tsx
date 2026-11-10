@@ -7,7 +7,7 @@ export function DeleteButton({ id }: DeleteButtonProps) {
   return (
     <button
       onClick={() => removeMedication(id)}
-      className="hover:cursor-pointer"
+      className="hover:cursor-pointer text-red-800 font-bold"
     >
       Delete
     </button>

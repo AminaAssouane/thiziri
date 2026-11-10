@@ -50,7 +50,7 @@ export default async function Appointments() {
             </div>
           )}
         </div>
-        <div className="flex justify-between mt-4 text-sm font-bold">
+        <div className="flex justify-end mt-4 text-sm font-bold gap-4">
           <Link
             href={`/dashboard/appointments/${app.id}/edit`}
             className="block"

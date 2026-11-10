@@ -52,7 +52,7 @@ export default async function MedLogsPage({ params }: MedLogsPageProps) {
               </div>
             )}
           </div>
-          <div className="flex justify-between text-xs font-bold mt-5 pt-5 text-foreground/60 border-t border-border">
+          <div className="flex justify-end text-sm gap-4 font-bold mt-5 pt-5 text-foreground/60 border-t border-border">
             <Link
               href={`/dashboard/medications/${id}/logs/${log.id}/edit`}
               className=""
