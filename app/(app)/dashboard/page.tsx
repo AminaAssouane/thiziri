@@ -1,7 +1,7 @@
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
-import { Heart } from "lucide-react";
+import { FileText, Heart } from "lucide-react";
 import LogoutButton from "@/components/LogoutButton";
 import Link from "next/link";
 
@@ -29,6 +29,10 @@ export default async function DashboardPage() {
   const firstEmergencyContact = await prisma.emergencyContact.findFirst({
     where: { userId },
     orderBy: { name: "asc" },
+  });
+  const recentDocument = await prisma.document.findFirst({
+    where: { userId },
+    orderBy: { createdAt: "desc" },
   });
 
   if (!user) redirect("/login");
@@ -210,6 +214,49 @@ export default async function DashboardPage() {
               All appointments →
             </span>
           </div>
+        )}
+      </Link>
+
+      <Link
+        href="/dashboard/documents"
+        className="block rounded-3xl bg-surface p-5 text-foreground transition hover:shadow-md"
+      >
+        <div className="flex items-center justify-between gap-3">
+          <div>
+            <p className="mb-2 text-xs font-medium uppercase tracking-wider text-foreground/60">
+              Keep close at hand
+            </p>
+            <h2 className="font-display text-2xl">Health documents</h2>
+          </div>
+          <span className="shrink-0 text-xs font-bold text-accent">
+            View all →
+          </span>
+        </div>
+
+        {recentDocument ? (
+          <div className="mt-4 flex items-center gap-3 border-t border-border pt-4">
+            <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-cream text-forest">
+              <FileText size={21} aria-hidden="true" />
+            </span>
+
+            <span className="min-w-0 flex-1">
+              <span className="block truncate font-bold">
+                {recentDocument.name}
+              </span>
+              <span className="mt-1 block text-xs text-foreground/60">
+                {recentDocument.category || "Uncategorized"}
+                {" · Added "}
+                {recentDocument.createdAt.toLocaleDateString("en-US", {
+                  month: "short",
+                  day: "numeric",
+                })}
+              </span>
+            </span>
+          </div>
+        ) : (
+          <p className="mt-4 border-t border-border pt-4 text-sm text-foreground/60">
+            No documents yet. Add a record to keep it close at hand.
+          </p>
         )}
       </Link>
 
