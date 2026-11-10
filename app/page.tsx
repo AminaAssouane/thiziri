@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import FireflyBackground from "@/components/FireflyBackground";
 
 const features = [
   { title: "Daily mood", text: "One gentle check-in a day, seen at a glance." },
@@ -16,7 +17,8 @@ const features = [
 
 export default function Landing() {
   return (
-    <main>
+    <main className="relative min-h-screen overflow-hidden bg-foreground">
+      <FireflyBackground />
       <section className="mx-auto grid min-h-screen max-w-6xl items-center gap-10 px-6 py-12 md:grid-cols-2">
         <div className="text-center md:text-left">
           <h1 className="moon-title font-display text-6xl md:text-7xl">
@@ -50,16 +52,6 @@ export default function Landing() {
               Try as guest
             </Link>
           </div>
-        </div>
-
-        <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] md:aspect-auto md:h-[36rem] hidden md:block">
-          <Image
-            src="/hero6.png"
-            alt=""
-            fill
-            priority
-            className="object-cover"
-          />
         </div>
       </section>
 
