@@ -26,10 +26,18 @@ export default async function DashboardPage() {
     where: { userId, status: "UPCOMING", date: { gte: new Date() } },
     orderBy: { date: "asc" },
   });
-  const firstEmergencyContact = await prisma.emergencyContact.findFirst({
-    where: { userId },
-    orderBy: { name: "asc" },
+
+  const mainContactId = await prisma.user.findUnique({
+    where: { id: userId },
+    select: { mainContactId: true },
   });
+  const contactId = mainContactId?.mainContactId;
+  const mainContact = contactId
+    ? await prisma.emergencyContact.findUnique({
+        where: { id: contactId },
+      })
+    : null;
+
   const recentDocument = await prisma.document.findFirst({
     where: { userId },
     orderBy: { createdAt: "desc" },
@@ -276,8 +284,7 @@ export default async function DashboardPage() {
 
           <h2 className="font-display text-2xl">Emergency contacts</h2>
           <p className="text-sm text-foreground/60">
-            {firstEmergencyContact?.name ??
-              "No main emergency contact recorded."}
+            {mainContact?.name ?? "No main emergency contact recorded."}
           </p>
         </div>
 
