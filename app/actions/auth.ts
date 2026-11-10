@@ -19,11 +19,15 @@ export async function registerUser({
   firstName: string;
   lastName: string;
 }): Promise<{ error: string } | { success: true }> {
-  if (!email || !password || !firstName || !lastName) {
+  const normalizedEmail = email.trim().toLowerCase();
+
+  if (!normalizedEmail || !password || !firstName.trim() || !lastName.trim()) {
     return { error: "All fields are required" };
   }
 
-  const existingUser = await prisma.user.findUnique({ where: { email } });
+  const existingUser = await prisma.user.findFirst({
+    where: { email: { equals: normalizedEmail, mode: "insensitive" } },
+  });
   if (existingUser) {
     return { error: "An account with this email already exists" };
   }
@@ -32,10 +36,10 @@ export async function registerUser({
 
   await prisma.user.create({
     data: {
-      email,
+      email: normalizedEmail,
       passwordHash,
-      firstName,
-      lastName,
+      firstName: firstName.trim(),
+      lastName: lastName.trim(),
     },
   });
 
