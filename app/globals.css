@@ -18,6 +18,8 @@
   --color-border: var(--border);
   --color-accent: var(--accent);
   --color-card-bg: var(--card-bg);
+  --color-teal: #007c7c;
+  --color-dark-teal: #013748;
 
   --font-display: Georgia;
 }
@@ -26,6 +28,8 @@
   color-scheme: light;
   --background: #e8efe3;
   --foreground: #105666;
+  --color-dark-teal: #013748;
+  --teal: #007c7c;
   --surface: #ffffff;
   --surface-muted: #f5e1c9;
   --border: rgba(10, 51, 35, 0.27);
@@ -35,7 +39,7 @@
 
 .dark {
   color-scheme: dark;
-  --background: #111b17;
+  --background: #013748;
   --foreground: #dce9df;
   --surface: #1b2922;
   --surface-muted: #292920;
@@ -72,20 +76,20 @@ body {
   .moon-title {
     background: linear-gradient(
       110deg,
-      var(--foreground) 0%,
-      var(--foreground) 35%,
-      var(--color-lagoon) 40%,
-      var(--color-moss) 50%,
-      var(--color-lagoon) 60%,
-      var(--foreground) 65%,
-      var(--foreground) 100%
+      var(--color-dark-teal) 0%,
+      var(--teal) 36%,
+      #c8e6f0 43%,
+      #f4fbff 48%,
+      #9ed7e8 53%,
+      var(--teal) 64%,
+      var(--color-dark-teal) 100%
     );
     background-size: 250% 100%;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 12px rgb(131 153 88 / 35%));
-    animation: moonlight 7s ease-in-out infinite alternate;
+    filter: drop-shadow(0 0 12px rgb(158 215 232 / 40%));
+    animation: moonlight 6s ease-in-out infinite alternate;
   }
 
   @keyframes moonlight {

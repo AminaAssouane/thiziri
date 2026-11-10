@@ -23,10 +23,10 @@ export default function Landing() {
             Thiziri
           </h1>
 
-          <p className="mt-2 text-sm uppercase tracking-widest text-lagoon">
+          <p className="mt-2 ml-5 text-sm uppercase tracking-widest text-[#9ed7e8]">
             moonlight · ⵜⵉⵣⵉⵔⵉ
           </p>
-          <p className="mt-6 text-lg text-foreground/80">
+          <p className="mt-6 text-lg text-[#9ed7e8]">
             A calm place to keep track of your health: mood, medications,
             appointments and documents.
           </p>
@@ -52,7 +52,7 @@ export default function Landing() {
           </div>
         </div>
 
-        <div className="ml-auto ">
+        <div className="ml-auto hidden md:block">
           <ShiningMoon size={350} label="Full moon" />
         </div>
       </section>

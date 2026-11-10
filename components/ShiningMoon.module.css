@@ -1,9 +1,14 @@
 .moon {
+  display: block;
   position: relative;
   isolation: isolate;
   flex: 0 0 auto;
   overflow: visible;
+  padding: 0;
+  border: 0;
   border-radius: 50%;
+  cursor: pointer;
+  transition: transform 180ms ease-out;
   background:
     radial-gradient(ellipse at 31% 28%, #fffdf1 0 2%, transparent 3%),
     radial-gradient(ellipse at 60% 63%, #aaa895 0 5%, transparent 6%),
@@ -67,5 +72,9 @@
   .moon,
   .moon::after {
     animation: none;
+  }
+
+  .moon {
+    transition: none;
   }
 }
