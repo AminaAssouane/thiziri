@@ -166,9 +166,10 @@ model Appointment {
 model Document {
   id            String       @id @default(cuid())
   userId        String
+  name          String
   appointmentId String?
   fileUrl       String
-  category      String
+  category      String?
   notes         String?
   createdAt     DateTime     @default(now())
   user          User         @relation(fields: [userId], references: [id])

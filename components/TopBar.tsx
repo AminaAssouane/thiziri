@@ -7,7 +7,7 @@ import ThemeSwitcher from "./ThemeSwitcher";
 export default function TopBar() {
   const pathname = usePathname();
   return (
-    <header className="fixed inset-x-0 top-0 z-10 hidden border-b border-stone-200 bg-foreground md:block">
+    <header className="fixed inset-x-0 top-0 z-10 hidden bg-linear-to-r from-[#00181C] to-lagoon md:block">
       <nav
         aria-label="Main"
         className="mx-auto flex max-w-5xl items-center justify-between px-10 py-4"
