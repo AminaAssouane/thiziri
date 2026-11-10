@@ -39,7 +39,7 @@ export default function Landing() {
             </Link>
             <Link
               href="/login"
-              className="rounded-full border-2 border-foreground px-8 py-3 text-center hover:bg-foreground hover:text-background"
+              className="rounded-full border-2 border-foreground px-8 py-3 text-center text-background hover:bg-foreground"
             >
               Log in
             </Link>
