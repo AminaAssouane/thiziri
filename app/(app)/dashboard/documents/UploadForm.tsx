@@ -55,10 +55,19 @@ export default function UploadForm() {
           <input type="hidden" name="fileUrl" value={uploadedUrl} />
 
           <label className="block text-sm font-medium text-forest">
+            Name
+            <input
+              name="name"
+              placeholder="e.g. Blood test results"
+              required
+              className="mt-1 w-full rounded-xl border border-foreground/20 bg-white px-4 py-3"
+            />
+          </label>
+
+          <label className="block text-sm font-medium text-forest">
             Category
             <input
               name="category"
-              required
               placeholder="Prescription, lab results…"
               className="mt-1 w-full rounded-xl border border-foreground/20 bg-white px-4 py-3"
             />
