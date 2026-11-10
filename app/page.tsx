@@ -16,7 +16,7 @@ const features = [
 
 export default function Landing() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-linear-to-r from-[#00181C] to-lagoon">
+    <main className="relative min-h-screen overflow-hidden bg-linear-to-t md:bg-linear-to-r from-[#00181C] to-lagoon">
       <section className="mx-auto grid min-h-screen max-w-6xl items-center gap-10 px-6 py-12 md:grid-cols-2">
         <div className="text-center md:text-left">
           <h1 className="moon-title font-display text-6xl md:text-7xl">
