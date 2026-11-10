@@ -2,12 +2,13 @@
 
 @theme inline {
   /* Palette de marque */
-  --color-forest: #0a3323;
+  --color-forest: #105666; /*#273f4f; #101a16; #0a3323;*/
   --color-moss: #839958;
   --color-lightgreen: #e2efe1;
   --color-lightblue: #cee0e7;
   --color-lagoon: #105666;
   --color-cream: #f5e1c9; /*#f3eae0;*/
+  --color-dark-lagoon: #003036;
 
   /* Couleurs de l’interface */
   --color-background: var(--background);
@@ -24,7 +25,7 @@
 :root {
   color-scheme: light;
   --background: #e8efe3;
-  --foreground: #0a3323;
+  --foreground: #105666;
   --surface: #ffffff;
   --surface-muted: #f5e1c9;
   --border: rgba(10, 51, 35, 0.27);

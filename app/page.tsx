@@ -17,8 +17,7 @@ const features = [
 
 export default function Landing() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-foreground">
-      <FireflyBackground />
+    <main className="relative min-h-screen overflow-hidden bg-linear-to-r from-[#00181C] to-lagoon">
       <section className="mx-auto grid min-h-screen max-w-6xl items-center gap-10 px-6 py-12 md:grid-cols-2">
         <div className="text-center md:text-left">
           <h1 className="moon-title font-display text-6xl md:text-7xl">
@@ -54,12 +53,12 @@ export default function Landing() {
           </div>
         </div>
 
-        <div className="ml-auto">
+        <div className="ml-auto ">
           <ShiningMoon size={350} label="Full moon" />
         </div>
       </section>
 
-      <section className="bg-foreground px-6 py-16 text-background hidden md:block">
+      <section className="bg-linear-to-r from-[#00181C] to-lagoon px-6 py-16 text-background hidden md:block">
         <div className="mx-auto grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {features.map((f) => (
             <div

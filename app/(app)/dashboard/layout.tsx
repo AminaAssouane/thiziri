@@ -1,6 +1,7 @@
 import BottomNav from "@/components/BottomNav";
 import TopBar from "@/components/TopBar";
 import type { ReactNode } from "react";
+import FireflyBackground from "@/components/FireflyBackground";
 
 type DashboardLayoutProps = { children: ReactNode };
 
