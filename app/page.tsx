@@ -1,5 +1,4 @@
 import Link from "next/link";
-import FireflyBackground from "@/components/FireflyBackground";
 import ShiningMoon from "@/components/ShiningMoon";
 
 const features = [

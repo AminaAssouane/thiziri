@@ -12,22 +12,24 @@ export default function FireflyBackground() {
     if (!ctx) return;
 
     let animationFrameId: number;
+    let width = window.innerWidth;
+    let height = window.innerHeight;
 
-    // Set canvas dimensions to match the scrollable parent / window
+    // Draw in CSS pixels while keeping the bitmap sharp on high-DPI screens.
     const updateSize = () => {
-      if (!canvas) return;
-      const parent = canvas.parentElement;
-      canvas.width = parent ? parent.scrollWidth : window.innerWidth;
-      canvas.height = parent
-        ? Math.max(parent.scrollHeight, window.innerHeight)
-        : window.innerHeight;
+      const pixelRatio = window.devicePixelRatio || 1;
+      width = window.innerWidth;
+      height = window.innerHeight;
+
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      canvas.width = Math.round(width * pixelRatio);
+      canvas.height = Math.round(height * pixelRatio);
+      ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
     };
 
     updateSize();
     window.addEventListener("resize", updateSize);
-
-    const width = canvas.width;
-    const height = canvas.height;
 
     // Fireflies configuration (brighter & larger for better visibility)
     const fireflies = Array.from({ length: 45 }, () => ({
@@ -45,7 +47,7 @@ export default function FireflyBackground() {
     }));
 
     const render = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, width, height);
 
       fireflies.forEach((f) => {
         f.angle += f.pulseSpeed;
@@ -63,10 +65,10 @@ export default function FireflyBackground() {
         f.x += f.speedX + Math.sin(f.angle) * 0.2;
         f.y += f.speedY;
 
-        if (f.x < 0) f.x = canvas.width;
-        if (f.x > canvas.width) f.x = 0;
-        if (f.y < 0) f.y = canvas.height;
-        if (f.y > canvas.height) f.y = 0;
+        if (f.x < 0) f.x = width;
+        if (f.x > width) f.x = 0;
+        if (f.y < 0) f.y = height;
+        if (f.y > height) f.y = 0;
       });
 
       animationFrameId = requestAnimationFrame(render);
@@ -83,7 +85,7 @@ export default function FireflyBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute top-0 left-0 w-full h-full pointer-events-none z-10"
+      className="fixed top-0 left-0 w-screen h-screen pointer-events-none z-10"
     />
   );
 }
