@@ -26,6 +26,7 @@ export default function UploadForm() {
         </p>
 
         <UploadButton
+          className="documents-upload"
           endpoint="documentUploader"
           content={{ button: "Choose a file" }}
           appearance={{
@@ -75,7 +76,7 @@ export default function UploadForm() {
 
           <button
             type="submit"
-            className="w-full rounded-full bg-forest px-5 py-3 font-medium text-white"
+            className="w-full rounded-full bg-forest px-5 py-3 font-medium text-white cursor-pointer"
           >
             Save document
           </button>

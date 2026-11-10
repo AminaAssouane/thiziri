@@ -104,3 +104,21 @@ body {
     }
   }
 }
+
+.documents-upload [data-ut-element="button"] {
+  position: relative;
+}
+
+.documents-upload [data-ut-element="button"] input[type="file"] {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.documents-upload [data-ut-element="button"]:focus-within {
+  outline: 2px solid #105666;
+  outline-offset: 3px;
+}

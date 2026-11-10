@@ -7,5 +7,12 @@ type DeleteButtonProps = {
 };
 
 export default function DeleteButton({ id }: DeleteButtonProps) {
-  return <button onClick={() => deleteDocument(id)}>Delete document</button>;
+  return (
+    <button
+      onClick={() => deleteDocument(id)}
+      className="text-red-800 font-bold cursor-pointer text-center mt-4 ml-auto"
+    >
+      Delete document
+    </button>
+  );
 }

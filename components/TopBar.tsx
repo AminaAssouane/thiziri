@@ -12,7 +12,7 @@ export default function TopBar() {
         aria-label="Main"
         className="mx-auto flex max-w-5xl items-center justify-between px-10 py-4"
       >
-        <p className="text-xl font-semibold text-lightblue">Thiziri</p>
+        <p className="text-xl font-display  text-lightblue">Thiziri</p>
         <ul className="flex gap-8">
           {links.map(({ href, label }) => (
             <li key={href}>

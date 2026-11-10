@@ -28,16 +28,25 @@ export default async function Documents() {
       ) : (
         <ul>
           {documents.map((doc) => (
-            <li key={doc.id}>
-              <p>
-                File URL :{" "}
-                <a href={doc.fileUrl} target="_blank" rel="noopener noreferrer">
+            <li
+              key={doc.id}
+              className="flex flex-col mt-3 p-5 bg-surface border border-border rounded-3xl shadow-sm"
+            >
+              <p className="mb-3">
+                <a
+                  href={doc.fileUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-bold text-xl"
+                >
                   View file
                 </a>
               </p>
-              <p>Category : {doc.category}</p>
-              <p>Notes : {doc.notes || "No notes"}</p>
-              <p>Upload date : {doc.createdAt.toLocaleDateString()}</p>
+              <p className="text-sm">Category : {doc.category}</p>
+              <p className="text-sm">Notes : {doc.notes || "No notes"}</p>
+              <p className="text-sm">
+                Upload date : {doc.createdAt.toLocaleDateString()}
+              </p>
               <DeleteButton id={doc.id} />
             </li>
           ))}
