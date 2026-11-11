@@ -53,7 +53,7 @@ export default function SignUpPage() {
       return;
     }
 
-    router.push("/dashboard/health-profile");
+    router.push("/dashboard");
   }
 
   return (
