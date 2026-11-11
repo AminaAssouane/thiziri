@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import { FileText, Heart } from "lucide-react";
 import Link from "next/link";
+import ShiningMoon from "@/components/ShiningMoon";
 
 export default async function DashboardPage() {
   const session = await auth();
@@ -45,22 +46,27 @@ export default async function DashboardPage() {
   if (!user) redirect("/login");
   return (
     <div className="space-y-4">
-      <section className="rounded-3xl bg-forest p-5">
-        <p className="mb-2 text-xs font-medium uppercase tracking-wider text-lightgreen/70">
-          A small moment for you
-        </p>
-        <h1 className="font-display text-3xl text-white">
-          A little care, {user.firstName}
-        </h1>
-        <p className="mt-2 text-sm text-lightgreen/80">
-          For the days that feel darker, let this be a small light.
-        </p>
-        <Link
-          href="/dashboard/health-status/new"
-          className="inline-block bg-background text-foreground rounded-full px-5 py-3 mt-5 font-bold cursor-pointer"
-        >
-          Log today's check-in →
-        </Link>
+      <section className="flex justify-between items-center gap-10 rounded-3xl bg-linear-to-r from-[#00181C] to-lagoon p-5">
+        <div>
+          <p className="mb-2 text-xs font-medium uppercase tracking-wider text-lightgreen/70">
+            A small moment for you
+          </p>
+          <h1 className="font-display text-3xl text-white">
+            A little care, {user.firstName}
+          </h1>
+          <p className="mt-2 text-sm text-lightgreen/80">
+            For the days that feel darker, let this be a small light.
+          </p>
+          <Link
+            href="/dashboard/health-status/new"
+            className="inline-block bg-background text-foreground rounded-full px-5 py-3 mt-5 font-bold cursor-pointer"
+          >
+            Log today's check-in →
+          </Link>
+        </div>
+        <div className="md:mr-10">
+          <ShiningMoon size={100} />
+        </div>
       </section>
 
       <Link
