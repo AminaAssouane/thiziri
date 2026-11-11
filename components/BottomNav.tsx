@@ -3,7 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import CompactThemeSwitcher from "./CompactThemeSwitcher";
 import LogoutButton from "./LogoutButton";
-import { House, LogOut, CircleUserRound } from "lucide-react";
+import { House, CircleUserRound } from "lucide-react";
 
 export default function BottomNav() {
   const pathname = usePathname();
