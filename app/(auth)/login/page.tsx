@@ -46,7 +46,7 @@ function LoginForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col">
+    <form onSubmit={handleSubmit} className="flex flex-col mb-15">
       <input
         name="email"
         type="email"

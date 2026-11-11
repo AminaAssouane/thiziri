@@ -59,17 +59,35 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="bg-linear-to-r from-[#00181C] to-lagoon px-6 py-16 text-background hidden md:block">
+      <section className="px-6 py-16 text-background hidden md:block">
         <div className="mx-auto grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {features.map((f) => (
             <div
               key={f.title}
-              className="rounded-2xl border border-moss/40 p-6"
+              className="rounded-2xl border border-gray-600 p-6 hover:border-lagoon"
             >
               <h3 className="font-display text-xl text-lightblue">{f.title}</h3>
               <p className="mt-2 text-background/80">{f.text}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="flex text-gray-400 flex-col text-center -pb-10 md:flex-row md:items-center md:justify-between px-20 pb-10">
+        <p>© Made by Amina Assouane.</p>
+        <div className="flex justify-center gap-4 mt-2">
+          <a
+            href="https://github.com/AminaAssouane"
+            className="cursor-pointer hover:text-white hover:font-bold"
+          >
+            Github
+          </a>
+          <a
+            href="https://www.linkedin.com/in/amina-assouane/"
+            className="cursor-pointer hover:text-white hover:font-bold"
+          >
+            Linkedin
+          </a>
         </div>
       </section>
     </main>
