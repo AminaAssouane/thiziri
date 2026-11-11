@@ -33,6 +33,7 @@ function LoginForm() {
       email,
       password,
       redirect: false,
+      redirectTo: "/dashboard",
     });
 
     if (result?.error) {
