@@ -5,9 +5,7 @@ export default function GoogleBtn() {
   return (
     <button
       type="button"
-      onClick={() =>
-        signIn("google", { redirectTo: "/dashboard/health-profile" })
-      }
+      onClick={() => signIn("google", { redirectTo: "/dashboard" })}
       className="inline-flex hover:bg-gray-300  items-center justify-center gap-3 rounded-full border border-[#dadce0] bg-white px-6 py-3 cursor-pointer font-medium text-[#3c4043] shadow-sm transition hover:bg-[#f8faff] hover:shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
     >
       <svg aria-hidden="true" className="h-5 w-5" viewBox="0 0 24 24">
