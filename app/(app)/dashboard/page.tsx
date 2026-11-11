@@ -2,7 +2,6 @@ import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import { FileText, Heart } from "lucide-react";
-import LogoutButton from "@/components/LogoutButton";
 import Link from "next/link";
 
 export default async function DashboardPage() {
@@ -292,8 +291,6 @@ export default async function DashboardPage() {
           All contacts →
         </span>
       </Link>
-
-      <LogoutButton />
     </div>
   );
 }
