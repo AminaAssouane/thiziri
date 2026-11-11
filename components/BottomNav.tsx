@@ -31,8 +31,7 @@ export default function BottomNav() {
         <li key="theme">
           <CompactThemeSwitcher />
         </li>
-        <li className="flex flex-col items-center text-xs cursor-pointer">
-          <LogOut className="size-7" />
+        <li>
           <LogoutButton />
         </li>
       </ul>

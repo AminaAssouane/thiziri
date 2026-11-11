@@ -5,7 +5,7 @@ import bcrypt from "bcryptjs";
 import { signOut } from "@/auth";
 
 export async function logoutUser() {
-  await signOut({ redirectTo: "/login" });
+  await signOut({ redirectTo: "/" });
 }
 
 export async function registerUser({
