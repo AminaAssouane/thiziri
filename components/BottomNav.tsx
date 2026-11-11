@@ -32,7 +32,7 @@ export default function BottomNav() {
           <CompactThemeSwitcher />
         </li>
         <li>
-          <LogoutButton />
+          <LogoutButton device="mobile" />
         </li>
       </ul>
     </nav>
