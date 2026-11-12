@@ -98,7 +98,7 @@ export function MoodView({ mood, moods, selectedDate }: MoodViewProps) {
             return (
               <button
                 key={date.toISOString()}
-                className={`cursor-pointer rounded-2xl p-2 text-center ${
+                className={`cursor-pointer flex flex-col items-center justify-center rounded-2xl p-2 text-center ${
                   isSelected
                     ? "bg-background/20 text-background border border-background"
                     : "bg-transparent text-background"
@@ -125,7 +125,7 @@ export function MoodView({ mood, moods, selectedDate }: MoodViewProps) {
   return (
     <div className="-mx-5">
       {weekStrip}
-      <div className="font-bold text-3xl mt-8 mb-4">
+      <div className="font-bold text-2xl mt-8 mb-4">
         {selectedDate.toLocaleDateString("en-US", {
           weekday: "long",
           month: "long",
