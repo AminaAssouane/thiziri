@@ -2,7 +2,7 @@
 
 import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
-import { signOut } from "@/auth";
+import { signOut, signIn } from "@/auth";
 
 export async function logoutUser() {
   await signOut({ redirectTo: "/" });
@@ -44,4 +44,19 @@ export async function registerUser({
   });
 
   return { success: true };
+}
+
+export async function loginAsGuest() {
+  try {
+    await signIn("credentials", {
+      email: "guest@user.com",
+      password: "guest",
+      redirectTo: "/dashboard",
+    });
+  } catch (error) {
+    if ((error as Error).message?.includes("NEXT_REDIRECT")) {
+      throw error;
+    }
+    return { error: "Failed to sign in as guest" };
+  }
 }

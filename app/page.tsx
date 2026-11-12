@@ -1,6 +1,7 @@
 import Link from "next/link";
 import ShiningMoon from "@/components/ShiningMoon";
 import GoogleBtn from "@/components/GoogleBtn";
+import GuestButton from "@/components/GuestButton";
 
 const features = [
   { title: "Daily mood", text: "One gentle check-in a day, seen at a glance." },
@@ -45,12 +46,7 @@ export default function Landing() {
               Log in
             </Link>
             <GoogleBtn />
-            <Link
-              href="/guest"
-              className="rounded-full px-8 py-3 text-center border-none bg-linear-to-r from-[#c87035] via-[#d21fbe] to-[#1356ea] text-background hover:bg-none hover:bg-foreground"
-            >
-              Try as guest
-            </Link>
+            <GuestButton />
           </div>
         </div>
 
