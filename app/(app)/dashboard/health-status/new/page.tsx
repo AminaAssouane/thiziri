@@ -25,68 +25,80 @@ export default function NewHealthStatusPage() {
           </div>
         </div>
 
-        <form action={createHealthStatus} className="flex flex-col mt-5">
-          <label htmlFor="weight" className="font-bold text-sm my-2">
-            Weight (kg){" "}
-          </label>
-          <input
-            type="number"
-            step="0.1"
-            id="weight"
-            name="weight"
-            className="bg-surface border-border border rounded-2xl p-3 mb-4 text-sm"
-            placeholder="e.g. 68.5 kg"
-          />
+        <form
+          action={createHealthStatus}
+          className="grid grid-cols-1 mt-5 md:grid-cols-2 md:gap-x-10"
+        >
+          <div>
+            <label htmlFor="weight" className="block font-bold text-sm my-2">
+              Weight (kg){" "}
+            </label>
+            <input
+              type="number"
+              step="0.1"
+              id="weight"
+              name="weight"
+              className="block bg-surface border-border border rounded-2xl p-3 mb-4 text-sm w-full"
+              placeholder="e.g. 68.5 kg"
+            />
+          </div>
+          <div>
+            <label htmlFor="bloodP" className="block font-bold text-sm my-2">
+              Blood Pressure{" "}
+            </label>
+            <input
+              type="text"
+              id="bloodP"
+              name="bloodPressure"
+              placeholder="e.g. 120/80"
+              className="block bg-surface border-border border rounded-2xl p-3 mb-4 text-sm w-full"
+            />
+          </div>
 
-          <label htmlFor="bloodP" className="font-bold text-sm my-2">
-            Blood Pressure{" "}
-          </label>
-          <input
-            type="text"
-            id="bloodP"
-            name="bloodPressure"
-            placeholder="e.g. 120/80"
-            className="bg-surface border-border border rounded-2xl p-3 mb-4 text-sm"
-          />
+          <div>
+            <label htmlFor="bloodS" className="block font-bold text-sm my-2">
+              Blood Sugar
+            </label>
+            <input
+              type="number"
+              id="bloodS"
+              step="0.1"
+              name="bloodSugar"
+              placeholder="Add today's reading"
+              className="bg-surface border-border border rounded-2xl p-3 mb-4 text-sm block w-full"
+            />
+          </div>
 
-          <label htmlFor="bloodS" className="font-bold text-sm my-2">
-            Blood Sugar
-          </label>
-          <input
-            type="number"
-            id="bloodS"
-            step="0.1"
-            name="bloodSugar"
-            placeholder="Add today's reading"
-            className="bg-surface border-border border rounded-2xl p-3 mb-4 text-sm"
-          />
+          <div>
+            <label htmlFor="temp" className="block font-bold text-sm my-2">
+              Temperature (°C){" "}
+            </label>
+            <input
+              type="number"
+              id="temp"
+              step="0.1"
+              name="temperature"
+              placeholder="e.g. 36.8 °C"
+              className="bg-surface border-border border rounded-2xl p-3 mb-4 text-sm block w-full"
+            />
+          </div>
 
-          <label htmlFor="temp" className="font-bold text-sm my-2">
-            Temperature (°C){" "}
-          </label>
-          <input
-            type="number"
-            id="temp"
-            step="0.1"
-            name="temperature"
-            placeholder="e.g. 36.8 °C"
-            className="bg-surface border-border border rounded-2xl p-3 mb-4 text-sm"
-          />
-
-          <label htmlFor="notes" className="font-bold text-sm my-2">
-            Notes{" "}
-            <span className="text-foreground/60 font-medium">(optional)</span>
-          </label>
-          <textarea
-            id="notes"
-            name="notes"
-            placeholder="Anything to remember about today?"
-            className="bg-surface border-border border rounded-2xl p-3 mb-4 text-sm"
-          ></textarea>
+          <div className="md:col-span-2">
+            <label htmlFor="notes" className="block font-bold text-sm my-2">
+              Notes{" "}
+              <span className="text-foreground/60 font-medium">(optional)</span>
+            </label>
+            <textarea
+              id="notes"
+              name="notes"
+              placeholder="Anything to remember about today?"
+              className="bg-surface border-border border rounded-2xl p-3 mb-4 text-sm block w-full"
+            ></textarea>
+          </div>
 
           <button
             type="submit"
-            className="bg-foreground text-background rounded-2xl font-bold p-4"
+            className="bg-foreground text-background rounded-2xl font-bold p-4 cursor-pointer w-full md:col-span-2"
           >
             Save today's check-in →
           </button>
