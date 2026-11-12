@@ -57,8 +57,12 @@ export default async function EmergencyContactsPage() {
 
   return (
     <div>
-      <h1 className="font-bold text-4xl font-display">Emergency contacts</h1>
-      <p className="text-foreground/70 text-sm">Your people, close at hand.</p>
+      <h1 className="font-bold text-4xl font-display text-center">
+        Emergency contacts
+      </h1>
+      <p className="text-foreground/70 text-sm text-center">
+        Your people, close at hand.
+      </p>
       <Link
         href="/dashboard/emergency-contacts/new"
         className="flex bg-foreground text-surface my-6 w-full p-5 justify-center font-bold rounded-3xl"
