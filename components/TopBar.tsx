@@ -10,7 +10,7 @@ export default function TopBar() {
   const pathname = usePathname();
   return (
     <header className="fixed inset-x-0 top-0 z-10 hidden bg-darkest-lagoon text-white md:block">
-      <nav className="mx-auto flex max-w-5xl items-center justify-between  px-10 py-4 ">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between  px-10 py-4 ">
         <Link href="/dashboard" className="flex gap-2 items-center">
           <MoonLogoIcon className="w-7 h-7 text-teal" />
           <p className="text-3xl font-display moon-title">Thiziri</p>

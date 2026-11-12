@@ -73,8 +73,8 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="flex text-gray-400 flex-col text-center -pb-10 md:flex-row md:items-center md:justify-between px-20 pb-10">
-        <p>© Made by Amina Assouane.</p>
+      <section className="flex text-gray-400 flex-col text-center -pb-10 md:flex-row md:items-center md:justify-between md:px-35 pb-10">
+        <p>© Made by Amina Assouane</p>
         <div className="flex justify-center gap-4 mt-2">
           <a
             href="https://github.com/AminaAssouane"
