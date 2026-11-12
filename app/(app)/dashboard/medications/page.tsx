@@ -77,8 +77,10 @@ export default async function MedicationPage() {
   return (
     <div className="relative left-1/2 w-screen -translate-x-1/2 -mt-6 -mb-24 pt-6 pb-24 md:-mt-28 md:-mb-10 md:pt-28 md:pb-10 bg-background">
       <div className="mx-auto max-w-md px-4 md:max-w-5xl md:px-10">
-        <h1 className="text-4xl font-display font-bold mb-2">Medications</h1>
-        <p className="text-sm text-foreground/70">
+        <h1 className="text-4xl font-display font-bold mb-2 text-center">
+          Medications
+        </h1>
+        <p className="text-sm text-foreground/70 text-center">
           Your current treatment plan
         </p>
         <Link

@@ -17,11 +17,15 @@ export default async function EditMedLogPage({
 
   return (
     <div>
-      <div className="uppercase font-bold text-sm tracking-widest text-foreground/70 mb-1">
+      <div className="uppercase font-bold text-sm tracking-widest text-foreground/70 mb-1 text-center">
         {med.name}
       </div>
-      <h1 className="font-bold text-4xl font-display mb-1">Edit log</h1>
-      <div className="text-sm">Update this check-in in your care record.</div>
+      <h1 className="font-bold text-4xl font-display mb-1 text-center">
+        Edit log
+      </h1>
+      <div className="text-sm text-center">
+        Update this check-in in your care record.
+      </div>
       <form
         action={editMedicationLog.bind(null, logId)}
         className="bg-card-bg p-5 rounded-2xl  mt-5"

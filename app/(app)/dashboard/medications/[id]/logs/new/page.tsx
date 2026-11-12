@@ -12,11 +12,15 @@ export default async function NewMedLog({ params }: NewMedLogProps) {
 
   return (
     <div>
-      <div className="uppercase font-bold text-sm tracking-widest text-foreground/70 mb-1">
+      <div className="uppercase font-bold text-sm tracking-widest text-foreground/70 mb-1 text-center">
         {med.name}
       </div>
-      <h1 className="font-bold text-4xl font-display mb-1">New log</h1>
-      <div className="text-sm">Add a check-in to your care record.</div>
+      <h1 className="font-bold text-4xl font-display mb-1 text-center">
+        New log
+      </h1>
+      <div className="text-sm text-center">
+        Add a check-in to your care record.
+      </div>
       <form
         action={createMedLog.bind(null, id)}
         className="bg-card-bg p-5 rounded-2xl  mt-5"

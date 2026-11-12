@@ -68,8 +68,12 @@ export default async function MedLogsPage({ params }: MedLogsPageProps) {
 
   return (
     <div>
-      <h1 className="font-display font-bold text-4xl">Medication logs</h1>
-      <p className="text-sm text-foreground/70">A record of your daily care.</p>
+      <h1 className="font-display font-bold text-4xl text-center">
+        Medication logs
+      </h1>
+      <p className="text-sm text-foreground/70 text-center">
+        A record of your daily care.
+      </p>
 
       <div className="flex items-center gap-5 bg-foreground text-background rounded-2xl p-5 my-5">
         <div className="flex items-center justify-center font-bold text-2xl text-surface-muted bg-moss rounded-full p-5 h-12 w-12">
