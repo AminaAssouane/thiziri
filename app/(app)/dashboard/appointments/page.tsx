@@ -76,11 +76,15 @@ export default async function Appointments() {
 
   return (
     <div>
-      <div className="font-bold uppercase tracking-widest text-xs text-foreground/70 mb-1">
+      <div className="font-bold uppercase tracking-widest text-xs text-foreground/70 mb-1 text-center">
         Your care, in one place
       </div>
-      <h1 className="font-display text-4xl font-bold mb-1">Appointments</h1>
-      <div className="text-sm">Keep track of the next steps in your care.</div>
+      <h1 className="font-display text-4xl font-bold mb-1 text-center">
+        Appointments
+      </h1>
+      <div className="text-sm text-center">
+        Keep track of the next steps in your care.
+      </div>
       <Link
         href="/dashboard/appointments/new"
         className="block bg-foreground text-surface rounded-full w-full p-4 my-4 font-bold text-center"
