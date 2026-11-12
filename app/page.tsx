@@ -17,9 +17,9 @@ const features = [
 
 export default function Landing() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-linear-to-t md:bg-linear-to-r from-[#00181C] to-lagoon">
-      <section className="mx-auto grid min-h-screen max-w-6xl items-center gap-10 px-6 py-12 md:grid-cols-2">
-        <div className="text-center md:text-left">
+    <main className="relative flex min-h-screen flex-col justify-between bg-linear-to-t md:bg-linear-to-r from-[#00181C] to-lagoon">
+      <section className="mx-auto grid flex-1 w-full max-w-6xl items-center gap-10 px-6 py-12 md:grid-cols-2">
+        <div className="text-center">
           <h1 className="moon-title font-display text-6xl md:text-7xl">
             Thiziri
           </h1>
@@ -31,7 +31,7 @@ export default function Landing() {
             A calm place to keep track of your health: mood, medications,
             appointments and documents.
           </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row md:justify-start justify-center">
+          <div className="mt-8 flex flex-col gap-3 justify-center">
             <Link
               href="/signup"
               className="rounded-full bg-foreground px-8 py-3 text-center text-background hover:bg-lagoon"
@@ -59,7 +59,7 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="px-6 py-16 text-background hidden md:block">
+      {/* <section className="px-6 py-16 text-background hidden md:block">
         <div className="mx-auto grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {features.map((f) => (
             <div
@@ -71,9 +71,10 @@ export default function Landing() {
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
 
-      <section className="flex text-gray-400 flex-col text-center -pb-10 md:flex-row md:items-center md:justify-between md:px-35 pb-10">
+      <footer className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-2 px-6 pb-4 text-sm text-gray-400 md:flex-row">
+        {" "}
         <p>© Made by Amina Assouane</p>
         <div className="flex justify-center gap-4 mt-2">
           <a
@@ -89,7 +90,7 @@ export default function Landing() {
             Linkedin
           </a>
         </div>
-      </section>
+      </footer>
     </main>
   );
 }

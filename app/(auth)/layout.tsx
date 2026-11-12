@@ -21,7 +21,7 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
       <div className="mx-auto my-auto hidden md:block">
         <ShiningMoon size={350} />
       </div>
-      <footer className="flex text-gray-400 flex-col text-center md:flex-row md:items-center md:justify-between md:col-span-2 w-full px-20">
+      {/* <footer className="flex text-gray-400 flex-col text-center md:flex-row md:items-center md:justify-between md:col-span-2 w-full px-20">
         <p>© Made by Amina Assouane</p>
         <div className="flex justify-center gap-4 mt-1">
           <a
@@ -37,7 +37,7 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
             Linkedin
           </a>
         </div>
-      </footer>
+      </footer> */}
     </main>
   );
 }
