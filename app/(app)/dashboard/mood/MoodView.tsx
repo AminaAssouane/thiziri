@@ -52,7 +52,7 @@ export function MoodView({ mood, moods, selectedDate }: MoodViewProps) {
   });
 
   const weekStrip = (
-    <section className="relative left-1/2 -ml-[50vw] -mt-6 w-screen bg-lagoon text-white p-6">
+    <section className="relative left-1/2 ml-[-50vw] -mt-11 w-screen bg-darkest-lagoon text-white p-6">
       <div className="mx-auto max-w-md px-4 py-6">
         <div className="mb-4 flex items-center justify-between">
           <button
