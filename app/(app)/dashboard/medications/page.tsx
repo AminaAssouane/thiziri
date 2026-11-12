@@ -28,29 +28,31 @@ export default async function MedicationPage() {
     const iconColor = index % 2 === 0 ? "bg-surface-muted" : "bg-lightblue";
     return (
       <div className="bg-surface rounded-2xl border border-border p-5 shadow-sm">
-        <div className="flex gap-4 items-center">
-          <div
-            className={`flex items-center justify-center font-bold text-xl ${iconColor} rounded-xl h-10 w-10`}
-          >
-            ✚
+        <div className="md:flex md:gap-4 md:items-center md:border-b md:border-gray-300 md:pb-4">
+          <div className="flex gap-4 items-center">
+            <div
+              className={`flex items-center justify-center font-bold text-xl ${iconColor} rounded-xl h-10 w-10`}
+            >
+              ✚
+            </div>
+            <div>
+              <p className="font-bold">{medication.name}</p>
+              <p className="text-xs">
+                {medication.dosage} · {medication.frequency}
+              </p>
+            </div>
           </div>
-          <div>
-            <p className="font-bold">{medication.name}</p>
-            <p className="text-xs">
-              {medication.dosage} · {medication.frequency}
-            </p>
-          </div>
+          {medication.isActive ? (
+            <div className="bg-background text-moss font-bold p-2 text-xs rounded-2xl my-4 w-20 text-center">
+              Active
+            </div>
+          ) : (
+            <div className="bg-red-200 text-red-700 font-bold p-2 text-xs rounded-2xl my-4 w-20 text-center">
+              Inactive
+            </div>
+          )}
         </div>
-        {medication.isActive ? (
-          <div className="bg-background text-moss font-bold p-2 text-xs rounded-2xl my-4 w-20 text-center">
-            Active
-          </div>
-        ) : (
-          <div className="bg-red-200 text-red-700 font-bold p-2 text-xs rounded-2xl my-4 w-20 text-center">
-            Inactive
-          </div>
-        )}
-        <div className="text-xs text-foreground/60">
+        <div className="text-xs text-foreground/60 md:pt-5">
           Started {date.format(medication.startDate)}
         </div>
         <div className="text-sm text-foreground/90 mt-1">
