@@ -52,7 +52,7 @@ export function MoodView({ mood, moods, selectedDate }: MoodViewProps) {
   });
 
   const weekStrip = (
-    <section className="relative left-1/2 -ml-[50vw] -mt-6 w-screen bg-linear-to-r from-[#00181C] to-lagoon text-background p-6">
+    <section className="relative left-1/2 -ml-[50vw] -mt-6 w-screen bg-lagoon text-background p-6">
       <div className="mx-auto max-w-md px-4 py-6">
         <div className="mb-4 flex items-center justify-between">
           <button
@@ -110,7 +110,7 @@ export function MoodView({ mood, moods, selectedDate }: MoodViewProps) {
                 </p>
 
                 <p
-                  className={`flex items-center justify-center font-semibold rounded-full h-10 w-10 ${moodColor ?? "bg-transparent"}`}
+                  className={`flex items-center justify-center font-semibold rounded-full h-7 w-7 md:h-10 md:w-10 ${moodColor ?? "bg-transparent"}`}
                 >
                   {date.getDate()}
                 </p>
@@ -123,9 +123,9 @@ export function MoodView({ mood, moods, selectedDate }: MoodViewProps) {
   );
 
   return (
-    <div className="-mx-5">
+    <div className="">
       {weekStrip}
-      <div className="font-bold text-2xl mt-8 mb-4">
+      <div className="font-bold text-xl md:text-2xl mt-8 mb-4">
         {selectedDate.toLocaleDateString("en-US", {
           weekday: "long",
           month: "long",
@@ -146,7 +146,7 @@ export function MoodView({ mood, moods, selectedDate }: MoodViewProps) {
           value={formatDateParam(selectedDate)}
         />
 
-        <fieldset className="flex gap-4 mt-5 w-full">
+        <fieldset className="grid grid-cols-3 gap-4 mt-5">
           <label className="text-xl flex flex-col gap-2 justify-center items-center flex-1 p-5 rounded-2xl border border-border cursor-pointer has-[:checked]:border-red-800 has-[:checked]:text-red-800 has-[:checked]:border-2 has-[:checked]:font-bold">
             <input
               type="radio"
