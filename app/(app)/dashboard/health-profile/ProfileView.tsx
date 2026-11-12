@@ -97,8 +97,10 @@ export default function ProfileView({ profile }: ProfileViewProps) {
   if (!isEditing && profile)
     return (
       <div>
-        <h1 className="text-4xl font-display mb-1">Health Profile</h1>
-        <div className="text-xs text-foreground/70">
+        <h1 className="text-4xl font-display mb-1 text-center">
+          Health Profile
+        </h1>
+        <div className="text-xs text-foreground/70 text-center">
           Your essential health details.
         </div>
         <button
@@ -192,10 +194,10 @@ export default function ProfileView({ profile }: ProfileViewProps) {
 
   return (
     <div>
-      <h1 className="text-4xl font-display mb-1">
+      <h1 className="text-4xl font-display mb-1 text-center">
         {profile ? "Edit health profile" : "Create health profile"}
       </h1>{" "}
-      <div className="text-xs text-foreground/70">
+      <div className="text-xs text-foreground/70 text-center">
         {profile
           ? "Your health details, all in one place."
           : "Add the details you want close at hand. You can update them any time."}
