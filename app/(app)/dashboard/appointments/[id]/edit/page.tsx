@@ -23,113 +23,136 @@ export default async function EditAppointmentPage({
 
   return (
     <form action={editAppointment}>
-      <div className="uppercase tracking-wider font-bold text-xs">
+      <div className="uppercase tracking-wider font-bold text-xs text-center">
         Your care, in one place
       </div>
-      <h1 className="text-4xl font-bold font-display my-1">Edit appointment</h1>
-      <div className="text-xs text-foreground/70">
+      <h1 className="text-4xl font-bold font-display my-1 text-center">
+        Edit appointment
+      </h1>
+      <div className="text-xs text-foreground/70 text-center">
         Update the details for your upcoming visit.
       </div>
 
       {/* THE hidden input */}
       <input type="hidden" name="id" value={id} />
+      <div className="bg-card-bg rounded-3xl p-5 grid grid-cols-1 md:grid-cols-2 md:gap-x-10 mt-5">
+        <div className="font-bold text-2xl my-3 font-display md:col-span-2">
+          Visit details
+        </div>
+        <div>
+          <label htmlFor="doctorName" className="font-bold text-sm">
+            Doctor name{" "}
+          </label>
+          <input
+            type="text"
+            id="doctorName"
+            name="doctorName"
+            defaultValue={appointment.doctorName}
+            required
+            className="bg-surface border border-border p-4 w-full rounded-2xl mt-2 mb-4"
+          />
+        </div>
+        <div>
+          <label htmlFor="specialty" className="font-bold text-sm">
+            Specialty{" "}
+          </label>
+          <input
+            type="text"
+            name="specialty"
+            id="specialty"
+            defaultValue={appointment.specialty}
+            required
+            className="bg-surface border border-border p-4 w-full rounded-2xl mt-2 mb-4"
+          />
+        </div>
+        <div>
+          <label htmlFor="date" className="font-bold text-sm">
+            Date{" "}
+          </label>
+          <input
+            type="date"
+            id="date"
+            name="date"
+            defaultValue={appointment.date.toISOString().slice(0, 10)}
+            required
+            className="bg-surface border border-border p-4 w-full rounded-2xl mt-2 mb-4"
+          />
+        </div>
+        <div>
+          <label htmlFor="time" className="font-bold text-sm">
+            Time{" "}
+          </label>
+          <input
+            type="time"
+            id="time"
+            name="time"
+            defaultValue={appointment.date.toISOString().slice(11, 16)}
+            required
+            className="bg-surface border border-border p-4 w-full rounded-2xl mt-2 mb-4"
+          />
+        </div>
 
-      <div className="font-bold text-2xl my-3 font-display">Visit details</div>
-      <label htmlFor="doctorName" className="font-bold text-sm">
-        Doctor name{" "}
-      </label>
-      <input
-        type="text"
-        id="doctorName"
-        name="doctorName"
-        defaultValue={appointment.doctorName}
-        required
-        className="bg-surface border border-border p-4 w-full rounded-2xl mt-2 mb-4"
-      />
-      <label htmlFor="specialty" className="font-bold text-sm">
-        Specialty{" "}
-      </label>
-      <input
-        type="text"
-        name="specialty"
-        id="specialty"
-        defaultValue={appointment.specialty}
-        required
-        className="bg-surface border border-border p-4 w-full rounded-2xl mt-2 mb-4"
-      />
-      <label htmlFor="date" className="font-bold text-sm">
-        Date{" "}
-      </label>
-      <input
-        type="date"
-        id="date"
-        name="date"
-        defaultValue={appointment.date.toISOString().slice(0, 10)}
-        required
-        className="bg-surface border border-border p-4 w-full rounded-2xl mt-2 mb-4"
-      />
-      <label htmlFor="time" className="font-bold text-sm">
-        Time{" "}
-      </label>
-      <input
-        type="time"
-        id="time"
-        name="time"
-        defaultValue={appointment.date.toISOString().slice(11, 16)}
-        required
-        className="bg-surface border border-border p-4 w-full rounded-2xl mt-2 mb-4"
-      />
-      <label htmlFor="location" className="font-bold text-sm">
-        Location
-      </label>
-      <input
-        type="text"
-        id="location"
-        name="location"
-        defaultValue={appointment.location}
-        required
-        className="bg-surface border border-border p-4 w-full rounded-2xl mt-2 mb-4"
-      />
-      <label htmlFor="reason" className="font-bold text-sm">
-        Reason
-      </label>
-      <input
-        type="text"
-        id="reason"
-        name="reason"
-        defaultValue={appointment.reason}
-        required
-        className="bg-surface border border-border p-4 w-full rounded-2xl mt-2 mb-4"
-      />
-      <label htmlFor="notes" className="font-bold text-sm">
-        Notes
-      </label>
-      <textarea
-        id="notes"
-        name="notes"
-        defaultValue={appointment.notes ?? ""}
-        className="bg-surface border border-border p-4 w-full rounded-2xl mt-2 mb-4"
-      ></textarea>
+        <div className="md:col-span-2">
+          <label htmlFor="location" className="font-bold text-sm">
+            Location
+          </label>
+          <input
+            type="text"
+            id="location"
+            name="location"
+            defaultValue={appointment.location}
+            required
+            className="bg-surface border border-border p-4 w-full rounded-2xl mt-2 mb-4"
+          />
+        </div>
 
-      <label htmlFor="status" className="font-bold text-sm">
-        Status :{" "}
-      </label>
-      <select
-        id="status"
-        name="status"
-        defaultValue={appointment.status}
-        className="bg-surface border border-border p-4 w-full rounded-2xl mt-2 mb-4"
-      >
-        <option value="UPCOMING">Upcoming</option>
-        <option value="COMPLETED">Completed</option>
-        <option value="CANCELLED">Cancelled</option>
-      </select>
-      <button
-        type="submit"
-        className="text-center bg-accent text-surface font-bold w-full p-4 rounded-4xl mt-3 cursor-pointer"
-      >
-        Save changes
-      </button>
+        <div className="md:col-span-2">
+          <label htmlFor="reason" className="font-bold text-sm">
+            Reason
+          </label>
+          <input
+            type="text"
+            id="reason"
+            name="reason"
+            defaultValue={appointment.reason}
+            required
+            className="bg-surface border border-border p-4 w-full rounded-2xl mt-2 mb-4"
+          />
+        </div>
+        <div className="md:col-span-2">
+          <label htmlFor="notes" className="font-bold text-sm">
+            Notes
+          </label>
+          <textarea
+            id="notes"
+            name="notes"
+            defaultValue={appointment.notes ?? ""}
+            className="bg-surface border border-border p-4 w-full rounded-2xl mt-2 mb-4"
+          ></textarea>
+        </div>
+
+        <div className="md:col-span-2">
+          <label htmlFor="status" className="font-bold text-sm">
+            Status :{" "}
+          </label>
+          <select
+            id="status"
+            name="status"
+            defaultValue={appointment.status}
+            className="bg-surface border border-border p-4 w-full rounded-2xl mt-2 mb-4"
+          >
+            <option value="UPCOMING">Upcoming</option>
+            <option value="COMPLETED">Completed</option>
+            <option value="CANCELLED">Cancelled</option>
+          </select>
+        </div>
+        <button
+          type="submit"
+          className="text-center bg-accent text-surface font-bold w-full p-4 rounded-4xl mt-3 cursor-pointer md:col-span-2"
+        >
+          Save changes
+        </button>
+      </div>
     </form>
   );
 }
