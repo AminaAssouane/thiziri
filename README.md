@@ -5,8 +5,7 @@
 From daily health and mood tracking to medication management, medical appointments, and document storage, Thiziri provides a centralized space for managing personal health records through an intuitive dashboard.
 
 <p align="center">
-  <a href="YOUR_LIVE_DEMO_URL">🌐 Live Demo</a> ·
-  <a href="YOUR_GITHUB_REPOSITORY_URL">💻 GitHub Repository</a>
+  <a href="amina-thiziri.vercel.app">🌐 Live Demo</a>
 </p>
 
 ## 📸 Screenshots
@@ -35,15 +34,15 @@ From daily health and mood tracking to medication management, medical appointmen
 
 ## 🛠️ Tech Stack
 
-| Category       | Technologies           |
-| -------------- | ---------------------- |
-| Framework      | Next.js (App Router)   |
-| Language       | JavaScript, TypeScript |
-| Frontend       | React, Tailwind CSS    |
-| Database       | PostgreSQL             |
-| ORM            | Prisma                 |
-| Authentication | Auth.js, Google OAuth  |
-| File Storage   | UploadThing            |
+| Category       | Technologies          |
+| -------------- | --------------------- |
+| Framework      | Next.js (App Router)  |
+| Language       | TypeScript            |
+| Frontend       | React, Tailwind CSS   |
+| Database       | PostgreSQL            |
+| ORM            | Prisma                |
+| Authentication | Auth.js, Google OAuth |
+| File Storage   | UploadThing           |
 
 ## 🗄️ Database Architecture
 
@@ -123,16 +122,6 @@ The application includes the following models:
 | `AUTH_GOOGLE_SECRET` | Google OAuth client secret.                                     |
 
 **Note:** Never commit your `.env` file or expose your secret values publicly.
-
-## 🔑 Demo Account
-
-<!-- Optional: Create a dedicated demo account with sample data -->
-
-- **Live Demo:** YOUR_LIVE_DEMO_URL
-- **Email:** YOUR_DEMO_EMAIL
-- **Password:** YOUR_DEMO_PASSWORD
-
-_Use a dedicated demo account with fictional sample data. Never share personal credentials._
 
 ## 💡 Motivation
 
