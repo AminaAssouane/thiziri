@@ -131,4 +131,8 @@ The name _Thiziri_ means "moonlight" in Kabyle. Choosing a name from my language
 
 ---
 
-**Built by [Amina Assouane](https://github.com/AminaAssouane)**
+## 👩🏻‍💻 Built By
+
+**Amina Assouane**
+
+[GitHub](https://github.com/AminaAssouane) · [Portfolio](https://amina-assouane.vercel.app)
