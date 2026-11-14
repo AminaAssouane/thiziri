@@ -13,7 +13,7 @@ export default auth((req) => {
     pathname === "/" || pathname === "/login" || pathname === "/signup";
 
   if (isDashboardRoute && !isLoggedIn) {
-    return NextResponse.redirect(new URL("/login", req.nextUrl));
+    return NextResponse.redirect(new URL("/", req.nextUrl));
   }
 
   if (isAuthRoute && isLoggedIn) {
