@@ -5,7 +5,7 @@
 From daily health and mood tracking to medication management, medical appointments, and document storage, Thiziri provides a centralized space for managing personal health records through an intuitive dashboard.
 
 <p align="center">
-  <a href="amina-thiziri.vercel.app">🌐 Live Demo</a>
+  <a href="https://amina-thiziri.vercel.app">🌐 Live Demo</a>
 </p>
 
 ## 📸 Screenshots
