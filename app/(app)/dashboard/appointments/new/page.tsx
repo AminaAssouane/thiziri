@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { addAppointment } from "../actions";
 
 export default async function NewAppointmentPage() {
@@ -123,9 +124,15 @@ export default async function NewAppointmentPage() {
             <option value="CANCELLED">Cancelled</option>
           </select>
         </div>
+        <Link
+          href="/dashboard/appointments"
+          className="text-center text-accent bg-transparent border-2 border-accent hover:bg-accent hover:text-surface font-bold w-full p-4 rounded-4xl mt-3 cursor-pointer"
+        >
+          Cancel
+        </Link>
         <button
           type="submit"
-          className="text-center bg-accent text-surface font-bold w-full p-4 rounded-4xl mt-3 cursor-pointer md:col-span-2"
+          className="text-center bg-accent text-surface font-bold w-full p-4 rounded-4xl mt-3 cursor-pointer"
         >
           Save appointment
         </button>{" "}
