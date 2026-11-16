@@ -1,5 +1,6 @@
 import { createEmergencyContact } from "../actions";
 import { Heart } from "lucide-react";
+import Link from "next/link";
 
 export default function NewEmergencyContact() {
   return (
@@ -81,9 +82,15 @@ export default function NewEmergencyContact() {
           ></input>
         </div>
 
+        <Link
+          href="/dashboard/emergency-contacts"
+          className="text-center text-accent bg-transparent border-2 border-accent hover:bg-accent hover:text-surface font-bold w-full p-4 rounded-4xl mt-3 cursor-pointer"
+        >
+          Cancel
+        </Link>
         <button
           type="submit"
-          className="bg-foreground text-surface font-bold p-4 w-full rounded-full cursor-pointer md:col-span-2"
+          className="bg-foreground text-surface font-bold p-4 w-full rounded-full cursor-pointer"
         >
           Add contact
         </button>
