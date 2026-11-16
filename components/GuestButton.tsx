@@ -20,7 +20,7 @@ export default function GuestButton() {
     <button
       onClick={handleClick}
       disabled={isLoading}
-      className="rounded-full px-8 py-3 font-bold text-center border-none bg-linear-to-r from-[#c87035] via-[#d21fbe] to-[#1356ea] text-background hover:bg-none hover:bg-foreground"
+      className="rounded-full px-8 py-3 cursor-pointer font-bold text-center border-none bg-linear-to-r from-[#c87035] via-[#d21fbe] to-[#1356ea] text-background hover:bg-none hover:bg-foreground"
     >
       {isLoading ? "Entering..." : "Try as guest"}
     </button>
