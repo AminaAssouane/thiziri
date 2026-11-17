@@ -140,25 +140,25 @@ export default async function EditAppointmentPage({
             id="status"
             name="status"
             defaultValue={appointment.status}
-            className="bg-surface border border-border p-4 w-full rounded-2xl mt-2 mb-4"
+            className="bg-surface border border-border p-4 w-full rounded-2xl mt-2 mb-2"
           >
             <option value="UPCOMING">Upcoming</option>
             <option value="COMPLETED">Completed</option>
             <option value="CANCELLED">Cancelled</option>
           </select>
         </div>
-        <Link
-          href="/dashboard/appointments"
-          className="text-center text-accent bg-transparent border-2 border-accent hover:bg-accent hover:text-surface font-bold w-full p-4 rounded-4xl mt-3 cursor-pointer"
-        >
-          Cancel
-        </Link>
         <button
           type="submit"
-          className="text-center bg-accent text-surface font-bold w-full p-4 rounded-4xl mt-3 cursor-pointer"
+          className="text-center bg-accent text-surface font-bold w-full p-4 rounded-4xl mt-5 cursor-pointer"
         >
           Save changes
         </button>
+        <Link
+          href="/dashboard/appointments"
+          className="text-center text-accent bg-transparent border-2 border-accent hover:bg-accent hover:text-surface font-bold w-full p-4 rounded-4xl mt-5 cursor-pointer"
+        >
+          Cancel
+        </Link>
       </div>
     </form>
   );

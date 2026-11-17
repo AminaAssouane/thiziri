@@ -102,21 +102,21 @@ export default async function EditEmergencyContact({
             type="email"
             placeholder="e.g. name@example.com"
             defaultValue={contact.email ?? ""}
-            className="bg-card-bg rounded-2xl border border-border p-3 text-sm mt-1 mb-5 w-full"
+            className="bg-card-bg rounded-2xl border border-border p-3 text-sm mt-1 mb-2 w-full"
           ></input>
         </div>
-        <Link
-          href="/dashboard/emergency-contacts"
-          className="text-center text-accent bg-transparent border-2 border-accent hover:bg-accent hover:text-surface font-bold w-full p-4 rounded-4xl mt-3 cursor-pointer"
-        >
-          Cancel
-        </Link>
         <button
           type="submit"
-          className="bg-foreground text-surface font-bold p-4 w-full rounded-full cursor-pointer"
+          className="bg-foreground text-surface font-bold p-4 w-full rounded-full cursor-pointer mt-5"
         >
           Save changes
         </button>
+        <Link
+          href="/dashboard/emergency-contacts"
+          className="text-center text-accent bg-transparent border-2 border-accent hover:bg-accent hover:text-surface font-bold w-full p-4 rounded-4xl mt-5 cursor-pointer"
+        >
+          Cancel
+        </Link>
       </form>
     </div>
   );
