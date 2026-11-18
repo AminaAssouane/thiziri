@@ -2,6 +2,7 @@
 import type { MoodEntry } from "@/generated/prisma/client";
 import { saveMood } from "./actions";
 import { useRouter } from "next/navigation";
+import CancelButton from "@/components/CancelButton";
 
 type MoodViewProps = {
   mood: MoodEntry | null;
@@ -192,12 +193,15 @@ export function MoodView({ mood, moods, selectedDate }: MoodViewProps) {
           defaultValue={mood?.note ?? ""}
           className="bg-surface rounded-3xl p-4 mt-2 border border-border"
         ></textarea>
-        <button
-          type="submit"
-          className="bg-foreground text-background rounded-full font-bold p-4 w-full mt-4 cursor-pointer"
-        >
-          Save mood
-        </button>
+        <div className="md:grid md:grid-cols-2 md:gap-x-10">
+          <button
+            type="submit"
+            className="text-center bg-accent text-surface font-bold w-full p-4 rounded-4xl mt-5 cursor-pointer"
+          >
+            Save mood
+          </button>
+          <CancelButton />
+        </div>
       </form>
     </div>
   );

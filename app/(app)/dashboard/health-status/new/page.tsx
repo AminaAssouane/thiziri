@@ -1,3 +1,4 @@
+import CancelButton from "@/components/CancelButton";
 import { createHealthStatus } from "../actions";
 import { Plus } from "lucide-react";
 
@@ -98,10 +99,11 @@ export default function NewHealthStatusPage() {
 
           <button
             type="submit"
-            className="bg-foreground text-background rounded-2xl font-bold p-4 cursor-pointer w-full md:col-span-2"
+            className="text-center bg-accent text-surface font-bold w-full p-4 rounded-4xl mt-5 cursor-pointer"
           >
             Save today's check-in →
           </button>
+          <CancelButton />
         </form>
       </section>
     </div>

@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { getMedication } from "../../../actions";
 import { createMedLog } from "../actions";
+import CancelButton from "@/components/CancelButton";
 
 type NewMedLogProps = { params: Promise<{ id: string }> };
 
@@ -68,12 +69,15 @@ export default async function NewMedLog({ params }: NewMedLogProps) {
           className="bg-surface border border-border shadow-sm rounded-2xl p-4 text-sm w-full h-35 mt-2"
           placeholder="Add a note if you'd like..."
         ></textarea>
-        <button
-          type="submit"
-          className="w-full p-4 bg-accent text-surface cursor-pointer rounded-full mt-5"
-        >
-          Submit
-        </button>
+        <div className="md:grid md:grid-cols-2 md:gap-x-10">
+          <button
+            type="submit"
+            className="text-center bg-accent text-surface font-bold w-full p-4 rounded-4xl mt-5 cursor-pointer"
+          >
+            Submit
+          </button>
+          <CancelButton />
+        </div>
       </form>
     </div>
   );

@@ -2,6 +2,7 @@ import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { notFound, redirect } from "next/navigation";
 import { updateHealthStatus } from "../../actions";
+import CancelButton from "@/components/CancelButton";
 
 type EditHealthStatusPageProps = { params: Promise<{ id: string }> };
 
@@ -122,10 +123,11 @@ export default async function EditHealthStatusPage({
 
           <button
             type="submit"
-            className="bg-foreground text-background rounded-2xl font-bold p-4 hover:cursor-pointer w-full md:col-span-2"
+            className="text-center bg-accent text-surface font-bold w-full p-4 rounded-4xl mt-5 cursor-pointer"
           >
             Save the changes →
           </button>
+          <CancelButton />
         </form>
       </section>
     </div>

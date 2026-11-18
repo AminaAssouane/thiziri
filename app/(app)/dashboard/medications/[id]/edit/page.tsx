@@ -2,6 +2,7 @@ import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { notFound, redirect } from "next/navigation";
 import { editMedication } from "../../actions";
+import CancelButton from "@/components/CancelButton";
 
 type EditMedicationPageProps = { params: Promise<{ id: string }> };
 
@@ -123,7 +124,7 @@ export default async function EditMedication({
           ></textarea>
         </div>
 
-        <div className="flex gap-4 items-center mb-4">
+        <div className="flex gap-4 items-center mb-4 md:col-span-2">
           <input
             type="checkbox"
             id="isActive"
@@ -138,10 +139,11 @@ export default async function EditMedication({
 
         <button
           type="submit"
-          className="bg-foreground text-background rounded-2xl font-bold p-4 mt-2 cursor-pointer md:col-span-2"
+          className="text-center bg-accent text-surface font-bold w-full p-4 rounded-4xl mt-5 cursor-pointer"
         >
           Update medication →
         </button>
+        <CancelButton />
       </form>
     </>
   );

@@ -2,7 +2,7 @@ import { prisma } from "@/lib/prisma";
 import { editAppointment } from "../../actions";
 import { auth } from "@/auth";
 import { notFound } from "next/navigation";
-import Link from "next/link";
+import CancelButton from "@/components/CancelButton";
 
 type EditAppointmentPageProps = {
   params: Promise<{ id: string }>;
@@ -153,12 +153,7 @@ export default async function EditAppointmentPage({
         >
           Save changes
         </button>
-        <Link
-          href="/dashboard/appointments"
-          className="text-center text-accent bg-transparent border-2 border-accent hover:bg-accent hover:text-surface font-bold w-full p-4 rounded-4xl mt-5 cursor-pointer"
-        >
-          Cancel
-        </Link>
+        <CancelButton />
       </div>
     </form>
   );

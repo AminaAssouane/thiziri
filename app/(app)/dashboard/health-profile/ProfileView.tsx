@@ -427,7 +427,7 @@ export default function ProfileView({ profile }: ProfileViewProps) {
             <button
               type="button"
               onClick={() => setIsEditing(false)}
-              className="cursor-pointer border border-border rounded-full w-full my-4 p-3"
+              className="cursor-pointer border-2 border-border rounded-full w-full my-4 p-3 hover:bg-accent hover:text-surface"
             >
               Cancel
             </button>

@@ -1,3 +1,4 @@
+import CancelButton from "@/components/CancelButton";
 import { addMedication } from "../actions";
 
 export default function NewMedicationPage() {
@@ -91,7 +92,7 @@ export default function NewMedicationPage() {
           ></textarea>
         </div>
 
-        <div className="flex gap-4 items-center mb-4">
+        <div className="flex gap-4 items-center mb-4 md:col-span-2">
           <input
             type="checkbox"
             id="isActive"
@@ -106,10 +107,11 @@ export default function NewMedicationPage() {
 
         <button
           type="submit"
-          className="bg-foreground text-background rounded-2xl font-bold p-4 mt-2 cursor-pointer md:col-span-2"
+          className="text-center bg-accent text-surface font-bold w-full p-4 rounded-4xl mt-5 cursor-pointer"
         >
           Save medication →
         </button>
+        <CancelButton />
       </form>{" "}
     </>
   );
